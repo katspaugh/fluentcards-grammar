@@ -1,0 +1,59 @@
+:global(body) {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #333;
+}
+
+.container {
+  display: block;
+}
+
+.container h1 {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1em;
+  margin-top: 0;
+  margin-bottom: 1em;
+  background-color: #FFF844;
+}
+
+.container h1 span {
+  display: block;
+  width: 900px;
+  margin: auto;
+}
+
+.container ol {
+  padding-left: 0;
+  width: 900px;
+  margin: auto;
+  color: #999;
+}
+
+.question {
+  margin-bottom: 1em;
+  display: list-item;
+  list-style-position: inside;
+  padding: 1em;
+}
+
+.question:nth-child(even) {
+  background: #fafafa;
+}
+
+.score {
+  position: fixed;
+  right: 30px;
+  top: 20px;
+  text-align: right;
+  font-size: 1.5em;
+}
+
+.correctScore {
+  color: #76BD75;
+}
+
+.incorrectScore {
+  color: #FF6717;
+}
