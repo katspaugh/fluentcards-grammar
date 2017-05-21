@@ -46,7 +46,9 @@ export default class App extends React.PureComponent {
   onReloadClick() {
     this.reload();
 
-    this.questionsBlock.scrollIntoView();
+    requestAnimationFrame(() => {
+      this.questionsBlock.scrollIntoView();
+    });
   }
 
   render() {

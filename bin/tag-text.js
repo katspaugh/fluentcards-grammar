@@ -25,7 +25,7 @@ function transformData(data) {
   const maxLexemes = 100;
 
   const SENTENCE_FINAL_PUNCT = 'SENT';
-  const CLOSING_QUOTE = /^[«‹”’`'"]/;
+  const CLOSING_QUOTE = /^[«‹”’`'")\]]/;
 
   delete data.text;
 

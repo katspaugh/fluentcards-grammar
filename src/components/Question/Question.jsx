@@ -90,7 +90,11 @@ export default class Question extends React.PureComponent {
     const { correct } = this.state;
 
     const lexemes = this.props.question.map((lexeme, i) => {
-      const clozeForm = lexeme.clozeForm.replace(this.props.clozeSymbol, '');
+      let clozeForm = lexeme.clozeForm
+          .replace(this.props.clozeSymbol, '')
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>');
 
       const onSubmit = e => {
         e.preventDefault();
