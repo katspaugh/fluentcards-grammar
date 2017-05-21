@@ -11,6 +11,12 @@
   margin: auto;
 }
 
+@media only screen and (min-width: 1024px) {
+  .container header {
+    width: 900px;
+  }
+}
+
 .container a:hover,
 .container a {
   color: #333;
@@ -18,10 +24,4 @@
 
 .container a:hover {
   text-decoration: none;
-}
-
-@media only screen and (min-width: 1024px) {
-  .container header {
-    width: 900px;
-  }
 }
