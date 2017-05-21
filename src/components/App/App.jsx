@@ -10,6 +10,7 @@ export default class App extends React.PureComponent {
     this.generator = null;
 
     this._onAnswer = this.onAnswer.bind(this);
+    this._onReloadClick = this.onReloadClick.bind(this);
 
     this.state = {
       correctAnswers: 0,
@@ -21,10 +22,7 @@ export default class App extends React.PureComponent {
   componentWillMount() {
     this.generator = new Exercises(this.props.language);
 
-    this.generator.generate(this.props.pattern)
-      .then(data => {
-        this.setState({ exercises: data })
-      });
+    this.reload();
   }
 
   onAnswer(correct) {
@@ -32,6 +30,19 @@ export default class App extends React.PureComponent {
       correctAnswers: this.state.correctAnswers + (correct ? 1 : 0),
       incorrectAnswers: this.state.incorrectAnswers + (correct ? 0 : 1)
     });
+  }
+
+  reload() {
+    this.generator.generate(this.props.pattern)
+      .then(data => {
+        this.setState({ exercises: data })
+      });
+  }
+
+  onReloadClick() {
+    this.reload();
+
+    this.questionsBlock.scrollIntoView();
   }
 
   render() {
@@ -61,12 +72,16 @@ export default class App extends React.PureComponent {
     ));
 
     return (
-      <div className={ styles.container }>
+      <div className={ styles.container } ref={ (el) => this.questionsBlock = el } >
         <p className={ styles.description }>{ this.props.description }</p>
 
         <ol>
           { exercises }
         </ol>
+
+        <div className={ styles.controls }>
+          <button onClick={ this._onReloadClick }>Load new exercises</button>
+        </div>
 
         <div className={ styles.score }>
           <div className={ styles.correctScore }>
