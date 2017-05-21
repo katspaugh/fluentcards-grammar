@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { shuffle } from '../../services/utils';
+import { decodePos } from '../../services/utils';
 import styles from './Question.css';
 
 export default class Question extends React.PureComponent {

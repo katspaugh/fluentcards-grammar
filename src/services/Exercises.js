@@ -10,46 +10,11 @@ export default class Exercises {
     this.data = null;
   }
 
-  formatData(data) {
-    const SENTENCE_FINAL_PUNCT = 'SENT';
-    const CLOSING_QUOTE = '«';
-
-    data.sentences = data.sentences.reduce((acc, sentence) => {
-      let newSentence = [];
-
-      for (var i = 0, len = sentence.length; i < len; i++) {
-        const lexeme = sentence[i];
-        newSentence.push(lexeme);
-
-        if (lexeme.partOfSpeech === SENTENCE_FINAL_PUNCT) {
-          acc.push(newSentence);
-
-          if (newSentence[0].surfaceForm === CLOSING_QUOTE) {
-            newSentence.shift();
-          }
-
-          newSentence = [];
-        } else if (i === len) {
-          acc.push(newSentence);
-
-          if (newSentence[0].surfaceForm === CLOSING_QUOTE) {
-            newSentence.shift();
-          }
-        }
-      }
-
-      return acc;
-    }, []);
-
-    return data;
-  }
-
   getData() {
     if (this.data) return Promise.resolve(this.data);
 
     return fetch(`/data/${ this.language }/tagged.json`)
-      .then(resp => resp.json())
-      .then(data => this.formatData(data));
+      .then(resp => resp.json());
   }
 
   isLexemeMathing(lexeme, pattern) {
@@ -112,9 +77,9 @@ export default class Exercises {
 
   isSpaceDelimited(lexeme, prevLexeme) {
     const PUNCTIATION = [ 'CM', 'SENT', 'PUNCT' ];
-    const LEADING_SPACE_REGEX = /[\[“‘»(–]/;
+    const LEADING_SPACE_REGEX = /[\[“‘»›(–]/;
     const NO_LEADING_SPACE_REGEX = /^'.+/;
-    const NO_TRAILING_SPACE_REGEX = /[\[“‘»(]$/;
+    const NO_TRAILING_SPACE_REGEX = /[\[“‘»›(]$/;
 
     return prevLexeme &&
       !NO_TRAILING_SPACE_REGEX.test(prevLexeme.surfaceForm) &&

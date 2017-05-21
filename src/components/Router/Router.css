@@ -1,0 +1,9 @@
+.routeContainer {
+  margin: auto;
+}
+
+@media only screen and (min-width: 1024px) {
+  .routeContainer {
+    width: 900px;
+  }
+}

@@ -10,3 +10,9 @@ export function shuffle(arr) {
   }
   return arr;
 }
+
+export function decodePos(pos, language) {
+  const mapping = require(`xerox-nlp-client/data/tagset-${ language.toLowerCase() }.json`);
+  console.log(mapping);
+  return mapping.find(item => item.tag === '+' + pos).description;
+}

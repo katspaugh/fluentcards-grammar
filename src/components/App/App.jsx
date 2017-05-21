@@ -62,7 +62,7 @@ export default class App extends React.PureComponent {
 
     return (
       <div className={ styles.container }>
-        <h1><span>{ this.props.language }: { this.props.title }</span></h1>
+        <p className={ styles.description }>{ this.props.description }</p>
 
         <ol>
           { exercises }
@@ -72,9 +72,12 @@ export default class App extends React.PureComponent {
           <div className={ styles.correctScore }>
             Correct: { this.state.correctAnswers }/{ this.state.exercises.length }
           </div>
-          <div className={ styles.incorrectScore }>
-            Errors: { this.state.incorrectAnswers }
-          </div>
+
+          { this.state.incorrectAnswers ? (
+            <div className={ styles.incorrectScore }>
+              Errors: { this.state.incorrectAnswers }
+            </div>
+          ) : '' }
         </div>
       </div>
     );

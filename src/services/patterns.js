@@ -3,6 +3,8 @@ export default {
     'a-vs-the': {
       title: 'The definite article vs the indefinite article',
 
+      description: 'Insert the right article into the sentences below.',
+
       pattern: [
         {
           partOfSpeech: 'DET',
@@ -15,6 +17,8 @@ export default {
 
     'irregular-verbs': {
       title: 'Irregular verbs',
+
+      description: 'Type the correct form of a missing verb in the sentences.',
 
       pattern: [
         {
@@ -32,7 +36,9 @@ export default {
 
   German: {
     'definite-article-and-adjectives': {
-      title: 'Adjective endings with definite articles (Weak Declension)',
+      title: 'Weak declension of adjectives',
+
+      description: 'Choose the right ending of the adjectives that go after a definite article.',
 
       pattern: [
         {
@@ -53,7 +59,9 @@ export default {
     },
 
     'indefinite-article-and-adjectives': {
-      title: 'Adjective endings with indefinite articles (Mixed Declension)',
+      title: 'Mixed declension of adjectives',
+
+      description: 'Choose the right ending of the adjectives that go after an idefinite article, indefinite determiner ("kein") or a possessive pronoun ("mein", "sein" etc).',
 
       pattern: [
         {
@@ -76,6 +84,8 @@ export default {
     'adjective-declension': {
       title: 'Weak, Mixed and Strong declension',
 
+      description: 'Depending on whether an adjective follows an article or another determiner, it takes a different ending. Choose the correct one.',
+
       pattern: [
         {
           partOfSpeech: [ 'ADJA', 'ADJA2', 'ADJA3' ],
@@ -90,7 +100,9 @@ export default {
     },
 
     'verbs-with-prepositions': {
-      title: 'Verbs with prepositions and case government',
+      title: 'Verbs with prepositions',
+
+      description: 'Certain verbs require certain preposisions and govern the case of their nominal arguments. Choose the right preposision. Use the case of the following articles as a hint.',
 
       pattern: [
         {
@@ -139,6 +151,8 @@ export default {
     'definite-article-declension': {
       title: 'Declension of the definite articles',
 
+      description: 'Articles in German show not only the definitiveness, but also the gender, case and plurality of nouns. Choose the correct form of the definite article.',
+
       pattern: [
         {
           partOfSpeech: 'ART',
@@ -158,6 +172,8 @@ export default {
 
     'modal-verbs': {
       title: 'Modal verbs',
+
+      description: 'Choose the most suitable modal verb.',
 
       pattern: [
         {

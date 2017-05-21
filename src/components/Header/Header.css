@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #FFF844;
+}
+
+.container header {
+  display: block;
+  margin: auto;
+}
+
+.container a:hover,
+.container a {
+  color: #333;
+}
+
+.container a:hover {
+  text-decoration: none;
+}
+
+@media only screen and (min-width: 1024px) {
+  .container header {
+    width: 900px;
+  }
+}

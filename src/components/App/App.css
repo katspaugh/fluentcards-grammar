@@ -1,33 +1,29 @@
-:global(body) {
+:global(html) {
   margin: 0;
   padding: 0;
   background: #fff;
   color: #333;
+  min-height: 100vh;
+  position: relative;
+}
+
+:global(body) {
+  margin: 0;
+  padding: 0 0 100px;
 }
 
 .container {
   display: block;
 }
 
-.container h1 {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1em;
-  margin-top: 0;
+.description {
+  font-style: italic;
+  padding: 1em 0;
   margin-bottom: 1em;
-  background-color: #FFF844;
-}
-
-.container h1 span {
-  display: block;
-  width: 900px;
-  margin: auto;
 }
 
 .container ol {
   padding-left: 0;
-  width: 900px;
-  margin: auto;
   color: #999;
 }
 
@@ -45,9 +41,9 @@
 .score {
   position: fixed;
   right: 30px;
-  top: 20px;
+  top: 30px;
   text-align: right;
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
 .correctScore {
