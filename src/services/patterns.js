@@ -204,6 +204,41 @@ export default {
           choices: [ 'e', 'em', 'en', 'er', 'es' ]
         }
       ]
-    }
+    },
+
+    'verb-conjugation': {
+      title: 'Conjugation of verbs',
+
+      description: 'Conjugate the verbs into the correct form.',
+
+      pattern: [
+        {
+          partOfSpeech: 'VVFIN',
+          occlusion: /.+/,
+          choices: []
+        }
+      ]
+    },
+
+    'separable-verbal-prefixes': {
+      title: 'Separable verbal prefixes',
+
+      description: 'Choose the right separated prefix.',
+
+      pattern: [
+        {
+          partOfSpeech: 'VPREF',
+          occlusion: /.+/,
+          choices: [
+            'ab', 'an', 'dran', 'auf', 'drauf', 'aus', 'raus', 'ein', 'hin', 'hinzu', 'los', 'mit', 'vor', 'weg', 'zurück',
+            'durch', 'über', 'rüber', 'um', 'unter', 'wider'
+          ]
+        },
+        {
+          partOfSpeech: [ 'SENT', 'CM' ]
+        }
+      ]
+    },
+
   }
 }
