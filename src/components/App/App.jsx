@@ -84,9 +84,11 @@ export default class App extends React.PureComponent {
         </div>
 
         <div className={ styles.score }>
-          <div className={ styles.correctScore }>
-            Correct: { this.state.correctAnswers }/{ this.state.exercises.length }
-          </div>
+          { this.state.correctAnswers ? (
+            <div className={ styles.correctScore }>
+              Correct: { this.state.correctAnswers }/{ this.state.exercises.length }
+            </div>
+          ) : '' }
 
           { this.state.incorrectAnswers ? (
             <div className={ styles.incorrectScore }>

@@ -7,3 +7,10 @@
     width: 900px;
   }
 }
+
+@media only screen and (max-width: 769px) {
+  .routeContainer {
+    padding: 0 1em;
+  }
+}
+

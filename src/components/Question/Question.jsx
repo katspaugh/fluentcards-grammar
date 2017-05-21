@@ -55,7 +55,7 @@ export default class Question extends React.PureComponent {
     // When no choices, just display the base form
     if (randomChoices.length <= 1) {
       return (
-        <li>{ lexeme.baseForm }</li>
+        <li>{ lexeme.baseForm.join ? lexeme.baseForm.join('') : lexeme.baseForm }</li>
       );
     }
 

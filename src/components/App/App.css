@@ -9,11 +9,17 @@
 
 :global(body) {
   margin: 0;
-  padding: 0 0 100px;
+  padding: 0 0 150px;
 }
 
 .container {
   display: block;
+}
+
+@media only screen and (max-width: 769px) {
+  .container > ol {
+    margin: 0 -1em;
+  }
 }
 
 .description {
@@ -32,6 +38,8 @@
   display: list-item;
   list-style-position: inside;
   padding: 1em;
+  white-space: nowrap;
+  position: relative;
 }
 
 .question:nth-child(even) {
@@ -40,10 +48,31 @@
 
 .score {
   position: fixed;
-  right: 30px;
-  top: 30px;
+  z-index: 2;
+  right: 20px;
+  top: 20px;
   text-align: right;
   font-size: 1.4em;
+}
+
+@media only screen and (max-width: 769px) {
+  .score {
+    font-size: 0.9em;
+    padding: 0.5em 1em;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: #FFF844;
+    overflow: hidden;
+  }
+
+  .score div {
+    float: right;
+  }
+
+  .score div:first-child {
+    float: left;
+  }
 }
 
 .correctScore {
@@ -57,6 +86,13 @@
 .controls {
   margin: 4em 0 1em;
   text-align: right;
+  position: relative;
+}
+
+@media only screen and (max-width: 769px) {
+  .controls {
+    text-align: center;
+  }
 }
 
 .controls button {
