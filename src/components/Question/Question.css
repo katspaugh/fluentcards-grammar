@@ -65,6 +65,10 @@
   font-size: 1.2em;
 }
 
+.question span::first-child::first-letter {
+  text-transform: capitalize;
+}
+
 .question form {
   display: inline;
 }
@@ -81,13 +85,11 @@
   outline: none;
 }
 
-.question input[readonly] {
-}
-
 .question input::-webkit-input-placeholder {
   color: #ddd;
 }
 
+.question input[readonly]::-webkit-input-placeholder,
 .question input:focus::-webkit-input-placeholder {
   color: transparent !important;
 }
@@ -96,6 +98,7 @@
   color: #ddd;
 }
 
+.question input[readonly]::-moz-input-placeholder,
 .question input:focus::-moz-input-placeholder {
   color: transparent !important;
 }

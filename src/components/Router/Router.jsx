@@ -71,7 +71,7 @@ const Texts = () => (
       <ul>
         <li>
           Brüder Grimm, <a href="http://gutenberg.spiegel.de/buch/die-schonsten-kinder-und-hausmarchen-6248/1">
-            »Die schönsten Kinder- und Hausmärchen«
+            Die schönsten Kinder- und Hausmärchen
           </a>
         </li>
 
@@ -88,7 +88,13 @@ const Texts = () => (
         </li>
 
         <li>
-          The subtitles for "The Avengers" (2003) from Opensubtitles.org
+          H. G. Wells, <a href="https://www.gutenberg.org/ebooks/35">
+            The Time Machine
+          </a>
+        </li>
+
+        <li>
+          The subtitles for “The Avengers” (2003) from Opensubtitles.org
         </li>
       </ul>
     </div>

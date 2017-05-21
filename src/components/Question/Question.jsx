@@ -32,8 +32,15 @@ export default class Question extends React.PureComponent {
     let choices = lexeme.choices || this.props.choices;
     choices = shuffle(choices.slice()).slice(0, this.maxChoices);
 
-    if (!choices.map(c => c.toLowerCase()).includes(lexeme.occluded.toLowerCase())) {
-      choices[Math.floor(choices.length * Math.random())] = lexeme.occluded.toLowerCase();
+    const rightChoice = lexeme.occluded.toLowerCase();
+
+    if (!choices.map(c => c.toLowerCase()).includes(rightChoice)) {
+      if (choices.length + 1 < this.maxChoices) {
+        choices.push(rightChoice);
+        choices = shuffle(choices);
+      } else {
+        choices[Math.floor(choices.length * Math.random())] = rightChoice;
+      }
     }
 
     this.randomChoices = choices;
