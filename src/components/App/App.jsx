@@ -35,7 +35,11 @@ export default class App extends React.PureComponent {
   reload() {
     this.generator.generate(this.props.pattern)
       .then(data => {
-        this.setState({ exercises: data })
+        this.setState({
+          correctAnswers: 0,
+          incorrectAnswers: 0,
+          exercises: data
+        })
       });
   }
 

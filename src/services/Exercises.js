@@ -78,8 +78,8 @@ export default class Exercises {
   isSpaceDelimited(lexeme, prevLexeme) {
     const PUNCTIATION = [ 'CM', 'SENT', 'PUNCT' ];
     const LEADING_SPACE_REGEX = /[\[“‘»›(–]/;
-    const NO_LEADING_SPACE_REGEX = /^'.+/;
-    const NO_TRAILING_SPACE_REGEX = /[\[“‘»›(]$/;
+    const NO_LEADING_SPACE_REGEX = /^'.+$/;
+    const NO_TRAILING_SPACE_REGEX = /[\['`“‘»›(]$/;
 
     return prevLexeme &&
       !NO_TRAILING_SPACE_REGEX.test(prevLexeme.surfaceForm) &&

@@ -10,7 +10,13 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname),
-    filename: 'dist/app.js'
+    filename: 'dist/app.js',
+    publicPath: '/'
+  },
+
+  devServer: {
+    hot: true,
+    historyApiFallback: true
   },
 
   module: {

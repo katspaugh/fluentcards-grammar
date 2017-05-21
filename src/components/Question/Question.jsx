@@ -1,41 +1,41 @@
 import React from 'react';
 import classnames from 'classnames';
 import { shuffle } from '../../services/utils';
-import { decodePos } from '../../services/utils';
 import styles from './Question.css';
+
 
 export default class Question extends React.PureComponent {
   constructor() {
     super();
 
-    this.maxChoices = 4;
-    this.randomChoices = null;
-
     this.state = {
+      choices: null,
+      selectedChoice: null,
       correct: null
     };
   }
 
-  onChange(lexeme, choice) {
-    const correct = lexeme.occluded.toLowerCase() === choice.toLowerCase();
-
-    this.props.onAnswer(correct);
-
-    this.setState({ correct });
+  componentWillMount() {
+    this.updateChoices(this.props);
   }
 
-  getRandomChoices(lexeme) {
-    if (this.randomChoices) {
-      return this.randomChoices;
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.question !== this.props.question) {
+      this.updateChoices(nextProps);
     }
+  }
 
-    let choices = lexeme.choices || this.props.choices;
-    choices = shuffle(choices.slice()).slice(0, this.maxChoices);
+  updateChoices(props) {
+    const maxChoices = 4;
+    const lexeme = props.question.find(item => item.occluded != null);
+
+    let choices = lexeme.choices || props.choices;
+    choices = shuffle(choices.slice()).slice(0, maxChoices);
 
     const rightChoice = lexeme.occluded.toLowerCase();
 
     if (!choices.map(c => c.toLowerCase()).includes(rightChoice)) {
-      if (choices.length + 1 < this.maxChoices) {
+      if (choices.length < maxChoices) {
         choices.push(rightChoice);
         choices = shuffle(choices);
       } else {
@@ -43,14 +43,21 @@ export default class Question extends React.PureComponent {
       }
     }
 
-    this.randomChoices = choices;
+    this.setState({ choices, correct: null, selectedChoice: null });
+  }
 
-    return this.randomChoices;
+  onChange(value) {
+    const lexeme = this.props.question.find(item => item.occluded != null);
+    const correct = lexeme.occluded.toLowerCase() === value.toLowerCase();
+
+    this.setState({ correct, selectedChoice: value });
+
+    this.props.onAnswer(correct, lexeme);
   }
 
   renderChoices() {
     const lexeme = this.props.question.find(item => item.occluded != null);
-    let randomChoices = this.getRandomChoices(lexeme);
+    let randomChoices = this.state.choices;
 
     // When no choices, just display the base form
     if (randomChoices.length <= 1) {
@@ -67,10 +74,11 @@ export default class Question extends React.PureComponent {
           <label>
             <input
               type="radio"
+              checked={ this.state.selectedChoice === choice }
               disabled={ this.state.correct }
               name={ key }
               value={ choice }
-              onChange={ () => this.onChange(lexeme, choice) } />
+              onChange={ () => this.onChange(choice) } />
               { choice || '∅' }
           </label>
         </li>
@@ -86,7 +94,7 @@ export default class Question extends React.PureComponent {
 
       const onSubmit = e => {
         e.preventDefault();
-        this.onChange(lexeme, e.target.answer.value);
+        this.onChange(e.target.answer.value);
       };
 
       const input = lexeme.occluded != null ? (
@@ -97,7 +105,7 @@ export default class Question extends React.PureComponent {
             size={ this.props.size + 1 }
             readOnly={ correct }
             value={ correct ? lexeme.occluded : undefined }
-            onBlur={ (e) => this.onChange(lexeme, e.target.value) }
+            onBlur={ (e) => this.onChange(e.target.value) }
             className={ correct === false ? styles.wrongInput : '' } />
         </form>
       ) : '';
@@ -111,8 +119,8 @@ export default class Question extends React.PureComponent {
     });
 
     const toggle = {};
-    toggle[styles.correct] = this.state.correct === true;
-    toggle[styles.incorrect] = this.state.correct === false;
+    toggle[styles.correct] = correct === true;
+    toggle[styles.incorrect] = correct === false;
     const classes = classnames(styles.container, toggle);
 
     return (
