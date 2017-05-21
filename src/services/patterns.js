@@ -199,6 +199,21 @@ export default {
           occlusion: /.+/
         }
       ]
+    },
+
+    'personal-pronouns': {
+      title: 'Personal Pronouns',
+
+      description: 'Put the personal pronouns into the right forms',
+
+      pattern: [
+        {
+          partOfSpeech: [ 'PERSPRO' ],
+          surfaceForm: /^(mich|mir|dich|dir|ihn|ihm|ihr|uns|euch)$/i,
+          occlusion: /.+/,
+          choices: []
+        }
+      ]
     }
   }
 }

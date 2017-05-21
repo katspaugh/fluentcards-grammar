@@ -34,10 +34,9 @@
 }
 
 .question {
-  margin-bottom: 1em;
   display: list-item;
   list-style-position: inside;
-  padding: 1em;
+  padding: 1.5em 1em 1em;
   white-space: nowrap;
   position: relative;
 }

@@ -47,10 +47,10 @@
   }
 
   .container:after {
-    left: 0.9rem;
     top: 100%;
-    margin-top: -2.8rem;
-    margin-left: 0;
+    transform: none;
+    margin-left: -2rem;
+    margin-top: -3.3rem;
   }
 }
 
@@ -122,8 +122,10 @@
 
 .choices li {
   display: inline-block;
+  vertical-align: middle;
+  line-height: 2;
   margin-right: 1.5em;
-  margin-bottom: 1em;
+  text-transform: lowercase;
 }
 
 .choices input {

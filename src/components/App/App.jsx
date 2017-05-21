@@ -71,6 +71,22 @@ export default class App extends React.PureComponent {
       </li>
     ));
 
+    const score = this.state.correctAnswers || this.state.incorrectAnswers ? (
+      <div className={ styles.score }>
+        { this.state.correctAnswers ? (
+          <div className={ styles.correctScore }>
+            Correct: { this.state.correctAnswers }/{ this.state.exercises.length }
+          </div>
+        ) : '' }
+
+      { this.state.incorrectAnswers ? (
+        <div className={ styles.incorrectScore }>
+          Errors: { this.state.incorrectAnswers }
+        </div>
+      ) : '' }
+      </div>
+    ) : '';
+
     return (
       <div className={ styles.container } ref={ (el) => this.questionsBlock = el } >
         <p className={ styles.description }>{ this.props.description }</p>
@@ -83,19 +99,7 @@ export default class App extends React.PureComponent {
           <button onClick={ this._onReloadClick }>Load new exercises</button>
         </div>
 
-        <div className={ styles.score }>
-          { this.state.correctAnswers ? (
-            <div className={ styles.correctScore }>
-              Correct: { this.state.correctAnswers }/{ this.state.exercises.length }
-            </div>
-          ) : '' }
-
-          { this.state.incorrectAnswers ? (
-            <div className={ styles.incorrectScore }>
-              Errors: { this.state.incorrectAnswers }
-            </div>
-          ) : '' }
-        </div>
+        { score }
       </div>
     );
   }
