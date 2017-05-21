@@ -1,6 +1,7 @@
 import React from 'react';
 import Exercises from '../../services/Exercises';
 import Question from '../Question/Question.jsx';
+import Loader from '../Loader/Loader.jsx';
 import styles from './App.css';
 
 export default class App extends React.PureComponent {
@@ -33,14 +34,14 @@ export default class App extends React.PureComponent {
   }
 
   reload() {
+    this.setState({
+      correctAnswers: 0,
+      incorrectAnswers: 0,
+      exercises: []
+    });
+
     this.generator.generate(this.props.pattern)
-      .then(data => {
-        this.setState({
-          correctAnswers: 0,
-          incorrectAnswers: 0,
-          exercises: data
-        })
-      });
+      .then(exercises => this.setState({ exercises }));
   }
 
   onReloadClick() {
@@ -97,13 +98,19 @@ export default class App extends React.PureComponent {
       <div className={ styles.container } ref={ (el) => this.questionsBlock = el } >
         <p className={ styles.description }>{ this.props.description }</p>
 
-        <ol>
-          { exercises }
-        </ol>
+        { exercises.length ? (
+          <div>
+            <ol>
+              { exercises }
+            </ol>
 
-        <div className={ styles.controls }>
-          <button onClick={ this._onReloadClick }>Load new exercises</button>
-        </div>
+            <div className={ styles.controls }>
+              <button onClick={ this._onReloadClick }>Load new exercises</button>
+            </div>
+          </div>
+        ) : (
+          <Loader />
+        ) }
 
         { score }
       </div>
