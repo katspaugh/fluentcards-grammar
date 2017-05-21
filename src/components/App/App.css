@@ -12,6 +12,10 @@
   padding: 0 0 150px;
 }
 
+:global(*) {
+  box-sizing: border-box;
+}
+
 .container {
   display: block;
 }
@@ -31,18 +35,36 @@
 .container ol {
   padding-left: 0;
   color: #999;
+  counter-reset: question;
 }
 
 .question {
   display: list-item;
   list-style-position: inside;
   padding: 1.5em 1em 1em;
-  white-space: nowrap;
   position: relative;
 }
 
 .question:nth-child(even) {
   background: #fafafa;
+}
+
+@media only screen and (max-width: 769px) {
+  .question {
+    list-style-type: none;
+    padding-left: 0;
+    padding-right: 2em;
+  }
+
+  .question::after {
+    counter-increment: question;
+    content: counter(question) '. ';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ddd;
+  }
 }
 
 .score {

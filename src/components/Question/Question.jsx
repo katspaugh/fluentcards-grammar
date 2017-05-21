@@ -67,20 +67,21 @@ export default class Question extends React.PureComponent {
     }
 
     return randomChoices.map((choice, i) => {
-      const key = lexeme.surfaceForm;
+      const selected = this.state.selectedChoice === choice
+
+      const toggle = {};
+      toggle[styles.selectedChoice] = selected;
+      toggle[styles.correctChoice] = selected && this.state.correct;
+      toggle[styles.incorrectChoice] = selected && !this.state.correct;
 
       return (
         <li key={ i }>
-          <label>
-            <input
-              type="radio"
-              checked={ this.state.selectedChoice === choice }
-              disabled={ this.state.correct }
-              name={ key }
-              value={ choice }
-              onChange={ () => this.onChange(choice) } />
-              { choice || '∅' }
-          </label>
+          <button
+            className={ classnames(styles.choiceButton, toggle) }
+            disabled={ this.state.correct }
+            onClick={ () => this.onChange(choice) }>
+            { choice || '∅' }
+          </button>
         </li>
       );
     });
