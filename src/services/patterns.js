@@ -128,39 +128,14 @@ export default {
         },
 
         {
-          partOfSpeech: 'PREP',
+          partOfSpeech: [ 'PREP', 'PREPART' ],
           occlusion: /.+/,
           baseForm: [
-            'an',
-            'auf',
-            'aus',
-            'bei',
-            'für',
-            'gegen',
-            'in',
-            'mit',
-            'nach',
-            'um',
-            'von',
-            'vor',
-            'über',
-            'zu'
+            'an', 'auf', 'aus', 'bei', 'für', 'gegen', 'in', 'mit', 'nach', 'um', 'von', 'vor', 'über', 'zu',
+            'aufm', 'ans', 'am', 'beim', 'fürs', 'im', 'ins', 'mitm', 'vom', 'übers', 'zum', 'zur'
           ],
           choices: [
-            'an',
-            'auf',
-            'aus',
-            'bei',
-            'für',
-            'gegen',
-            'in',
-            'mit',
-            'nach',
-            'um',
-            'von',
-            'vor',
-            'über',
-            'zu'
+            'an', 'auf', 'aus', 'bei', 'für', 'gegen', 'in', 'mit', 'nach', 'um', 'von', 'vor', 'über', 'zu'
           ]
         }
       ]
@@ -204,7 +179,7 @@ export default {
     'personal-pronouns': {
       title: 'Personal Pronouns',
 
-      description: 'Put the personal pronouns into the right forms',
+      description: 'Put the personal pronouns into the right forms.',
 
       pattern: [
         {
@@ -212,6 +187,21 @@ export default {
           surfaceForm: /^(mich|mir|dich|dir|ihn|ihm|ihr|uns|euch)$/i,
           occlusion: /.+/,
           choices: []
+        }
+      ]
+    },
+
+    'possessive-pronouns-and-indefinite-article': {
+      title: 'Possessive pronouns',
+
+      description: 'Choose the correct form of the possessive pronouns, indefinite articles and "kein".',
+
+      pattern: [
+        {
+          partOfSpeech: [ 'ART', 'INDDET', 'POSDET' ],
+          baseForm: /^((?!der|die|das).)/,
+          occlusion: /(e[mnrs]?)$/,
+          choices: [ 'e', 'em', 'en', 'er', 'es' ]
         }
       ]
     }

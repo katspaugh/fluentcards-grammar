@@ -43,6 +43,7 @@
   list-style-position: inside;
   padding: 1.5em 1em 1em;
   position: relative;
+  white-space: nowrap;
 }
 
 .question:nth-child(even) {

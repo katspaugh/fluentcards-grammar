@@ -27,6 +27,7 @@
   padding-left: 1em;
   padding-right: 6vw;
   color: #333;
+  white-space: normal;
 }
 
 .container:after {
