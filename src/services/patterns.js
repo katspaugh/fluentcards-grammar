@@ -151,14 +151,7 @@ export default {
           partOfSpeech: 'ART',
           baseForm: /^((?!ein).)/,
           occlusion: /.+/,
-          choices: [
-            'der',
-            'die',
-            'das',
-            'des',
-            'den',
-            'dem'
-          ]
+          choices: [ 'der', 'die', 'das', 'des', 'den', 'dem' ]
         }
       ]
     },
@@ -192,7 +185,7 @@ export default {
     },
 
     'possessive-pronouns-and-indefinite-article': {
-      title: 'Possessive pronouns',
+      title: 'Possessive pronouns and indefinite articles',
 
       description: 'Choose the correct form of the possessive pronouns, indefinite articles and "kein".',
 
@@ -238,7 +231,6 @@ export default {
           partOfSpeech: [ 'SENT', 'CM' ]
         }
       ]
-    },
-
+    }
   }
 }
