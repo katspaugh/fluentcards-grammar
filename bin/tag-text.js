@@ -22,7 +22,7 @@ function writeResult(data) {
 
 function transformData(data) {
   const minLexemes = 5;
-  const maxLexemes = 100;
+  const maxLexemes = 35;
 
   const SENTENCE_FINAL_PUNCT = 'SENT';
   const CLOSING_QUOTE = /^[«‹”’`'")\]]/;
@@ -36,7 +36,14 @@ function transformData(data) {
       const lexeme = sentence[i];
       newSentence.push(lexeme);
 
-      if (lexeme.partOfSpeech === SENTENCE_FINAL_PUNCT) {
+      if (i === len - 1) {
+        acc.push(newSentence);
+
+        if (CLOSING_QUOTE.test(newSentence[0].surfaceForm)) {
+          newSentence.shift();
+        }
+      }
+      else if (lexeme.partOfSpeech === SENTENCE_FINAL_PUNCT) {
         acc.push(newSentence);
 
         if (CLOSING_QUOTE.test(newSentence[0].surfaceForm)) {
@@ -44,12 +51,6 @@ function transformData(data) {
         }
 
         newSentence = [];
-      } else if (i === len) {
-        acc.push(newSentence);
-
-        if (CLOSING_QUOTE.test(newSentence[0].surfaceForm)) {
-          newSentence.shift();
-        }
       }
     }
 

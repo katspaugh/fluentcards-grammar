@@ -1,9 +1,7 @@
-import { shuffle } from './utils';
-
 export default class Exercises {
   constructor(language = 'English') {
     this.minLexemes = 5;
-    this.maxLexemes = 50;
+    this.maxLexemes = 25;
     this.maxExercises = 10;
     this.clozeSymbol = '⧼…⧽';
     this.language = language;
@@ -34,40 +32,32 @@ export default class Exercises {
     data.sentences.forEach(sentence => {
       const currentMatch = [];
 
-      for (let i = 0; i < sentence.length; i++) {
+      for (let i = 0, len = sentence.length; i < len; i++) {
         const lexeme = sentence[i];
+        const patternPart = pattern[currentMatch.length];
 
-        if (pattern.looseOrder) {
-          pattern.some(patternPart => {
-            if (this.isLexemeMathing(lexeme, patternPart)) {
-              currentMatch.push({ lexeme, patternPart });
-              return true;
-            }
-            return false;
-          });
+        if (!this.isLexemeMathing(lexeme, patternPart)) {
+          // Reset matching
+          currentMatch.length = 0;
         } else {
-          const patternPart = pattern[currentMatch.length];
-
-          if (!this.isLexemeMathing(lexeme, patternPart)) {
-            // Reset matching
-            currentMatch.length = 0;
-          } else {
-            // Continue matching
-            currentMatch.push({ lexeme, patternPart });
-          }
+          // Continue matching
+          currentMatch.push({ lexeme, patternPart });
         }
 
         if (currentMatch.length === pattern.length) {
           matches.push({
-            captured: currentMatch,
+            captured: currentMatch.slice(),
             sentence: sentence
           });
-          break;
+          currentMatch.length = 0;
         }
       }
     });
 
-    const filteredMatches = matches.filter(s => s.length <= this.maxLexemes && s.length >= this.minLexemes);
+    const filteredMatches = matches.filter(match => {
+      const length = match.sentence.length;
+      return length <= this.maxLexemes && length >= this.minLexemes;
+    });
     if (filteredMatches.length >= this.maxExercises) {
       return filteredMatches;
     }
@@ -118,10 +108,15 @@ export default class Exercises {
     return this.getData()
       .then(data => {
         const matches = this.filterSentences(data, pattern);
+        const total = matches.length;
+        const set = [];
 
-        return shuffle(matches)
-          .slice(0, this.maxExercises)
-          .map(match => this.createExercise(match));
+        for (let i = 0; set.length < this.maxExercises && i < this.maxExercises * 100; i++) {
+          const match = matches[Math.floor(total * Math.random())];
+          if (!set.some(item => item.sentence === match.sentence)) set.push(match);
+        }
+
+        return set.map(match => this.createExercise(match));
       });
   }
 }
