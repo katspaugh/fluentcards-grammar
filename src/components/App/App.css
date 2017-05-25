@@ -19,6 +19,20 @@
   box-sizing: border-box;
 }
 
+
+:global(a) {
+  color: #333;
+}
+
+:global(a:visited) {
+  color: #555;
+}
+
+:global(a:active),
+:global(a:hover) {
+  color: #000;
+}
+
 .container {
   display: block;
 }

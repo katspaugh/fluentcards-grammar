@@ -29,7 +29,7 @@ const Home = ({ match }) => {
 
             { Object.keys(patterns[language]).map((key, i) => (
               <li key={ i }>
-                <Link to={ `/${ language }/${ key }` }>{ patterns[language][key].title }</Link>
+                <Link to={ `/exercises/${ language }/${ key }` }>{ patterns[language][key].title }</Link>
               </li>
             )) }
           </ul>
@@ -45,7 +45,7 @@ const AppRoute = ({ match }) => {
   return (
     <div>
       <Header title={ pattern.title }>
-        <Link to={ `/${ match.params.language }` }>{ match.params.language }</Link>:
+        <Link to={ `/exercises/${ match.params.language }` }>{ match.params.language }</Link>:
       </Header>
 
       <div className={ styles.routeContainer }>
@@ -106,11 +106,11 @@ const Routes = () => (
     <div>
       <Route exact path="/" component={ Home } />
 
-      <Route path="/texts" component={ Texts } />
+      <Route exact path="/texts" component={ Texts } />
 
-      <Route exact path="/:language" component={ Home } />
+      <Route exact path="/exercises/:language" component={ Home } />
 
-      <Route path="/:language/:pattern" component={ AppRoute } />
+      <Route path="/exercises/:language/:pattern" component={ AppRoute } />
 
       <Footer />
     </div>

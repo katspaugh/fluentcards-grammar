@@ -55,7 +55,7 @@ export default class App extends React.PureComponent {
     // Delay the rendering to display the loading animation
     setTimeout(() => {
       this.setState({ currentExercises });
-    }, 300);
+    }, 100);
   }
 
   onReloadClick() {

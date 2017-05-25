@@ -1,7 +1,7 @@
 export default {
   English: {
     'a-vs-the': {
-      title: 'The definite article vs the indefinite article',
+      title: 'Articles: definite vs indefinite',
 
       description: 'Insert the right article into the sentences below.',
 
@@ -16,9 +16,9 @@ export default {
     },
 
     'irregular-verbs': {
-      title: 'Irregular verbs',
+      title: 'Verbs: irregular verbs',
 
-      description: 'Type the correct form of a missing verb in the sentences.',
+      description: 'Type the correct form of the missing irregular verbs.',
 
       pattern: [
         {
@@ -28,15 +28,15 @@ export default {
 
           choices: [],
 
-          baseForm: /^(ache|be|bear|beat|become|beget|begin|bend|beseech|bet|beware|bid|bid|bide|bind|bite|bleed|bless|blow|break|breed|bring|build|burn|burst|bust|buy|can|cast|catch|chide|choose|clad|clap|cleave|cling|clothe|come|cost|creep|crow|cut|dare|deal|dig|dive|do|dow|drag|draw|dream|dress|drink|drive|dwell|earn|eat|fall|feed|feel|fight|find|fit|flee|fling|fly|forbid|forget|forlese|adjectivally|forsake|freeze|get|gild|gird|give|go|grind|grow|hang|have|hear|heave|help|hew|hide|hit|hoist|hold|hurt|keep|ken|kneel|knit|know|lade|laugh|lay|lead|lean|leap|learn|leave|lend|let|lie|light|lose|make|may|mean|meet|melt|mix|mow|must|ought|pay|pen|plead|loanword|prove|loanword|put|quit|loanword|reach|read|rend|rid|ride|ring|rise|rive|run|saw|say|see|seek|seethe|sell|send|set|sew|shake|shall|shape|shave|shear|shed|shine|shit|shoe|shoot|show|shrink|shut|sing|sink|sit|slay|sleep|slide|sling|slink|slip|slit|smell|smite|sneak|sow|speak|speed|spell|spend|spill|spin|spit|split|spoil|spread|sprenge|spring|stand|starve|stave|stay|steal|stick|sting|stink|stretch|strew|stride|strike|string|strip|strive|swear|sweat|sweep|swell|swim|swing|take|teach|tear|tell|think|thrive|throw|thrust|tread|vex|wake|wax|wear|weave|wed|weep|wend|wet|will|win|wind|work|wreak|wring|write|writhe|zinc)$/
+          baseForm: /^(ache|be|bear|beat|become|beget|begin|bend|beseech|bet|beware|bid|bide|bind|bite|bleed|bless|blow|break|breed|bring|build|burn|burst|bust|buy|can|cast|catch|chide|choose|clad|clap|cleave|cling|clothe|come|cost|creep|crow|cut|dare|deal|dig|dive|do|dow|drag|draw|dream|dress|drink|drive|dwell|earn|eat|fall|feed|feel|fight|find|fit|flee|fling|fly|forbid|forget|forlese|forsake|freeze|get|gild|gird|give|go|grind|grow|hang|have|hear|heave|help|hew|hide|hit|hoist|hold|hurt|keep|ken|kneel|knit|know|lade|laugh|lay|lead|lean|leap|learn|leave|lend|let|lie|light|lose|make|may|mean|meet|melt|mix|mow|must|ought|pay|pen|plead|prove|put|quit|reach|read|rend|rid|ride|ring|rise|rive|run|saw|say|see|seek|seethe|sell|send|set|sew|shake|shall|shape|shave|shear|shed|shine|shit|shoe|shoot|show|shrink|shut|sing|sink|sit|slay|sleep|slide|sling|slink|slip|slit|smell|smite|sneak|sow|speak|speed|spell|spend|spill|spin|spit|split|spoil|spread|sprenge|spring|stand|starve|stave|stay|steal|stick|sting|stink|stretch|strew|stride|strike|string|strip|strive|swear|sweat|sweep|swell|swim|swing|take|teach|tear|tell|think|thrive|throw|thrust|tread|vex|wake|wax|wear|weave|wed|weep|wend|wet|will|win|wind|work|wreak|wring|write|writhe|zinc)$/
         }
       ]
     },
 
     'third-person-singular': {
-      title: 'Verb conjugation in Present in 3rd person singular',
+      title: 'Verbs: third person singular',
 
-      description: 'Decide whether a verb should take an "-s" ending or stay in the indefinite form.',
+      description: 'Decide whether a verb should take an "-s" ending or stay in the base form.',
 
       pattern: [
         {
@@ -54,7 +54,7 @@ export default {
 
   German: {
     'definite-article-and-adjectives': {
-      title: 'Weak declension of adjectives',
+      title: 'Adjectives: weak declension',
 
       description: 'Choose the right ending of the adjectives that go after a definite article.',
 
@@ -77,9 +77,9 @@ export default {
     },
 
     'indefinite-article-and-adjectives': {
-      title: 'Mixed declension of adjectives',
+      title: 'Adjectives: mixed declension',
 
-      description: 'Choose the right ending of the adjectives that go after an idefinite article, indefinite determiner ("kein") or a possessive pronoun ("mein", "sein" etc).',
+      description: 'Choose the right ending of the adjectives that go after an idefinite article, "kein" or a possessive pronoun ("mein", "sein" etc).',
 
       pattern: [
         {
@@ -100,9 +100,9 @@ export default {
     },
 
     'adjective-declension': {
-      title: 'Weak, Mixed and Strong declension',
+      title: 'Adjectives: weak, mixed and strong declensions',
 
-      description: 'Depending on whether an adjective follows an article or another determiner, it takes a different ending. Choose the correct one.',
+      description: 'Depending on whether an adjective follows a determiner or not, it\'s declined differently. Choose the correct adjectival endings.',
 
       pattern: [
         {
@@ -117,10 +117,25 @@ export default {
       ]
     },
 
-    'verbs-with-prepositions': {
-      title: 'Verbs with prepositions',
+    'definite-article-declension': {
+      title: 'Articles: definite articles',
 
-      description: 'Certain verbs require certain preposisions and govern the case of their nominal arguments. Choose the right preposision. Use the case of the following articles as a hint.',
+      description: 'Articles in German show not only the definitiveness, but also the gender, case and plurality of nouns. Choose the correct form of the definite article.',
+
+      pattern: [
+        {
+          partOfSpeech: 'ART',
+          baseForm: /^((?!ein).)/,
+          occlusion: /.+/,
+          choices: [ 'der', 'die', 'das', 'des', 'den', 'dem' ]
+        }
+      ]
+    },
+
+    'verbs-with-prepositions': {
+      title: 'Verbs: prepositional government',
+
+      description: 'Certain verbs require certain preposisions and govern the case of the object. Choose the right preposisions.',
 
       pattern: [
         {
@@ -141,23 +156,8 @@ export default {
       ]
     },
 
-    'definite-article-declension': {
-      title: 'Declension of the definite articles',
-
-      description: 'Articles in German show not only the definitiveness, but also the gender, case and plurality of nouns. Choose the correct form of the definite article.',
-
-      pattern: [
-        {
-          partOfSpeech: 'ART',
-          baseForm: /^((?!ein).)/,
-          occlusion: /.+/,
-          choices: [ 'der', 'die', 'das', 'des', 'den', 'dem' ]
-        }
-      ]
-    },
-
     'modal-verbs': {
-      title: 'Modal verbs',
+      title: 'Verbs: modal verbs',
 
       description: 'Choose the most suitable modal verb.',
 
@@ -169,52 +169,8 @@ export default {
       ]
     },
 
-    'personal-pronouns': {
-      title: 'Personal Pronouns',
-
-      description: 'Put the personal pronouns into the right forms.',
-
-      pattern: [
-        {
-          partOfSpeech: [ 'PERSPRO' ],
-          surfaceForm: /^(mich|mir|dich|dir|ihn|ihm|ihr|uns|euch)$/i,
-          occlusion: /.+/,
-          choices: []
-        }
-      ]
-    },
-
-    'possessive-pronouns-and-indefinite-article': {
-      title: 'Possessive pronouns and indefinite articles',
-
-      description: 'Choose the correct form of the possessive pronouns, indefinite articles and "kein".',
-
-      pattern: [
-        {
-          partOfSpeech: [ 'ART', 'INDDET', 'POSDET' ],
-          baseForm: /^((?!der|die|das).)/,
-          occlusion: /(e[mnrs]?)$/,
-          choices: [ 'e', 'em', 'en', 'er', 'es' ]
-        }
-      ]
-    },
-
-    'verb-conjugation': {
-      title: 'Conjugation of verbs',
-
-      description: 'Conjugate the verbs into correct forms.',
-
-      pattern: [
-        {
-          partOfSpeech: 'VVFIN',
-          occlusion: /.+/,
-          choices: []
-        }
-      ]
-    },
-
     'separable-verbal-prefixes': {
-      title: 'Separable verbal prefixes',
+      title: 'Verbs: separable prefixes',
 
       description: 'Choose the right separated prefix.',
 
@@ -229,6 +185,50 @@ export default {
         },
         {
           partOfSpeech: [ 'SENT', 'CM' ]
+        }
+      ]
+    },
+
+    'verb-conjugation': {
+      title: 'Verbs: conjugation',
+
+      description: 'Type the correct forms of the verbs.',
+
+      pattern: [
+        {
+          partOfSpeech: 'VVFIN',
+          occlusion: /.+/,
+          choices: []
+        }
+      ]
+    },
+
+    'personal-pronouns': {
+      title: 'Pronouns: personal',
+
+      description: 'Put the personal pronouns into the right forms.',
+
+      pattern: [
+        {
+          partOfSpeech: [ 'PERSPRO' ],
+          surfaceForm: /^(mich|mir|dich|dir|ihn|ihm|ihr|uns|euch)$/i,
+          occlusion: /.+/,
+          choices: []
+        }
+      ]
+    },
+
+    'possessive-pronouns-and-indefinite-article': {
+      title: 'Pronouns: possessive',
+
+      description: 'Choose the correct form of the possessive pronouns, indefinite articles and "kein".',
+
+      pattern: [
+        {
+          partOfSpeech: [ 'ART', 'INDDET', 'POSDET' ],
+          baseForm: /^((?!der|die|das).)/,
+          occlusion: /(e[mnrs]?)$/,
+          choices: [ 'e', 'em', 'en', 'er', 'es' ]
         }
       ]
     }

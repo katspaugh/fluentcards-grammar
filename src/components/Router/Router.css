@@ -14,16 +14,3 @@
   list-style-type: lower-roman;
   color: #ddd;
 }
-
-.home ul li a {
-  color: #333;
-}
-
-.home ul li a:visited {
-  color: #555;
-}
-
-.home ul li a:active,
-.home ul li a:hover {
-  color: #000;
-}
