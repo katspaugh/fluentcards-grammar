@@ -27,12 +27,11 @@ export default class Question extends React.PureComponent {
 
   updateChoices(props) {
     const maxChoices = 4;
-    const lexeme = props.lexemes.find(item => item.occluded != null);
 
-    let choices = lexeme.choices || props.choices;
+    let choices = props.cloze.choices || props.choices;
     choices = shuffle(choices.slice()).slice(0, maxChoices);
 
-    const rightChoice = lexeme.occluded.toLowerCase();
+    const rightChoice = props.cloze.occluded.toLowerCase();
 
     if (!choices.map(c => c.toLowerCase()).includes(rightChoice)) {
       if (choices.length < maxChoices) {
@@ -47,7 +46,7 @@ export default class Question extends React.PureComponent {
   }
 
   onChange(value) {
-    const lexeme = this.props.lexemes.find(item => item.occluded != null);
+    const lexeme = this.props.cloze;
     const correct = lexeme.occluded.toLowerCase() === value.toLowerCase();
 
     this.setState({ correct, selectedChoice: value });
@@ -56,7 +55,7 @@ export default class Question extends React.PureComponent {
   }
 
   renderChoices() {
-    const lexeme = this.props.lexemes.find(item => item.occluded != null);
+    const lexeme = this.props.cloze;
     let randomChoices = this.state.choices;
 
     // When no choices, just display the base form
@@ -89,8 +88,6 @@ export default class Question extends React.PureComponent {
 
   render() {
     const { correct } = this.state;
-    const textParts = this.props.text.split(this.props.clozeSymbol, 2);
-    const lexeme = this.props.lexemes.find(item => item.occluded != null);
 
     const onSubmit = e => {
       e.preventDefault();
@@ -104,11 +101,13 @@ export default class Question extends React.PureComponent {
           placeholder="…"
           size={ this.props.size + 1 }
           readOnly={ correct }
-          value={ correct ? lexeme.occluded : undefined }
+          value={ correct ? this.props.cloze.occluded : undefined }
           onBlur={ (e) => this.onChange(e.target.value) }
           className={ correct === false ? styles.wrongInput : '' } />
       </form>
     );
+
+    const textParts = this.props.text.split(this.props.clozeSymbol, 2);
 
     const toggle = {};
     toggle[styles.correct] = correct === true;

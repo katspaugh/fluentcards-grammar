@@ -202,7 +202,7 @@ export default {
     'verb-conjugation': {
       title: 'Conjugation of verbs',
 
-      description: 'Conjugate the verbs into the correct form.',
+      description: 'Conjugate the verbs into correct forms.',
 
       pattern: [
         {

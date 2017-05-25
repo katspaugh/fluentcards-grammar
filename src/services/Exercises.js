@@ -1,6 +1,7 @@
+import { randomItem } from './utils';
+
 export default class Exercises {
   constructor(language = 'English') {
-    this.maxExercises = 10;
     this.clozeSymbol = '⧼…⧽';
     this.language = language;
     this.data = null;
@@ -60,47 +61,48 @@ export default class Exercises {
     let text = match.sentence.text;
 
     const lexemes = match.sentence.lexemes.map(lexeme => {
-      const occludedLexeme = Object.assign({}, lexeme);
+      const cloze = Object.assign({}, lexeme);
       const captured = match.captured.find(c => c.lexeme === lexeme);
-
-      occludedLexeme.clozeForm = lexeme.surfaceForm;
+      cloze.clozeForm = lexeme.surfaceForm;
 
       if (captured && captured.patternPart.occlusion) {
-        occludedLexeme.choices = captured.patternPart.choices;
+        cloze.choices = captured.patternPart.choices;
 
-        occludedLexeme.clozeForm = lexeme.surfaceForm.replace(captured.patternPart.occlusion, group => {
-          occludedLexeme.occluded = group;
+        cloze.clozeForm = lexeme.surfaceForm.replace(captured.patternPart.occlusion, group => {
+          cloze.occluded = group;
           return this.clozeSymbol;
         });
 
-        if (occludedLexeme.occluded == null) {
-          occludedLexeme.occluded = '';
-          occludedLexeme.clozeForm = occludedLexeme.surfaceForm + this.clozeSymbol;
+        if (cloze.occluded == null) {
+          cloze.occluded = '';
+          cloze.clozeForm = cloze.surfaceForm + this.clozeSymbol;
         }
-
-        const regex = new RegExp(occludedLexeme.surfaceForm.replace(/./g, '[$&]'), 'g');
-        text = text.replace(regex, occludedLexeme.clozeForm);
       }
 
-      return occludedLexeme;
+      return cloze;
     });
 
-    return { text, lexemes };
+    const clozes = lexemes.filter(lexeme => lexeme.occluded != null);
+    const randomCloze = randomItem(clozes);
+    const index = lexemes.indexOf(randomCloze);
+    const next = lexemes[index + 1];
+    const prev = lexemes[index - 1];
+
+    const regex = new RegExp(
+      (prev ? `(\\b${ prev.surfaceForm.replace(/./g, '[$&]') }\\s*)` : '(^)') +
+      `(${ randomCloze.surfaceForm.replace(/./g, '[$&]') })` +
+      (next ? `(?=\\s*${ next.surfaceForm.replace(/./g, '[$&]') })` : '$')
+    );
+    text = text.replace(regex, '$1' + randomCloze.clozeForm);
+
+    return {
+      text,
+      cloze: randomCloze
+    };
   }
 
   generate(pattern) {
     return this.getData()
-      .then(data => {
-        const matches = this.filterSentences(data, pattern);
-        const total = matches.length;
-        const set = [];
-
-        for (let i = 0; set.length < this.maxExercises && i < this.maxExercises * 100; i++) {
-          const match = matches[Math.floor(total * Math.random())];
-          if (!set.some(item => item.sentence.text === match.sentence.text)) set.push(match);
-        }
-
-        return set.map(match => this.createExercise(match));
-      });
+      .then(data => this.filterSentences(data, pattern));
   }
 }

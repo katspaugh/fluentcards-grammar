@@ -17,7 +17,7 @@ const Home = ({ match }) => {
         Object.keys(patterns);
 
   return (
-    <div>
+    <div className={ styles.home }>
       <Header title={ match.params.language ? '' : 'Grammar exercises' }>
         { match.params.language ? (<Link to="/">All languages</Link>) : '' }
       </Header>

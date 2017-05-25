@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 :global(html) {
   margin: 0;
   padding: 0;
@@ -10,6 +12,7 @@
 :global(body) {
   margin: 0;
   padding: 0 0 150px;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 :global(*) {
@@ -20,22 +23,40 @@
   display: block;
 }
 
-@media only screen and (max-width: 769px) {
-  .container > ol {
-    margin: 0 -1em;
-  }
-}
-
 .description {
   font-style: italic;
-  padding: 1em 0;
+  padding: 1em;
+  padding-left: 2em;
+  margin-left: 1em;
   margin-bottom: 1em;
+  line-height: 1.5;
+  border-left: 5px solid #FFF844;
+  position: relative;
 }
 
-.container ol {
+.description:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #FFF844;
+  position: absolute;
+  bottom: -12px;
+  left: -14px;
+}
+
+.list {
   padding-left: 0;
   color: #999;
   counter-reset: question;
+}
+
+@media only screen and (max-width: 767px) {
+  .list {
+    margin: 0 -1em;
+  }
 }
 
 .question {
@@ -50,7 +71,7 @@
   background: #fafafa;
 }
 
-@media only screen and (max-width: 769px) {
+@media only screen and (max-width: 767px) {
   .question {
     list-style-type: none;
     padding-left: 0;
@@ -64,7 +85,7 @@
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: #ddd;
+    color: #eee;
   }
 }
 
@@ -72,12 +93,12 @@
   position: fixed;
   z-index: 2;
   right: 20px;
-  top: 20px;
+  top: 33px;
   text-align: right;
   font-size: 1.4em;
 }
 
-@media only screen and (max-width: 769px) {
+@media only screen and (max-width: 1024px) {
   .score {
     font-size: 0.9em;
     padding: 0.5em 1em;
@@ -107,14 +128,8 @@
 
 .controls {
   margin: 4em 0 1em;
-  text-align: right;
+  text-align: center;
   position: relative;
-}
-
-@media only screen and (max-width: 769px) {
-  .controls {
-    text-align: center;
-  }
 }
 
 .controls button {
@@ -124,6 +139,7 @@
   color: #fff;
   border: none;
   outline-color: #FFF844;
+  cursor: pointer;
 }
 
 .controls button:hover {

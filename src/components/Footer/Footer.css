@@ -1,6 +1,5 @@
 .container {
   width: 100%;
-  padding: 1em;
   background-color: #FFF844;
   position: absolute;
   z-index: 1;
@@ -11,6 +10,7 @@
 .container footer {
   display: block;
   margin: auto;
+  padding: 1em;
 }
 
 @media only screen and (min-width: 1024px) {

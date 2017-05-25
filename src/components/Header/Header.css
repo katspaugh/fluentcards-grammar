@@ -1,19 +1,24 @@
 .container {
   width: 100%;
-  padding: 1em;
   margin-bottom: 2em;
   background-color: #FFF844;
 }
 
 .container header {
-  display: block;
+  display: flex;
   margin: auto;
+  padding: 2em 1em;
 }
 
 @media only screen and (min-width: 1024px) {
   .container header {
     width: 900px;
   }
+}
+
+.container h1 {
+  font-size: 1.5em;
+  flex: 1;
 }
 
 .container a:hover,
@@ -23,4 +28,17 @@
 
 .container a:hover {
   text-decoration: none;
+}
+
+.logo {
+  display: block;
+  margin-right: 1em;
+  font-weight: bold;
+  text-transform: lowercase;
+  align-self: center;
+}
+
+.logo svg {
+  display: block;
+  height: 28px;
 }
