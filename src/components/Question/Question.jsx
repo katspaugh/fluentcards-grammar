@@ -20,14 +20,14 @@ export default class Question extends React.PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.question !== this.props.question) {
+    if (nextProps.text !== this.props.text) {
       this.updateChoices(nextProps);
     }
   }
 
   updateChoices(props) {
     const maxChoices = 4;
-    const lexeme = props.question.find(item => item.occluded != null);
+    const lexeme = props.lexemes.find(item => item.occluded != null);
 
     let choices = lexeme.choices || props.choices;
     choices = shuffle(choices.slice()).slice(0, maxChoices);
@@ -47,7 +47,7 @@ export default class Question extends React.PureComponent {
   }
 
   onChange(value) {
-    const lexeme = this.props.question.find(item => item.occluded != null);
+    const lexeme = this.props.lexemes.find(item => item.occluded != null);
     const correct = lexeme.occluded.toLowerCase() === value.toLowerCase();
 
     this.setState({ correct, selectedChoice: value });
@@ -56,7 +56,7 @@ export default class Question extends React.PureComponent {
   }
 
   renderChoices() {
-    const lexeme = this.props.question.find(item => item.occluded != null);
+    const lexeme = this.props.lexemes.find(item => item.occluded != null);
     let randomChoices = this.state.choices;
 
     // When no choices, just display the base form
@@ -89,39 +89,26 @@ export default class Question extends React.PureComponent {
 
   render() {
     const { correct } = this.state;
+    const textParts = this.props.text.split(this.props.clozeSymbol, 2);
+    const lexeme = this.props.lexemes.find(item => item.occluded != null);
 
-    const lexemes = this.props.question.map((lexeme, i) => {
-      let clozeForm = lexeme.clozeForm
-          .replace(this.props.clozeSymbol, '')
-          .replace(/&amp;/g, '&')
-          .replace(/&lt;/g, '<')
-          .replace(/&gt;/g, '>');
+    const onSubmit = e => {
+      e.preventDefault();
+      this.onChange(e.target.answer.value);
+    };
 
-      const onSubmit = e => {
-        e.preventDefault();
-        this.onChange(e.target.answer.value);
-      };
-
-      const input = lexeme.occluded != null ? (
-        <form action="#" onSubmit={ onSubmit }>
-          <input
-            name="answer"
-            placeholder="…"
-            size={ this.props.size + 1 }
-            readOnly={ correct }
-            value={ correct ? lexeme.occluded : undefined }
-            onBlur={ (e) => this.onChange(e.target.value) }
-            className={ correct === false ? styles.wrongInput : '' } />
-        </form>
-      ) : '';
-
-      return (
-        <span key={ i }>
-          { clozeForm }
-          { input }
-        </span>
-      );
-    });
+    const input = (
+      <form action="#" onSubmit={ onSubmit }>
+        <input
+          name="answer"
+          placeholder="…"
+          size={ this.props.size + 1 }
+          readOnly={ correct }
+          value={ correct ? lexeme.occluded : undefined }
+          onBlur={ (e) => this.onChange(e.target.value) }
+          className={ correct === false ? styles.wrongInput : '' } />
+      </form>
+    );
 
     const toggle = {};
     toggle[styles.correct] = correct === true;
@@ -130,7 +117,11 @@ export default class Question extends React.PureComponent {
 
     return (
       <div className={ classes }>
-        <div className={ styles.question }>{ lexemes }</div>
+        <div className={ styles.question }>
+          { textParts[0] }
+          { input }
+          { textParts[1] }
+        </div>
 
         <ol className={ styles.choices }>
           { this.renderChoices() }

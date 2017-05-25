@@ -1,7 +1,5 @@
 export default class Exercises {
   constructor(language = 'English') {
-    this.minLexemes = 5;
-    this.maxLexemes = 25;
     this.maxExercises = 10;
     this.clozeSymbol = '⧼…⧽';
     this.language = language;
@@ -30,78 +28,64 @@ export default class Exercises {
     const matches = [];
 
     data.sentences.forEach(sentence => {
+      const { lexemes } = sentence;
       const currentMatch = [];
 
-      for (let i = 0, len = sentence.length; i < len; i++) {
-        const lexeme = sentence[i];
+      for (let i = 0, len = lexemes.length; i < len; i++) {
+        const lexeme = lexemes[i];
         const patternPart = pattern[currentMatch.length];
 
-        if (!this.isLexemeMathing(lexeme, patternPart)) {
-          // Reset matching
-          currentMatch.length = 0;
-        } else {
+        if (this.isLexemeMathing(lexeme, patternPart)) {
           // Continue matching
           currentMatch.push({ lexeme, patternPart });
+        } else {
+          // Reset matching
+          currentMatch.length = 0;
         }
 
         if (currentMatch.length === pattern.length) {
           matches.push({
-            captured: currentMatch.slice(),
-            sentence: sentence
+            sentence,
+            captured: currentMatch.slice()
           });
           currentMatch.length = 0;
         }
       }
     });
 
-    const filteredMatches = matches.filter(match => {
-      const length = match.sentence.length;
-      return length <= this.maxLexemes && length >= this.minLexemes;
-    });
-    if (filteredMatches.length >= this.maxExercises) {
-      return filteredMatches;
-    }
-
     return matches;
   }
 
-  isSpaceDelimited(lexeme, prevLexeme) {
-    const PUNCTIATION = [ 'CM', 'SENT', 'PUNCT' ];
-    const LEADING_SPACE_REGEX = /[\[“‘»›(–]/;
-    const NO_LEADING_SPACE_REGEX = /^'.+$/;
-    const NO_TRAILING_SPACE_REGEX = /[\['`“‘»›(]$/;
-
-    return prevLexeme &&
-      !NO_TRAILING_SPACE_REGEX.test(prevLexeme.surfaceForm) &&
-      !NO_LEADING_SPACE_REGEX.test(lexeme.surfaceForm) &&
-      (!PUNCTIATION.includes(lexeme.partOfSpeech) ||
-       LEADING_SPACE_REGEX.test(lexeme.surfaceForm));
-  }
-
   createExercise(match) {
-    return match.sentence.map((lexeme, index) => {
-      const question = Object.assign({}, lexeme);
+    let text = match.sentence.text;
+
+    const lexemes = match.sentence.lexemes.map(lexeme => {
+      const occludedLexeme = Object.assign({}, lexeme);
       const captured = match.captured.find(c => c.lexeme === lexeme);
 
-      question.clozeForm = lexeme.surfaceForm;
+      occludedLexeme.clozeForm = lexeme.surfaceForm;
 
       if (captured && captured.patternPart.occlusion) {
-        question.choices = captured.patternPart.choices;
+        occludedLexeme.choices = captured.patternPart.choices;
 
-        question.clozeForm = lexeme.surfaceForm.replace(captured.patternPart.occlusion, group => {
-          question.occluded = group;
+        occludedLexeme.clozeForm = lexeme.surfaceForm.replace(captured.patternPart.occlusion, group => {
+          occludedLexeme.occluded = group;
           return this.clozeSymbol;
         });
 
-        if (question.occluded == null) question.occluded = '';
+        if (occludedLexeme.occluded == null) {
+          occludedLexeme.occluded = '';
+          occludedLexeme.clozeForm = occludedLexeme.surfaceForm + this.clozeSymbol;
+        }
+
+        const regex = new RegExp(occludedLexeme.surfaceForm.replace(/./g, '[$&]'), 'g');
+        text = text.replace(regex, occludedLexeme.clozeForm);
       }
 
-      if (this.isSpaceDelimited(lexeme, match.sentence[index - 1])) {
-        question.clozeForm = ' ' + question.clozeForm;
-      }
-
-      return question;
+      return occludedLexeme;
     });
+
+    return { text, lexemes };
   }
 
   generate(pattern) {
@@ -113,7 +97,7 @@ export default class Exercises {
 
         for (let i = 0; set.length < this.maxExercises && i < this.maxExercises * 100; i++) {
           const match = matches[Math.floor(total * Math.random())];
-          if (!set.some(item => item.sentence === match.sentence)) set.push(match);
+          if (!set.some(item => item.sentence.text === match.sentence.text)) set.push(match);
         }
 
         return set.map(match => this.createExercise(match));

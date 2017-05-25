@@ -54,7 +54,7 @@ export default class App extends React.PureComponent {
 
   render() {
     const allClozes = this.state.exercises
-          .map(item => item.find(lexeme => lexeme.occluded != null))
+          .map(item => item.lexemes.find(lexeme => lexeme.occluded != null))
           .filter(Boolean);
 
     const maxSize = allClozes.reduce((max, item) => {
@@ -69,7 +69,8 @@ export default class App extends React.PureComponent {
     const exercises = this.state.exercises.map((item, i) => (
       <li key={ i } className={ styles.question }>
         <Question
-          question={ item }
+          lexemes={ item.lexemes }
+          text={ item.text }
           size={ maxSize }
           choices={ choices }
           clozeSymbol={ this.generator.clozeSymbol }

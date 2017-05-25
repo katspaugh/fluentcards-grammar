@@ -37,6 +37,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "react-router-dom": "^4.1.1",
+    "sbd": "^1.0.12",
     "xerox-nlp-client": "github:katspaugh/xerox-nlp-client"
   }
 }
