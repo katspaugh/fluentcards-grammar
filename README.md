@@ -1,6 +1,6 @@
 # Fluentcards Grammar
 
-<img src="https://cloud.githubusercontent.com/assets/381895/26372778/4ad7a7f4-3fff-11e7-9356-9b598afd4f80.jpg" width="300" />
+![Screencast](https://zippy.gfycat.com/DefensivePertinentCoypu.gif)
 
 ### Generating grammar exercises from real-world texts
 
