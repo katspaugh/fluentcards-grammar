@@ -145,7 +145,7 @@ export default {
         {
           partOfSpeech: [ 'PREP', 'PREPART' ],
           occlusion: /.+/,
-          baseForm: /^((?!d).)/,
+          baseForm: /^((?!da).)/,
           choices: [
             'an', 'auf', 'aus', 'bei', 'für', 'gegen', 'in', 'mit', 'nach', 'um', 'von', 'vor', 'über', 'zu', 'zurück', 'zusammen'
           ]
@@ -174,9 +174,10 @@ export default {
       pattern: [
         {
           partOfSpeech: 'VPREF',
+          baseForm: /^((?!da).)/,
           occlusion: /.+/,
           choices: [
-            'ab', 'an', 'dran', 'auf', 'drauf', 'aus', 'raus', 'ein', 'hin', 'hinzu', 'los', 'mit', 'vor', 'weg', 'zurück',
+            'ab', 'an', 'auf', 'aus', 'raus', 'ein', 'hin', 'hinzu', 'los', 'mit', 'vor', 'weg', 'zurück',
             'durch', 'über', 'rüber', 'um', 'unter', 'wider'
           ]
         },
