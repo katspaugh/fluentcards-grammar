@@ -30,7 +30,6 @@
   padding-right: 6vw;
   color: #333;
   white-space: normal;
-  font-family: 'Crimson Text', sans-serif;
 }
 
 .container:after {
@@ -76,7 +75,8 @@
 }
 
 .question {
-  font-size: 1.2em;
+  font-size: 1.3em;
+  font-family: 'Crimson Text', sans-serif;
 }
 
 .question span::first-child::first-letter {

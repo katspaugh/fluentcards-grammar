@@ -89,7 +89,7 @@ export default {
 
         {
           partOfSpeech: [ 'ADJA', 'ADJA2', 'ADJA3' ],
-          occlusion: /(e[nrs]?)?$/,
+          occlusion: /(e[mnrs]?)?$/,
           choices: [ 'e', 'en', 'er', 'es', 'em', '' ]
         },
 
@@ -107,7 +107,7 @@ export default {
       pattern: [
         {
           partOfSpeech: [ 'ADJA', 'ADJA2', 'ADJA3' ],
-          occlusion: /(e[nrs]?)?$/,
+          occlusion: /(e[mnrs]?)?$/,
           choices: [ 'e', 'en', 'er', 'es', 'em', '' ]
         },
 
@@ -145,12 +145,9 @@ export default {
         {
           partOfSpeech: [ 'PREP', 'PREPART' ],
           occlusion: /.+/,
-          baseForm: [
-            'an', 'auf', 'aus', 'bei', 'für', 'gegen', 'in', 'mit', 'nach', 'um', 'von', 'vor', 'über', 'zu',
-            'aufm', 'ans', 'am', 'beim', 'fürs', 'im', 'ins', 'mitm', 'vom', 'übers', 'zum', 'zur'
-          ],
+          baseForm: /^((?!d).)/,
           choices: [
-            'an', 'auf', 'aus', 'bei', 'für', 'gegen', 'in', 'mit', 'nach', 'um', 'von', 'vor', 'über', 'zu'
+            'an', 'auf', 'aus', 'bei', 'für', 'gegen', 'in', 'mit', 'nach', 'um', 'von', 'vor', 'über', 'zu', 'zurück', 'zusammen'
           ]
         }
       ]

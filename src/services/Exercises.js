@@ -1,4 +1,4 @@
-import { randomItem } from './utils';
+import { randomItem, escapeRegexp } from './utils';
 
 export default class Exercises {
   constructor(language = 'English') {
@@ -89,9 +89,9 @@ export default class Exercises {
     const prev = lexemes[index - 1];
 
     const regex = new RegExp(
-      (prev ? `(\\b${ prev.surfaceForm.replace(/./g, '[$&]') }\\s*)` : '(^)') +
-      `(${ randomCloze.surfaceForm.replace(/./g, '[$&]') })` +
-      (next ? `(?=\\s*${ next.surfaceForm.replace(/./g, '[$&]') })` : '$')
+      (prev ? `(${ escapeRegexp(prev.surfaceForm) }\\s*)` : '(^)') +
+      escapeRegexp(randomCloze.surfaceForm) +
+      (next ? `(?=\\s*${ escapeRegexp(next.surfaceForm) })` : '$')
     );
     text = text.replace(regex, '$1' + randomCloze.clozeForm);
 

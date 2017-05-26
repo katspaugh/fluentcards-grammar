@@ -20,3 +20,11 @@ export function decodePos(pos, language) {
   console.log(mapping);
   return mapping.find(item => item.tag === '+' + pos).description;
 }
+
+export function escapeRegexp(text) {
+  return text
+    .replace(/\]/g, '\\]')
+    .replace(/\^/g, '\\^')
+    .replace(/-/g, '\\-')
+    .replace(/./g, '[$&]')
+}
