@@ -104,7 +104,7 @@
 }
 
 .question input::-webkit-input-placeholder {
-  color: #ddd;
+  color: #999;
 }
 
 .question input[readonly]::-webkit-input-placeholder,
@@ -113,7 +113,7 @@
 }
 
 .question input::-moz-input-placeholder {
-  color: #ddd;
+  color: #999;
 }
 
 .question input[readonly]::-moz-input-placeholder,
@@ -150,6 +150,7 @@
   text-align: center;
   cursor: pointer;
   outline: none;
+  text-transform: lowercase;
 }
 
 .choiceButton[disabled] {

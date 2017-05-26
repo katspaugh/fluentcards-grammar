@@ -13,6 +13,16 @@ export default class Question extends React.PureComponent {
       selectedChoice: null,
       correct: null
     };
+
+    this.onChange = e => {
+      this.onAnswer(e.target.value);
+    };
+
+    this.onSubmit = e => {
+      e.preventDefault();
+      this.onAnswer(e.target.answer.value);
+    };
+
   }
 
   componentWillMount() {
@@ -25,13 +35,19 @@ export default class Question extends React.PureComponent {
     }
   }
 
+  setChoices(choices, rightChoice) {
+  }
+
   updateChoices(props) {
     const maxChoices = 4;
-
-    let choices = props.cloze.choices || props.choices;
-    choices = shuffle(choices.slice()).slice(0, maxChoices);
-
     const rightChoice = props.cloze.occluded.toLowerCase();
+    let choices = props.cloze.choices || props.choices;
+
+    if (choices instanceof Function) {
+      choices = choices(props.cloze);
+    }
+
+    choices = shuffle(choices.slice()).slice(0, maxChoices);
 
     if (!choices.map(c => c.toLowerCase()).includes(rightChoice)) {
       if (choices.length < maxChoices) {
@@ -45,7 +61,7 @@ export default class Question extends React.PureComponent {
     this.setState({ choices, correct: null, selectedChoice: null });
   }
 
-  onChange(value) {
+  onAnswer(value) {
     const lexeme = this.props.cloze;
     const correct = lexeme.occluded.toLowerCase() === value.toLowerCase();
 
@@ -55,17 +71,11 @@ export default class Question extends React.PureComponent {
   }
 
   renderChoices() {
-    const lexeme = this.props.cloze;
-    let randomChoices = this.state.choices;
+    const { choices } = this.state;
 
-    // When no choices, just display the base form
-    if (randomChoices.length <= 1) {
-      return (
-        <li>{ lexeme.baseForm.join ? lexeme.baseForm.join('') : lexeme.baseForm }</li>
-      );
-    }
+    if (!choices || choices.length <= 1) return null;
 
-    return randomChoices.map((choice, i) => {
+    return choices.map((choice, i) => {
       const selected = this.state.selectedChoice === choice
 
       const toggle = {};
@@ -78,7 +88,7 @@ export default class Question extends React.PureComponent {
           <button
             className={ classnames(styles.choiceButton, toggle) }
             disabled={ this.state.correct }
-            onClick={ () => this.onChange(choice) }>
+            onClick={ () => this.onAnswer(choice) }>
             { choice || '∅' }
           </button>
         </li>
@@ -87,27 +97,35 @@ export default class Question extends React.PureComponent {
   }
 
   render() {
+    const { cloze } = this.props;
     const { correct } = this.state;
 
-    const onSubmit = e => {
-      e.preventDefault();
-      this.onChange(e.target.answer.value);
-    };
+    const choices = this.renderChoices();
+
+    const choicesBlock = choices ? (
+      <ol className={ styles.choices }>
+        { choices }
+      </ol>
+    ) : '';
+
+    const placeholder = choices ? '…' :
+      (cloze.baseForm.join ? cloze.baseForm.join('') : cloze.baseForm)
 
     const input = (
-      <form action="#" onSubmit={ onSubmit }>
+      <form action="#" onSubmit={ this.onSubmit }>
         <input
           name="answer"
-          placeholder="…"
+          placeholder={ placeholder }
           size={ this.props.size + 1 }
           readOnly={ correct }
           value={ correct ? this.props.cloze.occluded : undefined }
-          onBlur={ (e) => this.onChange(e.target.value) }
+          onChange={ this.onChange }
           className={ correct === false ? styles.wrongInput : '' } />
       </form>
     );
 
     const textParts = this.props.text.split(this.props.clozeSymbol, 2);
+    textParts[0] = textParts[0].slice(0, 1).toUpperCase() + textParts[0].slice(1);
 
     const toggle = {};
     toggle[styles.correct] = correct === true;
@@ -122,9 +140,7 @@ export default class Question extends React.PureComponent {
           { textParts[1] }
         </div>
 
-        <ol className={ styles.choices }>
-          { this.renderChoices() }
-        </ol>
+      { choicesBlock }
       </div>
     );
   }

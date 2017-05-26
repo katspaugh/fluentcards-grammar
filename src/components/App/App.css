@@ -11,7 +11,7 @@
 
 :global(body) {
   margin: 0;
-  padding: 0 0 150px;
+  padding: 0 0 100px;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -31,10 +31,12 @@
 :global(a:active),
 :global(a:hover) {
   color: #000;
+  text-decoration: none;
 }
 
 .container {
   display: block;
+  padding-bottom: 50px;
 }
 
 .description {
@@ -94,7 +96,7 @@
 
   .question::after {
     counter-increment: question;
-    content: counter(question) '. ';
+    content: counter(question);
     position: absolute;
     right: 10px;
     top: 50%;
@@ -158,4 +160,18 @@
 
 .controls button:hover {
   background: #000;
+}
+
+.hero {
+  font-size: 2em;
+  font-style: italic;
+  text-align: center;
+  color: #ddd;
+}
+
+@media only screen and (max-width: 1024px) {
+  .hero {
+    font-size: 1.2em;
+    padding: 1em 4em;
+  }
 }

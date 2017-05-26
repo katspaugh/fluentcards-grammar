@@ -13,7 +13,7 @@ export default class App extends React.PureComponent {
     this.generator = null;
 
     this._onAnswer = this.onAnswer.bind(this);
-    this._onReloadClick = this.onReloadClick.bind(this);
+    this._onReloadClick = this.reload.bind(this);
 
     this.state = {
       correctAnswers: 0,
@@ -46,24 +46,19 @@ export default class App extends React.PureComponent {
 
     const { allExercises } = this.state;
     const currentExercises = [];
+    const maxTries = 100;
 
-    for (let i = 0; i < this.maxExercises; i++) {
+    for (let i = 0; i < maxTries && currentExercises.length < this.maxExercises; i++) {
       const match = allExercises[Math.floor(Math.random() * allExercises.length)];
-      currentExercises.push(this.generator.createExercise(match));
+      if (!currentExercises.some(item => item.originalText === match.sentence.text)) {
+        currentExercises.push(this.generator.createExercise(match));
+      }
     }
 
     // Delay the rendering to display the loading animation
     setTimeout(() => {
       this.setState({ currentExercises });
     }, 100);
-  }
-
-  onReloadClick() {
-    this.reload();
-
-    requestAnimationFrame(() => {
-      this.questionsBlock.scrollIntoView();
-    });
   }
 
   render() {
@@ -108,8 +103,12 @@ export default class App extends React.PureComponent {
     ) : '';
 
     return (
-      <div className={ styles.container } ref={ (el) => this.questionsBlock = el } >
-        <p className={ styles.description }>{ this.props.description }</p>
+      <div className={ styles.container }>
+        <p className={ styles.description }>
+          <b>{ this.props.description }</b>
+          <br />
+          Refresh the page to get new exercises.
+        </p>
 
         { currentExercises.length ? (
           <div>

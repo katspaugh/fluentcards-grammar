@@ -29,29 +29,24 @@ export default class Exercises {
     const matches = [];
 
     data.sentences.forEach(sentence => {
-      const { lexemes } = sentence;
-      const currentMatch = [];
+      let captured = [];
 
-      for (let i = 0, len = lexemes.length; i < len; i++) {
-        const lexeme = lexemes[i];
-        const patternPart = pattern[currentMatch.length];
+      sentence.lexemes.forEach(lexeme => {
+        const patternPart = pattern[captured.length];
 
         if (this.isLexemeMathing(lexeme, patternPart)) {
           // Continue matching
-          currentMatch.push({ lexeme, patternPart });
+          captured.push({ lexeme, patternPart });
         } else {
           // Reset matching
-          currentMatch.length = 0;
+          captured = [];
         }
 
-        if (currentMatch.length === pattern.length) {
-          matches.push({
-            sentence,
-            captured: currentMatch.slice()
-          });
-          currentMatch.length = 0;
+        if (captured.length === pattern.length) {
+          matches.push({ sentence, captured });
+          captured = [];
         }
-      }
+      });
     });
 
     return matches;
@@ -97,6 +92,7 @@ export default class Exercises {
 
     return {
       text,
+      originalText: match.sentence.text,
       cloze: randomCloze
     };
   }

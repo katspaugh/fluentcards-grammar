@@ -8,9 +8,3 @@
     width: 900px;
   }
 }
-
-.home ul li {
-  margin-bottom: 0.5em;
-  list-style-type: lower-roman;
-  color: #ddd;
-}

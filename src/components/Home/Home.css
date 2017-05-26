@@ -1,0 +1,72 @@
+.home {
+  display: block;
+}
+
+.container {
+  margin: auto;
+  padding: 0 1em;
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    width: 900px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: stretch;
+}
+
+@media only screen and (min-width: 1024px) {
+  .content {
+    margin: 0 -3em;
+  }
+}
+
+.languageBlock {
+  min-width: 50%;
+  margin-top: 1em;
+}
+
+.languageBlock > div {
+  height: 100%;
+  padding: 1em;
+  padding-left: 3em;
+  border: 2px solid #FFF844;
+  border-radius: 4px;
+}
+
+.languageBlock:nth-child(odd) > div {
+  margin-right: 1em;
+}
+
+@media only screen and (max-width: 1024px) {
+  .languageBlock {
+    width: 100%;
+  }
+
+  .languageBlock > div {
+    margin-right: 0 !important;
+  }
+}
+
+.content ul {
+  padding-left: 0;
+}
+
+.content ul li {
+  margin-bottom: 0.5em;
+  list-style-type: lower-roman;
+  color: #ddd;
+}
+
+.hero {
+  color: #555;
+  font-size: 2em;
+  font-style: italic;
+  text-align: center;
+  padding: 1em;
+}

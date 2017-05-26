@@ -13,7 +13,7 @@ const inputText = fs.readFileSync(
 ).toString();
 
 const inputSentences = tokenizer.sentences(inputText, {
-  newline_boundaries : true,
+  newline_boundaries : false,
   html_boundaries    : false,
   sanitize           : true,
   allowed_tags       : false,

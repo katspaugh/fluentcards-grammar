@@ -1,9 +1,11 @@
+import { analyze } from './morphology';
+
 export default {
   English: {
     'a-vs-the': {
       title: 'Articles: definite vs indefinite',
 
-      description: 'Insert the right article into the sentences below.',
+      description: 'Choose the right article.',
 
       pattern: [
         {
@@ -15,10 +17,60 @@ export default {
       ]
     },
 
+    'many-vs-much': {
+      title: 'Quantifiers: many vs much, few vs little',
+
+      description: 'Choose the right answer.',
+
+      pattern: [
+        {
+          partOfSpeech: 'QUANT',
+          baseForm: [ 'little', 'few', 'much', 'many' ],
+          occlusion: /.+/,
+
+          choices: (lexeme) => {
+            return (/little|few/.test(lexeme.baseForm)) ?
+              [ 'little', 'few' ] :
+              [ 'much', 'many' ];
+          }
+        }
+      ]
+    },
+
+    'each-vs-every': {
+      title: 'Quantifiers: each vs every',
+
+      description: 'Choose the right answer.',
+
+      pattern: [
+        {
+          partOfSpeech: 'QUANT',
+          baseForm: [ 'each', 'every' ],
+          choices: [ 'each', 'every' ],
+          occlusion: /.+/
+        }
+      ]
+    },
+
+    'some-vs-any': {
+      title: 'Quantifiers: some vs any',
+
+      description: 'Choose the right answer.',
+
+      pattern: [
+        {
+          partOfSpeech: 'QUANT',
+          baseForm: [ 'some', 'any' ],
+          choices: [ 'some', 'any' ],
+          occlusion: /.+/
+        }
+      ]
+    },
+
     'irregular-verbs': {
       title: 'Verbs: irregular verbs',
 
-      description: 'Type the correct form of the missing irregular verbs.',
+      description: 'Type the correct forms of the missing verbs.',
 
       pattern: [
         {
@@ -36,7 +88,7 @@ export default {
     'third-person-singular': {
       title: 'Verbs: third person singular',
 
-      description: 'Decide whether a verb should take an "-s" ending or stay in the base form.',
+      description: 'Insert the verbal ending "-s" where necessary.',
 
       pattern: [
         {
@@ -47,6 +99,59 @@ export default {
           baseForm: /^((?!be|have).)/,
           occlusion: /s$/,
           choices: [ '', 's' ]
+        }
+      ]
+    },
+
+    'phrasal-verbs': {
+      title: 'Verbs: phrasal verbs',
+
+      description: 'Complete the phrasal verbs with the correct preposisions.',
+
+      pattern: [
+        {
+          partOfSpeech: [ 'VPRES', 'VPAST', 'VPAP' ],
+          baseForm: [
+            'give', 'get', 'put', 'look', 'turn', 'break',
+            'call', 'go', 'make', 'do', 'bring', 'cut', 'drop',
+            'keep', 'run', 'set'
+          ]
+        },
+        {
+          partOfSpeech: 'PREP',
+          baseForm: [
+            'out', 'up', 'down', 'back', 'on', 'off', 'for', 'over', 'away', 'after'
+          ],
+          occlusion: /.+/
+        }
+      ]
+    },
+
+    'modal-verbs': {
+      title: 'Verbs: modal verbs',
+
+      description: 'Choose the most suitable modal verb.',
+
+      pattern: [
+        {
+          partOfSpeech: [ 'VAUX' ],
+          surfaceForm: /^((?!will|'ll|'d).)/,
+          occlusion: /.+/
+        }
+      ]
+    },
+
+    'prepositions-in-on-at': {
+      title: 'Prepositions: in, on, at',
+
+      description: 'Choose the right preposition.',
+
+      pattern: [
+        {
+          partOfSpeech: 'PREP',
+          baseForm: [ 'in', 'on', 'at' ],
+          occlusion: /.+/,
+          choices: [ 'in', 'on', 'at' ]
         }
       ]
     }
@@ -102,7 +207,7 @@ export default {
     'adjective-declension': {
       title: 'Adjectives: weak, mixed and strong declensions',
 
-      description: 'Depending on whether an adjective follows a determiner or not, it\'s declined differently. Choose the correct adjectival endings.',
+      description: 'Choose the correct endings of adjectives.',
 
       pattern: [
         {
@@ -120,7 +225,7 @@ export default {
     'definite-article-declension': {
       title: 'Articles: definite articles',
 
-      description: 'Articles in German show not only the definitiveness, but also the gender, case and plurality of nouns. Choose the correct form of the definite article.',
+      description: 'Put the articles into correct form.',
 
       pattern: [
         {
@@ -135,7 +240,7 @@ export default {
     'verbs-with-prepositions': {
       title: 'Verbs: prepositional government',
 
-      description: 'Certain verbs require certain preposisions and govern the case of the object. Choose the right preposisions.',
+      description: 'Choose the preposision that is required by a verb.',
 
       pattern: [
         {
@@ -169,7 +274,7 @@ export default {
     'separable-verbal-prefixes': {
       title: 'Verbs: separable prefixes',
 
-      description: 'Choose the right separated prefix.',
+      description: 'Choose the right separated verbal prefix.',
 
       pattern: [
         {
@@ -204,7 +309,7 @@ export default {
     'personal-pronouns': {
       title: 'Pronouns: personal',
 
-      description: 'Put the personal pronouns into the right forms.',
+      description: 'Put the personal pronouns into the right form.',
 
       pattern: [
         {

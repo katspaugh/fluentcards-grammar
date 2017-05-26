@@ -6,8 +6,11 @@
 
 .container header {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin: auto;
-  padding: 2em 1em;
+  padding: 1em;
+  min-height: 8em;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -17,17 +20,19 @@
 }
 
 .container h1 {
-  font-size: 1.5em;
+  font-size: 2em;
   flex: 1;
+  align-self: center;
 }
 
-.container a:hover,
+@media only screen and (max-width: 1024px) {
+  .container h1 {
+    font-size: 1.3em;
+  }
+}
+
 .container a {
   color: #333;
-}
-
-.container a:hover {
-  text-decoration: none;
 }
 
 .logo {
