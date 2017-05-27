@@ -4,8 +4,8 @@ const tokenizer = require('sbd');
 const posTag = require('xerox-nlp-client');
 
 const DELIM = '…';
-const minLexemes = 5;
-const maxLexemes = 35;
+const minLexemes = 7;
+const maxLexemes = 25;
 
 const language = process.argv[2];
 const inputText = fs.readFileSync(
@@ -69,6 +69,18 @@ function transformData(data) {
       const len = item.lexemes.length;
       return len <= maxLexemes && len >= minLexemes;
     });
+
+  // "Zum" gets tagged wrongly as ADV or ADJA
+  data.sentences.forEach(sentence => {
+    sentence.lexemes.forEach(lexeme => {
+      if (lexeme.baseForm === 'zum' && lexeme.partOfSpeech !== 'PREPART') {
+        lexeme.baseForm = [
+          'zu', 'der'
+        ];
+        lexeme.partOfSpeech = 'PREPART';
+      }
+    });
+  });
 
   return data;
 }

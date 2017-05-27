@@ -171,6 +171,7 @@ export default {
 
         {
           partOfSpeech: [ 'ADJA', 'ADJA2', 'ADJA3' ],
+          surfaceForm: /.{4,}/,
           occlusion: /e[nrs]?$/,
           choices: [ 'e', 'en', 'er', 'es' ]
         },
@@ -194,6 +195,7 @@ export default {
 
         {
           partOfSpeech: [ 'ADJA', 'ADJA2', 'ADJA3' ],
+          surfaceForm: /.{4,}/,
           occlusion: /(e[mnrs]?)?$/,
           choices: [ 'e', 'en', 'er', 'es', 'em', '' ]
         },
@@ -212,6 +214,7 @@ export default {
       pattern: [
         {
           partOfSpeech: [ 'ADJA', 'ADJA2', 'ADJA3' ],
+          surfaceForm: /.{4,}/,
           occlusion: /(e[mnrs]?)?$/,
           choices: [ 'e', 'en', 'er', 'es', 'em', '' ]
         },
@@ -324,12 +327,11 @@ export default {
     'possessive-pronouns-and-indefinite-article': {
       title: 'Pronouns: possessive',
 
-      description: 'Choose the correct form of the possessive pronouns, indefinite articles and "kein".',
+      description: 'Choose the correct form of the possessive pronouns.',
 
       pattern: [
         {
-          partOfSpeech: [ 'ART', 'INDDET', 'POSDET' ],
-          baseForm: /^((?!der|die|das).)/,
+          partOfSpeech: 'POSDET',
           occlusion: /(e[mnrs]?)$/,
           choices: [ 'e', 'em', 'en', 'er', 'es' ]
         }

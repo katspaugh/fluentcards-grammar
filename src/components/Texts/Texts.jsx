@@ -22,15 +22,15 @@ export default () => (
         </li>
 
         <li>
-          Franz Kafka, <a href="http://gutenberg.spiegel.de/buch/franz-kafka-erz-161/1">
-            26 Erzählungen
-          </a>
+          The subtitles for “Herr Lehmann” (2003) from Opensubtitles.org
         </li>
 
         <li>
-          Stefan Zweig, <a href="http://gutenberg.spiegel.de/buch/schachnovelle-7318/1">
-            Schachnovelle
-          </a>
+          The subtitles for “Sonnenallee” (1999) from Opensubtitles.org
+        </li>
+
+        <li>
+          The subtitles for “Frau Holle” (1963) from Opensubtitles.org
         </li>
 
         <li>
