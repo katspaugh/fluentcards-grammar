@@ -1,0 +1,82 @@
+.container {
+}
+
+.editor {
+  padding: 1em;
+  margin: auto;
+}
+
+@media only screen and (min-width: 1024px) {
+  .editor {
+    width: 900px;
+  }
+}
+
+.field {
+  margin: 1em 0;
+  display: flex;
+}
+
+.submitField {
+  text-align: center;
+  margin: 2em 0;
+}
+
+.submitField button {
+  margin-right: 1em;
+}
+
+.field label {
+  padding-right: 1em;
+  min-width: 20%;
+  vertical-align: middle;
+}
+
+.field textarea,
+.field input {
+  flex: 1;
+  border: 1px solid #ddd;
+}
+
+.field input {
+  padding: 0.5em;
+}
+
+.field textarea {
+  padding: 0.5em;
+}
+
+.bigButton {
+  font-size: 1.5em;
+  padding: 0.5em;
+  background: #555;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.bigButton:hover {
+  background: #000;
+}
+
+.flatButton {
+  font-size: 1.5em;
+  padding: 0.5em;
+  background: #999;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.flatButton:hover {
+  background-color: #777;
+  color: #fff;
+}
+
+.shareLink {
+  text-align: center;
+  font-size: 1.5em;
+  padding: 1em;
+}

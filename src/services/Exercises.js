@@ -15,12 +15,15 @@ export default class Exercises {
   }
 
   isLexemeMathing(lexeme, pattern) {
-    const check = (param) => (
-      !pattern[param] ||
-        (pattern[param] === lexeme[param]) ||
-        (pattern[param] instanceof Array && pattern[param].includes(lexeme[param])) ||
-        (pattern[param] instanceof RegExp && pattern[param].test(lexeme[param]))
-    );
+    const check = (param) => {
+      let value = lexeme[param];
+      if (value instanceof Array) value = value.join('');
+
+      return !pattern[param] ||
+        (pattern[param] === value) ||
+        (pattern[param] instanceof Array && pattern[param].includes(value)) ||
+        (pattern[param] instanceof RegExp && pattern[param].test(value));
+    };
 
     return [ 'partOfSpeech', 'baseForm', 'surfaceForm' ].every(check);
   }
@@ -58,11 +61,8 @@ export default class Exercises {
     const lexemes = match.sentence.lexemes.map(lexeme => {
       const cloze = Object.assign({}, lexeme);
       const captured = match.captured.find(c => c.lexeme === lexeme);
-      cloze.clozeForm = lexeme.surfaceForm;
 
       if (captured && captured.patternPart.occlusion) {
-        cloze.choices = captured.patternPart.choices;
-
         cloze.clozeForm = lexeme.surfaceForm.replace(captured.patternPart.occlusion, group => {
           cloze.occluded = group;
           return this.clozeSymbol;
@@ -71,6 +71,7 @@ export default class Exercises {
         if (cloze.occluded == null) {
           cloze.occluded = '';
           cloze.clozeForm = cloze.surfaceForm + this.clozeSymbol;
+          cloze.choices = captured.patternPart.choices;
         }
       }
 

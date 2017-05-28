@@ -23,7 +23,7 @@ export default class App extends React.PureComponent {
     };
   }
 
-  componentWillMount() {
+  init() {
     this.generator = new Exercises(this.props.language);
 
     this.generator.generate(this.props.pattern)
@@ -59,6 +59,16 @@ export default class App extends React.PureComponent {
     setTimeout(() => {
       this.setState({ currentExercises });
     }, 100);
+  }
+
+  componentWillMount() {
+    this.init();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.pattern !== nextProps.pattern) {
+      this.init();
+    }
   }
 
   render() {

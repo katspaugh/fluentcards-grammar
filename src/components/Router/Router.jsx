@@ -9,13 +9,32 @@ import patterns from '../../services/patterns';
 import App from '../App/App.jsx';
 import Home from '../Home/Home.jsx';
 import Texts from '../Texts/Texts.jsx';
-import Footer from '../Footer/Footer.jsx';
+import Editor from '../Editor/Editor.jsx';
 import Header from '../Header/Header.jsx';
+import Footer from '../Footer/Footer.jsx';
 import styles from './Router.css';
 
 
 const AppRoute = ({ match }) => {
-  const pattern = patterns[match.params.language][match.params.pattern];
+  let pattern = patterns[match.params.language][match.params.pattern];
+
+  if (!pattern) {
+    try {
+      pattern = JSON.parse(atob(match.params.pattern));
+    } catch (e) {
+      return null;
+    }
+    pattern.pattern.forEach(patternPart => {
+      Object.keys(patternPart).forEach(key => {
+        if ('choices' !== key) {
+          patternPart[key] = new RegExp(patternPart[key]);
+        }
+      });
+    });
+    if (!pattern.pattern.some(patternPart => patternPart.occlusion)) {
+      pattern.pattern[0].occlusion = /.+/;
+    }
+  }
 
   return (
     <div>
@@ -41,6 +60,8 @@ const Routes = () => (
       <Route exact path="/" component={ Home } />
 
       <Route exact path="/texts" component={ Texts } />
+
+      <Route exact path="/editor" component={ Editor } />
 
       <Route exact path="/quiz/:language" component={ Home } />
 

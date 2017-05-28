@@ -154,7 +154,7 @@
   background: #555;
   color: #fff;
   border: none;
-  outline-color: #FFF844;
+  outline: none;
   cursor: pointer;
 }
 
