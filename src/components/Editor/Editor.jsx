@@ -31,7 +31,7 @@ export default class Editor extends React.Component {
 
     return (
       <div>
-        <h2>Matching word #{ index + 1 }</h2>
+        <h2>Pattern for word #{ index + 1 }</h2>
 
         <div className={ styles.field }>
           <PosField
@@ -175,6 +175,11 @@ export default class Editor extends React.Component {
         <Header title={ 'Exercise editor' }></Header>
 
         <div className={ styles.editor }>
+          <p className={ styles.intro }>
+            Create exercises by finding matching sentences in the corpus.<br />
+            The sentences are matched word by word. Each word is tested against a morpho-syntactic pattern.
+          </p>
+
           <div className={ styles.field }>
             <span>
               <label>Language</label>
@@ -202,8 +207,6 @@ export default class Editor extends React.Component {
               <textarea onChange={ (e) => this.setState({ description: e.target.value }) } />
             </span>
           </div>
-
-          <p>Find matching sentences in the corpus word by word:</p>
 
           { patternParts }
 

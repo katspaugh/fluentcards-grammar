@@ -32,6 +32,12 @@
   color: #999;
 }
 
+.field p code {
+  background: #fafafa;
+  font-size: 1em;
+  padding: 0.1em;
+}
+
 .field select {
   font-size: 1.1em;
 }
@@ -92,4 +98,8 @@
   text-align: center;
   font-size: 1.5em;
   padding: 1em;
+}
+
+.intro {
+  margin-bottom: 3em;
 }
