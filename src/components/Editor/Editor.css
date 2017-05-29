@@ -13,23 +13,27 @@
 }
 
 .field {
-  margin: 1em 0;
+  margin: 1em 0 2em;
+}
+
+.field > span {
   display: flex;
-}
-
-.submitField {
-  text-align: center;
-  margin: 2em 0;
-}
-
-.submitField button {
-  margin-right: 1em;
 }
 
 .field label {
   padding-right: 1em;
   min-width: 20%;
   vertical-align: middle;
+}
+
+.field p {
+  width: 100%;
+  font-size: 0.8em;
+  color: #999;
+}
+
+.field select {
+  font-size: 1.1em;
 }
 
 .field textarea,
@@ -44,6 +48,15 @@
 
 .field textarea {
   padding: 0.5em;
+}
+
+.submitField {
+  text-align: center;
+  margin: 2em 0;
+}
+
+.submitField button {
+  margin-right: 1em;
 }
 
 .bigButton {

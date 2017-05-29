@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Editor.css';
+import patterns from '../../services/patterns';
 import Header from '../Header/Header.jsx';
 import App from '../App/App.jsx';
 import PosField from './PosField.jsx';
+import styles from './Editor.css';
 
 
 export default class Editor extends React.Component {
@@ -40,39 +41,70 @@ export default class Editor extends React.Component {
         </div>
 
         <div className={ styles.field }>
-          <label>Base form regex</label>
-          <input
-            placeholder="optional"
-            defaultValue={ patternPart.baseForm }
-            onChange={ (e) => setValue('baseForm', e.target.value) } />
+          <span>
+            <label>Base form regex</label>
+
+            <input
+              placeholder="optional"
+              defaultValue={ patternPart.baseForm }
+              onChange={ (e) => setValue('baseForm', e.target.value) } />
+          </span>
+
+          <p>
+            This regular expression will match words based on their base form.
+            For example, the base form of <code>him</code> is <code>he</code>.
+          </p>
         </div>
 
         <div className={ styles.field }>
-          <label>Surface form regex</label>
-          <input
-            placeholder="optional"
-            defaultValue={ patternPart.surfaceForm }
-            onChange={ (e) => setValue('surfaceForm', e.target.value) } />
+          <span>
+            <label>Surface form regex</label>
+
+            <input
+              placeholder="optional"
+              defaultValue={ patternPart.surfaceForm }
+              onChange={ (e) => setValue('surfaceForm', e.target.value) } />
+          </span>
+
+          <p>
+            This will match according to the surface form.
+          </p>
         </div>
 
         <div className={ styles.field }>
-          <label>Occlusion regex</label>
-          <input
-            placeholder="optional"
-            defaultValue={ patternPart.occlusion }
-            onChange={ (e) => setValue('occlusion', e.target.value) } />
+          <span>
+            <label>Occlusion regex</label>
+
+            <input
+              placeholder="optional"
+              defaultValue={ patternPart.occlusion }
+              onChange={ (e) => setValue('occlusion', e.target.value) } />
+          </span>
+
+          <p>
+            This regular expression doesn't participate in the match, but creates a cloze test out of the word.
+            For example, <code>.+</code> will occlude the whole word.
+            The occlusion will appear as a yellow input in the quiz.
+          </p>
         </div>
 
         <div className={ styles.field }>
-          <label>
-            Choices
-            <br />
-            (comma-separated)
-          </label>
+          <span>
+            <label>
+              Choices
+              <br />
+              (comma-separated)
+            </label>
 
-          <textarea
-            defaultValue={ (patternPart.choices || []).join(', ') }
-            onChange={ (e) => setValue('choices', e.target.value) } />
+            <textarea
+              placeholder="optional"
+              defaultValue={ (patternPart.choices || []).join(', ') }
+              onChange={ (e) => setValue('choices', e.target.value) } />
+          </span>
+
+          <p>
+            A list of possible answers in the multiple choice test.
+          </p>
         </div>
       </div>
     );
@@ -144,27 +176,34 @@ export default class Editor extends React.Component {
 
         <div className={ styles.editor }>
           <div className={ styles.field }>
-            <label>Language</label>
+            <span>
+              <label>Language</label>
 
-            <select
-              defaultValue={ this.state.language }
-              onChange={ (e) => this.setState({ language: e.target.value }) }>
-              <option>English</option>
-              <option>German</option>
-            </select>
+              <select
+                defaultValue={ this.state.language }
+                onChange={ (e) => this.setState({ language: e.target.value }) }>
+                { Object.keys(patterns).map(lang => <option key={ lang }>{ lang }</option>) }
+              </select>
+            </span>
           </div>
 
           <div className={ styles.field }>
-            <label>Title</label>
+            <span>
+              <label>Title</label>
 
-            <input onChange={ (e) => this.setState({ title: e.target.value }) } />
+              <input onChange={ (e) => this.setState({ title: e.target.value }) } />
+            </span>
           </div>
 
           <div className={ styles.field }>
-            <label>Description</label>
+            <span>
+              <label>Description</label>
 
-            <textarea onChange={ (e) => this.setState({ description: e.target.value }) } />
+              <textarea onChange={ (e) => this.setState({ description: e.target.value }) } />
+            </span>
           </div>
+
+          <p>Find matching sentences in the corpus word by word:</p>
 
           { patternParts }
 

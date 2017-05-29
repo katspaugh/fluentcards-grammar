@@ -73,6 +73,7 @@ export default class Editor extends React.PureComponent {
             <button
               key={ item.tag }
               onMouseEnter={ () => setHint(item) }
+              onMouseLeave={ () => setHint() }
               onClick={ (e) => addPoS(e, item) }>
               { item.tag }
             </button>
