@@ -16,25 +16,31 @@ export default () => (
 
       <ul>
         <li>
-          Brüder Grimm, <a href="http://gutenberg.spiegel.de/buch/die-schonsten-kinder-und-hausmarchen-6248/1">
+          Brüder Grimm,
+          <span> </span>
+          <a href="http://gutenberg.spiegel.de/buch/die-schonsten-kinder-und-hausmarchen-6248/1">
             Die schönsten Kinder- und Hausmärchen
           </a>
         </li>
 
         <li>
-          The subtitles for “Herr Lehmann” (2003) from Opensubtitles.org
+          Johanna Spyri,
+          <span> </span>
+          <a href="http://gutenberg.spiegel.de/buch/heidis-lehr-und-wanderjahre-5611/1">
+            Heidis Lehr- und Wanderjahre
+          </a>
         </li>
 
         <li>
-          The subtitles for “Sonnenallee” (1999) from Opensubtitles.org
+          Franz Kafka,
+          <span> </span>
+          <a href="http://gutenberg.spiegel.de/buch/franz-kafka-erz-161/1">26 Erzählungen</a>
         </li>
 
         <li>
-          The subtitles for “Frau Holle” (1963) from Opensubtitles.org
-        </li>
-
-        <li>
-          H. G. Wells, <a href="https://www.gutenberg.org/ebooks/35">
+          H. G. Wells,
+          <span> </span>
+          <a href="https://www.gutenberg.org/ebooks/35">
             The Time Machine
           </a>
         </li>

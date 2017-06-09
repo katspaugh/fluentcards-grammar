@@ -35,9 +35,6 @@ export default class Question extends React.PureComponent {
     }
   }
 
-  setChoices(choices, rightChoice) {
-  }
-
   updateChoices(props) {
     const maxChoices = 4;
     const rightChoice = props.cloze.occluded.toLowerCase();
