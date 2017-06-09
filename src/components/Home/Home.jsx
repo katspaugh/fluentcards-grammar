@@ -41,7 +41,7 @@ export default ({ match }) => {
       <Header title={ title }>{ language }</Header>
 
       <div className={ styles.container }>
-        <h2>Focused rammar exercises from books and subtitles</h2>
+        <h2>Focused grammar exercises from books and subtitles</h2>
 
         <p>
           To become fluent in a foreign language, one must deeply internalize its grammatical patterns. Here you can practice with infinite grammar exercises that are dynamically generated from real-world texts.
