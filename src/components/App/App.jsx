@@ -79,7 +79,8 @@ export default class App extends React.PureComponent {
     }, 1);
 
     const choices = currentExercises.reduce((acc, item) => {
-      if (!acc.includes(item.cloze.occluded)) acc.push(item.cloze.occluded);
+      const choice = item.cloze.occluded.toLowerCase();
+      if (!acc.includes(choice)) acc.push(choice);
       return acc;
     }, []);
 
