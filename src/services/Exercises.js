@@ -71,8 +71,9 @@ export default class Exercises {
         if (cloze.occluded == null) {
           cloze.occluded = '';
           cloze.clozeForm = cloze.surfaceForm + this.clozeSymbol;
-          cloze.choices = captured.patternPart.choices;
         }
+
+        cloze.choices = captured.patternPart.choices;
       }
 
       return cloze;
