@@ -1,6 +1,7 @@
 import React from 'react';
 import { shuffle } from '../../services/utils';
 import Exercises from '../../services/Exercises';
+import User from '../../services/User';
 import Question from '../Question/Question.jsx';
 import Loader from '../Loader/Loader.jsx';
 import styles from './App.css';
@@ -40,6 +41,14 @@ export default class App extends React.PureComponent {
       correctAnswers: this.state.correctAnswers + (correct ? 1 : 0),
       incorrectAnswers: this.state.incorrectAnswers + (correct ? 0 : 1)
     });
+
+    if (this.state.correctAnswers === this.maxExercises) {
+      const user = User.get();
+      user && User.updateScore({
+        exercises: (user.scores ? user.scores.exercises : 0) + this.state.correctAnswers,
+        errors: (user.scores ? user.scores.errors : 0) + this.state.incorrectAnswers
+      });
+    }
   }
 
   reload() {

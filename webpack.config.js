@@ -35,7 +35,7 @@ module.exports = {
 
       {
         test: /\.css$/,
-        loader: 'style!typings-for-css-modules-loader?modules&namedExport&camelCase'
+        loader: 'style!typings-for-css-modules-loader?modules&namedExport&camelCase&localIdentName=[name]__[local]'
       }
     ]
   },
