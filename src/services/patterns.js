@@ -96,7 +96,7 @@ export default {
         },
         {
           partOfSpeech: [ 'VPRES' ],
-          baseForm: /^((?!be|have).)/,
+          baseForm: /^((?!be|have|go).)/,
           occlusion: /s$/,
           choices: [ '', 's' ]
         }

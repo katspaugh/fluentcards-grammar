@@ -11,6 +11,8 @@ export default class App extends React.PureComponent {
 
     this.maxExercises = 15;
     this.generator = null;
+    this.allExercises = null;
+    this.cachedExercises = null;
 
     this._onAnswer = this.onAnswer.bind(this);
     this._onReloadClick = this.reload.bind(this);
@@ -18,7 +20,6 @@ export default class App extends React.PureComponent {
     this.state = {
       correctAnswers: 0,
       incorrectAnswers: 0,
-      allExercises: [],
       currentExercises: []
     };
   }
@@ -27,7 +28,11 @@ export default class App extends React.PureComponent {
     this.generator = new Exercises(this.props.language);
 
     this.generator.generate(this.props.pattern)
-      .then(allExercises => this.setState({ allExercises }, () => this.reload()));
+      .then(allExercises => {
+        this.cachedExercises = allExercises;
+        this.allExercises = allExercises.slice();
+        this.reload();
+      });
   }
 
   onAnswer(correct) {
@@ -44,14 +49,19 @@ export default class App extends React.PureComponent {
       incorrectAnswers: 0
     });
 
-    const { allExercises } = this.state;
     const currentExercises = [];
     const maxTries = 100;
 
     for (let i = 0; i < maxTries && currentExercises.length < this.maxExercises; i++) {
-      const match = allExercises[Math.floor(Math.random() * allExercises.length)];
+      const randomIndex = Math.floor(Math.random() * this.allExercises.length);
+      const match = this.allExercises[randomIndex];
       if (!currentExercises.some(item => item.originalText === match.sentence.text)) {
         currentExercises.push(this.generator.createExercise(match));
+        this.allExercises.splice(randomIndex, 1);
+
+        if (this.allExercises.length < this.maxExercises - currentExercises.length) {
+          this.allExercises = this.cachedExercises.slice();
+        }
       }
     }
 
