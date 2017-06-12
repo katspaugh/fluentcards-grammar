@@ -19,3 +19,20 @@
     width: 900px;
   }
 }
+
+.credits {
+  display: flex;
+}
+
+.credits p {
+  color: #777;
+  margin-bottom: 0;
+}
+
+.credits p a {
+  color: #777;
+}
+
+.credits p:first-child {
+  flex: 1;
+}

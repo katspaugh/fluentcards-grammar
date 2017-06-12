@@ -23,7 +23,7 @@ export default class Login extends React.PureComponent {
     if (response.status === 'PARTIALLY_AUTHENTICATED') {
       User.requestToken(response.code, response.state)
         .then(data => {
-          User.save(data);
+          User.set(data);
           this.onLogin(data);
         });
     }
@@ -56,7 +56,7 @@ export default class Login extends React.PureComponent {
       }
     });
 
-    const savedUser = User.restore();
+    const savedUser = User.get();
     if (savedUser) {
       if (savedUser.expiresAt > Date.now()) {
         this.onLogin(savedUser);

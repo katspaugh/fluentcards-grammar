@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import patterns from '../../services/patterns';
-import Login from '../Login/Login.jsx';
+import Nav from '../Nav/Nav.jsx';
 import App from '../App/App.jsx';
 import Home from '../Home/Home.jsx';
 import Texts from '../Texts/Texts.jsx';
@@ -49,6 +49,7 @@ const AppRoute = ({ match }) => {
           language={ match.params.language }
           description={ pattern.description }
           pattern={ pattern.pattern }
+          patternSlug={ match.params.pattern }
           />
       </div>
     </div>
@@ -58,7 +59,7 @@ const AppRoute = ({ match }) => {
 const Routes = () => (
   <Router>
     <div>
-      <Login />
+      <Nav />
 
       <Route exact path="/" component={ Home } />
 

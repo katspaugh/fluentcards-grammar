@@ -1,5 +1,3 @@
-import { analyze } from './morphology';
-
 export default {
   English: {
     'a-vs-the': {
@@ -317,9 +315,20 @@ export default {
       pattern: [
         {
           partOfSpeech: [ 'PERSPRO' ],
-          surfaceForm: /^(mich|mir|dich|dir|ihn|ihm|ihr|uns|euch)$/i,
+          surfaceForm: /^(mich|mir|dich|dir|ihn|ihm|ihr|uns|euch|ihnen)$/i,
           occlusion: /.+/,
-          choices: []
+
+          choices: (lexeme) => {
+            switch (lexeme.baseForm) {
+              case 'ich': return [ 'ich', 'mich', 'mir' ];
+              case 'du': return [ 'du', 'dich', 'dir' ];
+              case 'es': return [ 'es', 'ihm' ];
+              case 'er': return [ 'er', 'ihn', 'ihm' ];
+              case 'sie': return [ 'sie', 'ihr', 'ihnen' ];
+              case 'wir': return [ 'wir', 'uns' ];
+              case 'ihr': return [ 'ihr', 'euch' ];
+            }
+          }
         }
       ]
     },

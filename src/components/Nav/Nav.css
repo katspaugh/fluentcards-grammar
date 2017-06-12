@@ -1,0 +1,45 @@
+.container {
+  display: block;
+  background: #FFF844;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.container nav {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  margin: auto;
+}
+
+@media only screen and (min-width: 1024px) {
+  .container nav {
+    width: 900px;
+  }
+}
+
+.logo {
+  margin-right: 1em;
+  font-weight: bold;
+  text-transform: lowercase;
+}
+
+.logo a {
+  display: block;
+}
+
+.logo svg {
+  display: block;
+  height: 18px;
+  width: auto;
+}
+
+.scores {
+  flex: 1;
+}
+
+.login {
+}

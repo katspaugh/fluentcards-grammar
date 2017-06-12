@@ -1,21 +1,29 @@
-const apiUrl = 'https://e33zq7nat7.execute-api.eu-west-1.amazonaws.com/dev';
+import { ReplaySubject } from 'rx-lite';
+import config from '../config';
 
+const apiUrl = config.apiUrl;
+const subject = new ReplaySubject(1);
 let userData = null;
 
 export default class User {
+  static subject;
+
   static get() {
     return userData;
   }
 
-  static save(data) {
+  static set(data) {
     userData = data;
-    return localStorage.setItem('user', JSON.stringify(data));
+    subject.onNext(userData);
+    this.save();
+  }
+
+  static save() {
+    return localStorage.setItem('user', JSON.stringify(userData));
   }
 
   static restore() {
-    const saved = JSON.parse(localStorage.getItem('user'));
-    if (saved) userData = saved;
-    return saved;
+    return JSON.parse(localStorage.getItem('user'));
   }
 
   static requestToken(code, csrf) {
@@ -28,16 +36,28 @@ export default class User {
   }
 
   static requestAppId() {
-    return fetch(new Request(`${ apiUrl }/credentials`, { mode: 'cors' }))
+    return fetch(new Request(`${ apiUrl }/credentials`, {
+      mode: 'cors'
+    }))
       .then(resp => resp.json());
   }
 
   static updateScore(scores) {
+    if (!userData) return;
+
+    userData.scores = scores;
+
+    this.save();
+
     return fetch(new Request(`${ apiUrl }/scores`, {
       mode: 'cors',
       method: 'PUT',
-      body: JSON.stringify(data)
+      body: JSON.stringify(userData)
     }))
       .then(resp => resp.json());
   }
 }
+
+User.subject = subject;
+// Restore from the localStorage
+User.set(User.restore());

@@ -1,16 +1,16 @@
 import React from 'react';
 import { shuffle } from '../../services/utils';
 import Exercises from '../../services/Exercises';
-import User from '../../services/User';
+import Scores from '../../services/Scores';
 import Question from '../Question/Question.jsx';
 import Loader from '../Loader/Loader.jsx';
+import config from '../../config';
 import styles from './App.css';
 
 export default class App extends React.PureComponent {
   constructor() {
     super();
 
-    this.maxExercises = 15;
     this.generator = null;
     this.allExercises = null;
     this.cachedExercises = null;
@@ -19,8 +19,6 @@ export default class App extends React.PureComponent {
     this._onReloadClick = this.reload.bind(this);
 
     this.state = {
-      correctAnswers: 0,
-      incorrectAnswers: 0,
       currentExercises: []
     };
   }
@@ -37,38 +35,29 @@ export default class App extends React.PureComponent {
   }
 
   onAnswer(correct) {
-    this.setState({
-      correctAnswers: this.state.correctAnswers + (correct ? 1 : 0),
-      incorrectAnswers: this.state.incorrectAnswers + (correct ? 0 : 1)
-    });
-
-    if (this.state.correctAnswers === this.maxExercises) {
-      const user = User.get();
-      user && User.updateScore({
-        exercises: (user.scores ? user.scores.exercises : 0) + this.state.correctAnswers,
-        errors: (user.scores ? user.scores.errors : 0) + this.state.incorrectAnswers
-      });
-    }
+    Scores.update(
+      this.props.language,
+      this.props.patternSlug,
+      correct
+    );
   }
 
   reload() {
     this.setState({
-      currentExercises: [],
-      correctAnswers: 0,
-      incorrectAnswers: 0
+      currentExercises: []
     });
 
     const currentExercises = [];
     const maxTries = 100;
 
-    for (let i = 0; i < maxTries && currentExercises.length < this.maxExercises; i++) {
+    for (let i = 0; i < maxTries && currentExercises.length < config.maxExercises; i++) {
       const randomIndex = Math.floor(Math.random() * this.allExercises.length);
       const match = this.allExercises[randomIndex];
       if (!currentExercises.some(item => item.originalText === match.sentence.text)) {
         currentExercises.push(this.generator.createExercise(match));
         this.allExercises.splice(randomIndex, 1);
 
-        if (this.allExercises.length < this.maxExercises - currentExercises.length) {
+        if (this.allExercises.length < config.maxExercises - currentExercises.length) {
           this.allExercises = this.cachedExercises.slice();
         }
       }
@@ -82,6 +71,10 @@ export default class App extends React.PureComponent {
 
   componentWillMount() {
     this.init();
+  }
+
+  componentWillUnmount() {
+    Scores.reset();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -116,21 +109,19 @@ export default class App extends React.PureComponent {
       </li>
     ));
 
-    const score = this.state.correctAnswers || this.state.incorrectAnswers ? (
-      <div className={ styles.score }>
-        { this.state.correctAnswers ? (
-          <div className={ styles.correctScore }>
-            Correct: { this.state.correctAnswers }/{ this.maxExercises }
-          </div>
-        ) : '' }
+    const quiz = currentExercises.length ? (
+      <div>
+        <ol className={ styles.list }>
+          { questions }
+        </ol>
 
-      { this.state.incorrectAnswers ? (
-        <div className={ styles.incorrectScore }>
-          Errors: { this.state.incorrectAnswers }
+        <div className={ styles.controls }>
+          <button onClick={ this._onReloadClick }>Load new exercises</button>
         </div>
-      ) : '' }
       </div>
-    ) : '';
+    ) : (
+      <Loader />
+    );
 
     return (
       <div className={ styles.container }>
@@ -140,21 +131,7 @@ export default class App extends React.PureComponent {
           Refresh the page to get new exercises.
         </p>
 
-        { currentExercises.length ? (
-          <div>
-            <ol className={ styles.list }>
-              { questions }
-            </ol>
-
-            <div className={ styles.controls }>
-              <button onClick={ this._onReloadClick }>Load new exercises</button>
-            </div>
-          </div>
-        ) : (
-          <Loader />
-        ) }
-
-        { score }
+        { quiz }
       </div>
     );
   }

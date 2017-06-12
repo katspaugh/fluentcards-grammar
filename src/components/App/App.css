@@ -11,7 +11,7 @@
 
 :global(body) {
   margin: 0;
-  padding: 0 0 100px;
+  padding: 40px 0 100px;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -104,43 +104,6 @@
     transform: translateY(-50%);
     color: #eee;
   }
-}
-
-.score {
-  position: fixed;
-  z-index: 2;
-  right: 20px;
-  top: 33px;
-  text-align: right;
-  font-size: 1.4em;
-}
-
-@media only screen and (max-width: 1024px) {
-  .score {
-    font-size: 0.9em;
-    padding: 0.5em 1em;
-    left: 0;
-    right: 0;
-    top: 0;
-    background-color: #FFF844;
-    overflow: hidden;
-  }
-
-  .score div {
-    float: right;
-  }
-
-  .score div:first-child {
-    float: left;
-  }
-}
-
-.correctScore {
-  color: #76BD75;
-}
-
-.incorrectScore {
-  color: #FF6717;
 }
 
 .controls {

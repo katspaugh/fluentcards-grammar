@@ -166,6 +166,7 @@ export default class Editor extends React.Component {
           language={ this.state.language }
           description={ this.state.description }
           pattern={ this.transformPattern() }
+          patternSlug={ this.state.title }
           />
       </div>
     ) : '';

@@ -1,7 +1,6 @@
 .container {
   width: 100%;
   margin-bottom: 2em;
-  background-color: #FFF844;
 }
 
 .container header {
@@ -10,7 +9,6 @@
   flex-wrap: wrap;
   margin: auto;
   padding: 1em;
-  min-height: 8em;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -33,17 +31,4 @@
 
 .container a {
   color: #333;
-}
-
-.logo {
-  display: block;
-  margin-right: 1em;
-  font-weight: bold;
-  text-transform: lowercase;
-  align-self: center;
-}
-
-.logo svg {
-  display: block;
-  height: 28px;
 }
