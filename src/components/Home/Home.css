@@ -26,6 +26,10 @@
   }
 }
 
+.container > h2 {
+  margin-top: 0;
+}
+
 .languageBlock {
   min-width: 50%;
   margin-top: 1em;

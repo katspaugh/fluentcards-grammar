@@ -1,3 +1,10 @@
 .container {
-  font-size: 0.8em;
+}
+
+.container small {
+  font-size: 13px;
+}
+
+.container button {
+  font-size: 13px;
 }

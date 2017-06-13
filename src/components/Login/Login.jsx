@@ -67,13 +67,15 @@ export default class Login extends React.PureComponent {
   }
 
   render() {
-    return this.state.userData ? (
+    return this.state.userData1 ? (
       <div className={ styles.container }>
-        { this.state.email }
+        <small>{ this.state.email }</small>
       </div>
     ) : (
       <div className={ styles.container }>
         <button onClick={ this._onSubmit }>Login via email</button>
+        { ' ' }
+        <small>to track your progress</small>
       </div>
     );
   }
