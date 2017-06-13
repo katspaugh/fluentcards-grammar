@@ -67,7 +67,7 @@ export default class Login extends React.PureComponent {
   }
 
   render() {
-    return this.state.userData1 ? (
+    return this.state.userData ? (
       <div className={ styles.container }>
         <small>{ this.state.email }</small>
       </div>

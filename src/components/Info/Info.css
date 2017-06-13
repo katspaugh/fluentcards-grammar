@@ -1,3 +1,22 @@
 .container {
   font-size: 0.8em;
 }
+
+.container small {
+  font-size: 1em;
+}
+
+@media only screen and (max-width: 767px) {
+  .container small {
+    display: none;
+  }
+}
+
+.scores {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.scores > div {
+  margin-right: 0.5em;
+}

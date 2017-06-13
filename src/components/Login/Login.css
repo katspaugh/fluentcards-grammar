@@ -2,9 +2,15 @@
 }
 
 .container small {
-  font-size: 13px;
+  font-size: 12.8px;
+}
+
+@media only screen and (max-width: 767px) {
+  .container small {
+    display: none;
+  }
 }
 
 .container button {
-  font-size: 13px;
+  font-size: 13.8px;
 }

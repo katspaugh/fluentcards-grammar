@@ -127,8 +127,6 @@ export default class App extends React.PureComponent {
       <div className={ styles.container }>
         <p className={ styles.description }>
           { this.props.description }
-          <br />
-          Refresh the page to get new exercises.
         </p>
 
         { quiz }

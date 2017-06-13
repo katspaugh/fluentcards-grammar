@@ -26,7 +26,18 @@
   }
 }
 
-.container > h2 {
+.title {
+}
+
+.subtitle {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  display: block;
+  font-style: italic;
+  font-size: 0.6em;
+  padding-top: 0.25em;
+}
+
+.foreword {
   margin-top: 0;
 }
 

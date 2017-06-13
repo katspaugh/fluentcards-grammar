@@ -9,7 +9,12 @@ export default ({ match }) => {
     [ match.params.language ] :
     Object.keys(patterns);
 
-  const title = match.params.language ? '' : 'Fluentcards Grammar';
+  const title = match.params.language ? '' : (
+    <div className={ styles.title }>
+      <span>Fluentcards Grammar</span>
+      <span className={ styles.subtitle }>drills from books and subtitles</span>
+    </div>
+  );
 
   const language = match.params.language ? (
     <span>
@@ -41,9 +46,7 @@ export default ({ match }) => {
       <Header title={ title }>{ language }</Header>
 
       <div className={ styles.container }>
-        <h2>Focused grammar exercises from books and subtitles</h2>
-
-        <p>
+        <p className={ styles.foreword }>
           To become fluent in a foreign language, one must deeply internalize its grammatical patterns. Here you can practice with infinite grammar exercises that are dynamically generated from real-world texts.
         </p>
 

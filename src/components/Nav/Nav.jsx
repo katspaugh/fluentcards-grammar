@@ -21,7 +21,7 @@ export default class Nav extends React.PureComponent {
             </Link>
           </div>
 
-          <div className={ styles.scores }>
+          <div className={ styles.info }>
             <Info />
           </div>
 
