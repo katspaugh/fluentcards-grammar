@@ -1,6 +1,8 @@
 .container {
+  font-size: 0.8em;
 }
 
+.container button,
 .container small {
   font-size: 12.8px;
 }
@@ -9,8 +11,4 @@
   .container small {
     display: none;
   }
-}
-
-.email {
-  font-size: 0.8em;
 }

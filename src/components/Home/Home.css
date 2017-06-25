@@ -4,7 +4,7 @@
 }
 
 .home {
-  display: block;
+  margin-bottom: 2em;
 }
 
 .container {
@@ -55,31 +55,6 @@
   text-decoration: none;
 }
 
-@media only screen and (max-width: 767px) {
-  .header {
-    margin: 1em 0;
-  }
-
-  .languageBlock h2 a {
-    text-decoration: underline;
-  }
-
-  .languageBlock ul {
-    display: none;
-  }
-
-  .singleLang .languageBlock ul,
-  .languageBlock:target ul {
-    display: block;
-    animation: fade-in 300ms ease-in;
-  }
-
-  .singleLang .languageBlock h2 a,
-  .languageBlock:target h2 a {
-    text-decoration: none;
-  }
-}
-
 .languageBlock > div {
   height: 100%;
   padding: 1em;
@@ -90,16 +65,6 @@
 
 .languageBlock:nth-child(odd) > div {
   margin-right: 1em;
-}
-
-@media only screen and (max-width: 1024px) {
-  .languageBlock {
-    width: 100%;
-  }
-
-  .languageBlock > div {
-    margin-right: 0 !important;
-  }
 }
 
 .content ul {
@@ -120,4 +85,36 @@
   font-weight: normal;
   text-align: center;
   padding: 1em;
+}
+
+@media only screen and (max-width: 900px) {
+  .languageBlock {
+    width: 100%;
+  }
+
+  .languageBlock > div {
+    margin-right: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .languageBlock h2 a {
+    text-decoration: underline;
+  }
+
+  .languageBlock ul {
+    display: none;
+  }
+
+  .singleLang .languageBlock ul {
+    display: block;
+  }
+
+  .languageBlock:target h2 a {
+    text-decoration: none;
+  }
+
+  .hero {
+    display: none;
+  }
 }

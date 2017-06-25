@@ -35,22 +35,23 @@ export default ({ match }) => {
     return (
       <div className={ styles.languageBlock } key={ language } id={ language }>
         <div>
-          <h2><a href={ `#${ language }` }>{ language }</a></h2>
+          <h2>
+            <Link to={ `/quiz/${ language }` }>{ language }</Link>
+          </h2>
+
           <ul>{ links }</ul>
         </div>
       </div>
     );
   });
 
-  const containerClasses = classnames(styles.home, {
+  const homeClasses = classnames(styles.home, {
     [styles.singleLang]: match.params.language
   });
 
   return (
-    <div className={ containerClasses }>
-      <div className={ styles.header }>
-        <Header title={ title }>{ language }</Header>
-      </div>
+    <div className={ homeClasses }>
+      <Header title={ title }>{ language }</Header>
 
       <div className={ styles.container }>
         <p className={ styles.foreword }>
