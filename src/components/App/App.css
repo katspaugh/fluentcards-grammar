@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scale-up {
+  0% { transform: scale(0.1); }
+  100% { transform: scale(1); }
+}
+
 :global(html) {
   margin: 0;
   padding: 0;
@@ -11,14 +21,13 @@
 
 :global(body) {
   margin: 0;
-  padding: 40px 0 100px;
+  padding: 0 0 100px;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 :global(*) {
   box-sizing: border-box;
 }
-
 
 :global(a) {
   color: #333;
@@ -48,8 +57,7 @@
 .description {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-style: italic;
-  padding: 1em;
-  padding-left: 2em;
+  padding: 1em 0 1em 2em;
   margin-left: 1em;
   margin-bottom: 1em;
   line-height: 1.5;
@@ -73,13 +81,6 @@
 .list {
   padding-left: 0;
   color: #999;
-  counter-reset: question;
-}
-
-@media only screen and (max-width: 767px) {
-  .list {
-    margin: 0 -1em;
-  }
 }
 
 .question {
@@ -94,28 +95,28 @@
   background: #fafafa;
 }
 
-@media only screen and (max-width: 767px) {
-  .question {
-    list-style-type: none;
-    padding-left: 0;
-    padding-right: 2em;
-  }
+.results {
+  text-align: center;
+}
 
-  .question::after {
-    counter-increment: question;
-    content: counter(question);
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #eee;
-  }
+.congrats {
+  font-size: 2em;
+  margin: 2em 0;
+  animation: scale-up 300ms ease-in;
+}
+
+.results i + p {
+  margin-top: 0.5em;
 }
 
 .controls {
   margin: 4em 0 1em;
   text-align: center;
   position: relative;
+  opacity: 0;
+  animation: fade-in 300ms ease-in;
+  animation-delay: 600ms;
+  animation-fill-mode: forwards;
 }
 
 .controls button {
@@ -130,4 +131,22 @@
 
 .controls button:hover {
   background: #000;
+}
+
+@media only screen and (max-width: 767px) {
+  .list {
+    margin: 0 -1em;
+  }
+
+  .question {
+    display: none;
+  }
+
+  .activeQuestion {
+    display: block;
+    background: #fafafa;
+    list-style-type: none;
+    padding-left: 0;
+    animation: fade-in 300ms ease-in;
+  }
 }

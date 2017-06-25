@@ -1,11 +1,15 @@
 .container {
   width: 100%;
+  margin: 2em 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    margin: 0;
+  }
 }
 
 .container header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   margin: auto;
   padding: 1em;
 }
@@ -20,6 +24,7 @@
   font-size: 2em;
   flex: 1;
   align-self: center;
+  margin: 0;
 }
 
 @media only screen and (max-width: 1024px) {

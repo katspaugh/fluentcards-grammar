@@ -43,19 +43,6 @@
   animation: fade-in 300ms ease-in;
 }
 
-@media only screen and (max-width: 767px) {
-  .container {
-    padding-right: 0;
-  }
-
-  .container:after {
-    top: 100%;
-    transform: none;
-    margin-left: -2rem;
-    margin-top: -3.3rem;
-  }
-}
-
 .correct:after {
   content: '✓';
   color: #76BD75;
@@ -67,14 +54,15 @@
   color: #FF6717;
 }
 
-.inorrect input {
-  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+.incorrect input {
+  animation: shake 600ms cubic-bezier(.36, .07, .19, .97) both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
 }
 
 .question {
+  flex-grow: 1;
   font-size: 1.3em;
   font-family: 'Crimson Text', sans-serif;
 }
@@ -122,14 +110,15 @@
 }
 
 .choices {
-  display: block;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
   padding-left: 0;
   padding-top: 1em;
 }
 
 .choices li {
-  display: inline-block;
-  vertical-align: middle;
+  list-style: none;
   line-height: 2;
   margin-right: 1em;
   text-transform: lowercase;
@@ -173,4 +162,25 @@
 
 .incorrectChoice {
   background: #FF6717 !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    padding-right: 0;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container:after {
+    top: 100%;
+    transform: none;
+    margin-left: -2rem;
+    margin-top: -3.3rem;
+  }
+
+  .choiceButton {
+    font-size: 4vw;
+    padding: 0.7em 0.5em;
+  }
 }

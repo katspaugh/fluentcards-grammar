@@ -1,11 +1,6 @@
 .container {
   display: block;
   background: #FFF844;
-  position: fixed;
-  z-index: 10;
-  left: 0;
-  top: 0;
-  width: 100%;
 }
 
 .container nav {
@@ -42,4 +37,6 @@
 }
 
 .login {
+  max-width: 45%;
+  overflow: hidden;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 import patterns from '../../services/patterns';
 import Header from '../Header/Header.jsx';
 import styles from './Home.css';
@@ -32,18 +33,24 @@ export default ({ match }) => {
     ));
 
     return (
-      <div className={ styles.languageBlock } key={ language }>
+      <div className={ styles.languageBlock } key={ language } id={ language }>
         <div>
-          <h2>{ language }</h2>
+          <h2><a href={ `#${ language }` }>{ language }</a></h2>
           <ul>{ links }</ul>
         </div>
       </div>
     );
   });
 
+  const containerClasses = classnames(styles.home, {
+    [styles.singleLang]: match.params.language
+  });
+
   return (
-    <div className={ styles.home }>
-      <Header title={ title }>{ language }</Header>
+    <div className={ containerClasses }>
+      <div className={ styles.header }>
+        <Header title={ title }>{ language }</Header>
+      </div>
 
       <div className={ styles.container }>
         <p className={ styles.foreword }>

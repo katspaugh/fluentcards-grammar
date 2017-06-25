@@ -14,15 +14,16 @@ export default class Question extends React.PureComponent {
       correct: null
     };
 
-    this.onChange = e => {
-      this.onAnswer(e.target.value);
+    this.onInput = () => {
+      if (this.state.correct === false) {
+        this.setState({ correct: null });
+      }
     };
 
     this.onSubmit = e => {
       e.preventDefault();
       this.onAnswer(e.target.answer.value);
     };
-
   }
 
   componentWillMount() {
@@ -115,9 +116,8 @@ export default class Question extends React.PureComponent {
           placeholder={ placeholder }
           size={ this.props.size + 1 }
           readOnly={ correct }
-          value={ correct ? this.props.cloze.occluded : undefined }
-          onChange={ this.onChange }
-          className={ correct === false ? styles.wrongInput : '' } />
+          onInput={ this.onInput }
+          value={ correct ? this.props.cloze.occluded : undefined } />
       </form>
     );
 
@@ -137,7 +137,7 @@ export default class Question extends React.PureComponent {
           { textParts[1] }
         </div>
 
-      { choicesBlock }
+        { choicesBlock }
       </div>
     );
   }

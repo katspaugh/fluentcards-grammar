@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 import { shuffle } from '../../services/utils';
 import Exercises from '../../services/Exercises';
 import Scores from '../../services/Scores';
@@ -19,7 +21,8 @@ export default class App extends React.PureComponent {
     this._onReloadClick = this.reload.bind(this);
 
     this.state = {
-      currentExercises: []
+      currentExercises: [],
+      activeExercise: 0
     };
   }
 
@@ -40,11 +43,20 @@ export default class App extends React.PureComponent {
       this.props.patternSlug,
       correct
     );
+
+    // Switch the active exercise
+    const { activeExercise, currentExercises } = this.state;
+    if (correct) {
+      setTimeout(() => {
+        this.setState({ activeExercise: activeExercise + 1 });
+      }, 600);
+    }
   }
 
   reload() {
     this.setState({
-      currentExercises: []
+      currentExercises: [],
+      activeExercise: 0
     });
 
     const currentExercises = [];
@@ -84,7 +96,7 @@ export default class App extends React.PureComponent {
   }
 
   render() {
-    const { currentExercises } = this.state;
+    const { currentExercises, activeExercise } = this.state;
 
     const maxSize = currentExercises.reduce((max, item) => {
       return Math.max(max, item.cloze.occluded.length);
@@ -96,39 +108,60 @@ export default class App extends React.PureComponent {
       return acc;
     }, []);
 
-    const questions = currentExercises.map((item, i) => (
-      <li key={ i } className={ styles.question }>
-        <Question
-          cloze={ item.cloze }
-          text={ item.text }
-          size={ maxSize }
-          choices={ choices }
-          clozeSymbol={ this.generator.clozeSymbol }
-          onAnswer={ this._onAnswer }
-          />
-      </li>
-    ));
+    const questions = currentExercises.map((item, i) => {
+      const classes = classnames(styles.question, {
+        [styles.activeQuestion]: i === activeExercise
+      });
 
-    const quiz = currentExercises.length ? (
-      <div>
-        <ol className={ styles.list }>
-          { questions }
-        </ol>
+      return (
+        <li key={ i } className={ classes }>
+          <Question
+            cloze={ item.cloze }
+            text={ item.text }
+            size={ maxSize }
+            choices={ choices }
+            clozeSymbol={ this.generator.clozeSymbol }
+            onAnswer={ this._onAnswer }
+            />
+        </li>
+      );
+    });
+
+    const app = activeExercise === currentExercises.length ? (
+      <div className={ styles.results }>
+        <p className={ styles.congrats }>
+          Great job!
+        </p>
 
         <div className={ styles.controls }>
           <button onClick={ this._onReloadClick }>Load new exercises</button>
         </div>
+
+        <div>
+          <i>or</i>
+          <p>
+            <Link to={ `/quiz/${ this.props.language }` }>Choose another exercise</Link>
+          </p>
+        </div>
       </div>
     ) : (
+      <div>
+        <p className={ styles.description }>
+          { this.props.description }
+        </p>
+
+        <ol className={ styles.list }>
+          { questions }
+        </ol>
+      </div>
+    );
+
+    const quiz = currentExercises.length ? app : (
       <Loader />
     );
 
     return (
       <div className={ styles.container }>
-        <p className={ styles.description }>
-          { this.props.description }
-        </p>
-
         { quiz }
       </div>
     );

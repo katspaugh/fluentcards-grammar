@@ -84611,11 +84611,6 @@
     {
       "lexemes": [
         {
-          "surfaceForm": "0:56:45.960,1193:02:47.295",
-          "baseForm": "0:56:45.960,1193:02:47.295",
-          "partOfSpeech": "CARD"
-        },
-        {
           "surfaceForm": "Dafür",
           "baseForm": "dafür",
           "partOfSpeech": "ADV"
@@ -84661,7 +84656,7 @@
           "partOfSpeech": "SENT"
         }
       ],
-      "text": "0:56:45.960,1193:02:47.295\nDafür will ich arbeiten von früh bis spät."
+      "text": "Dafür will ich arbeiten von früh bis spät."
     },
     {
       "lexemes": [
@@ -85025,11 +85020,6 @@
     {
       "lexemes": [
         {
-          "surfaceForm": "1:00:24.690,1193:02:47.295",
-          "baseForm": "1:00:24.690,1193:02:47.295",
-          "partOfSpeech": "CARD"
-        },
-        {
           "surfaceForm": "Aber",
           "baseForm": "Aber",
           "partOfSpeech": "NOUN"
@@ -85093,7 +85083,7 @@
           "partOfSpeech": "SENT"
         }
       ],
-      "text": "1:00:24.690,1193:02:47.295\nAber du musst in den Kammern\ndie Fenster auf- und zumachen."
+      "text": "Aber du musst in den Kammern\ndie Fenster auf- und zumachen."
     },
     {
       "lexemes": [
@@ -86075,11 +86065,6 @@
     {
       "lexemes": [
         {
-          "surfaceForm": "1:02:53.820,1193:02:47.295",
-          "baseForm": "1:02:53.820,1193:02:47.295",
-          "partOfSpeech": "CARD"
-        },
-        {
           "surfaceForm": "Ich",
           "baseForm": "ich",
           "partOfSpeech": "PERSPRO"
@@ -86158,7 +86143,7 @@
           "partOfSpeech": "SENT"
         }
       ],
-      "text": "1:02:53.820,1193:02:47.295\nIch will von jetzt an immer fleißig\nsein und arbeiten, bis ich umfalle!"
+      "text": "Ich will von jetzt an immer fleißig\nsein und arbeiten, bis ich umfalle!"
     },
     {
       "lexemes": [
@@ -86418,11 +86403,6 @@
     {
       "lexemes": [
         {
-          "surfaceForm": "1:03:46.920,1193:02:47.295",
-          "baseForm": "1:03:46.920,1193:02:47.295",
-          "partOfSpeech": "CARD"
-        },
-        {
           "surfaceForm": "Ja",
           "baseForm": "ja",
           "partOfSpeech": "ADV"
@@ -86458,7 +86438,7 @@
           "partOfSpeech": "SENT"
         }
       ],
-      "text": "1:03:46.920,1193:02:47.295\nJa, ja, wackel’ nur!"
+      "text": "Ja, ja, wackel’ nur!"
     },
     {
       "lexemes": [
@@ -87893,11 +87873,6 @@
     {
       "lexemes": [
         {
-          "surfaceForm": "1:09:16.550,1193:02:47.295",
-          "baseForm": "1:09:16.550,1193:02:47.295",
-          "partOfSpeech": "CARD"
-        },
-        {
           "surfaceForm": "Wie",
           "baseForm": "wie",
           "partOfSpeech": "COWIE"
@@ -87943,7 +87918,7 @@
           "partOfSpeech": "SENT"
         }
       ],
-      "text": "1:09:16.550,1193:02:47.295\nWie es glitzert und funkelt\nwie gesponnenes Licht!"
+      "text": "Wie es glitzert und funkelt\nwie gesponnenes Licht!"
     },
     {
       "lexemes": [

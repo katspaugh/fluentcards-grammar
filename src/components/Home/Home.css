@@ -1,3 +1,8 @@
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 .home {
   display: block;
 }
@@ -43,7 +48,36 @@
 
 .languageBlock {
   min-width: 50%;
-  margin-top: 1em;
+  padding-top: 1em;
+}
+
+.languageBlock h2 a {
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .header {
+    margin: 1em 0;
+  }
+
+  .languageBlock h2 a {
+    text-decoration: underline;
+  }
+
+  .languageBlock ul {
+    display: none;
+  }
+
+  .singleLang .languageBlock ul,
+  .languageBlock:target ul {
+    display: block;
+    animation: fade-in 300ms ease-in;
+  }
+
+  .singleLang .languageBlock h2 a,
+  .languageBlock:target h2 a {
+    text-decoration: none;
+  }
 }
 
 .languageBlock > div {
