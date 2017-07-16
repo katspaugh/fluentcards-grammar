@@ -307,6 +307,29 @@ export default {
       ]
     },
 
+    'sein-vs-haben': {
+      title: 'Verbs: sein vs haben',
+
+      description: 'Choose between "sein" and "haben" to form the Perfect tense.',
+
+      pattern: [
+        {
+          partOfSpeech: 'VAFIN',
+          surfaceForm: /^(bin|bist|ist|seid|sind|habe|hast|hat|habt|haben)$/,
+          occlusion: /.+/
+        },
+        {
+          partOfSpeech: /./
+        },
+        {
+          partOfSpeech: /./
+        },
+        {
+          partOfSpeech: 'VVPP'
+        }
+      ]
+    },
+
     'personal-pronouns': {
       title: 'Pronouns: personal',
 
