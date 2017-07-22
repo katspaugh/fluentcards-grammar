@@ -1,0 +1,46 @@
+.container {
+  margin: auto;
+  padding: 0 1em;
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    width: 900px;
+  }
+}
+
+.words {
+  margin: 0 -0.5em;
+  display: table;
+  table-layout: fixed;
+}
+
+.entry {
+  display: table-row;
+}
+
+.entry:nth-child(odd) {
+  background: #fafafa;
+}
+
+.word,
+.definition,
+.context {
+  display: table-cell;
+  padding: 1em 0.5em;
+  vertical-align: middle;
+}
+
+.word {
+  min-width: 17em;
+  padding-right: 3em;
+}
+
+.definition {
+  padding-right: 3em;
+}
+
+.context {
+  font-size: 0.8em;
+  padding: 0.5em;
+}

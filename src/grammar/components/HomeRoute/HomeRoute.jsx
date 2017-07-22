@@ -34,13 +34,11 @@ export default ({ match }) => {
 
     return (
       <div className={ styles.languageBlock } key={ language } id={ language }>
-        <div>
-          <h2>
-            <Link to={ `/quiz/${ language }` }><h2>{ language }</h2></Link>
-          </h2>
+        <h2>
+          <Link to={ `/quiz/${ language }` }><h2>{ language }</h2></Link>
+        </h2>
 
-          <ul>{ links }</ul>
-        </div>
+        <ul>{ links }</ul>
       </div>
     );
   });

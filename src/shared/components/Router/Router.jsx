@@ -9,9 +9,12 @@ import styles from './Router.css';
 import HomeRoute from '../../../grammar/components/HomeRoute/HomeRoute.jsx';
 import QuizRoute from '../../../grammar/components/QuizRoute/QuizRoute.jsx';
 import TextsRoute from '../../../grammar/components/TextsRoute/TextsRoute.jsx';
-
 //import EditorRoute from '../../../grammar/components/EditorRoute/EditorRoute.jsx';
 //<Route exact path="/editor" component={ EditorRoute } />
+
+// Vocab
+import DecksRoute from '../../../vocab/components/DecksRoute/DecksRoute.jsx';
+import WordsRoute from '../../../vocab/components/WordsRoute/WordsRoute.jsx';
 
 const Routes = () => (
   <Router>
@@ -25,6 +28,9 @@ const Routes = () => (
       <Route exact path="/quiz/:language" component={ HomeRoute } />
 
       <Route path="/quiz/:language/:pattern" component={ QuizRoute } />
+
+      <Route exact path="/vocab" component={ DecksRoute } />
+      <Route path="/vocab/:lang" component={ WordsRoute } />
 
       <Footer />
     </div>
