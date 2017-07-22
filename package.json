@@ -9,6 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server --progress --colors",
     "test": "eslint ./src",
+    "comp": "./bin/create-component.sh",
     "prod": "npm test && NODE_ENV=production webpack -p"
   },
   "repository": {
@@ -16,6 +17,8 @@
     "url": "git+https://github.com/katspaugh/fluentdrill.git"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.0",
+    "@types/prop-types": "^15.5.1",
     "@types/react": "^15.0.23",
     "@types/react-dom": "^15.5.0",
     "@types/react-router": "^4.0.11",
