@@ -1,22 +1,11 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import Header from '../../../shared/components/Header/Header.jsx';
 import patterns from '../../services/patterns';
-import Nav from '../Nav/Nav.jsx';
-import App from '../App/App.jsx';
-import Home from '../Home/Home.jsx';
-import Texts from '../Texts/Texts.jsx';
-import Editor from '../Editor/Editor.jsx';
-import Header from '../Header/Header.jsx';
-import Footer from '../Footer/Footer.jsx';
-import styles from './Router.css';
+import Quiz from '../Quiz/Quiz.jsx';
+import styles from './QuizRoute.css';
 
-
-const AppRoute = ({ match }) => {
+export default ({ match }) => {
   let pattern = patterns[match.params.language][match.params.pattern];
 
   if (!pattern) {
@@ -44,8 +33,8 @@ const AppRoute = ({ match }) => {
         { ' › ' }
       </Header>
 
-      <div className={ styles.routeContainer }>
-        <App
+      <div className={ styles.container }>
+        <Quiz
           language={ match.params.language }
           description={ pattern.description }
           pattern={ pattern.pattern }
@@ -55,25 +44,3 @@ const AppRoute = ({ match }) => {
     </div>
   );
 };
-
-const Routes = () => (
-  <Router>
-    <div>
-      <Nav />
-
-      <Route exact path="/" component={ Home } />
-
-      <Route exact path="/texts" component={ Texts } />
-
-      <Route exact path="/editor" component={ Editor } />
-
-      <Route exact path="/quiz/:language" component={ Home } />
-
-      <Route path="/quiz/:language/:pattern" component={ AppRoute } />
-
-      <Footer />
-    </div>
-  </Router>
-);
-
-export default Routes;

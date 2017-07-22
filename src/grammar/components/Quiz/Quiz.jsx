@@ -1,15 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
-import { shuffle } from '../../services/utils';
+import Loader from '../../../shared/components/Loader/Loader.jsx';
 import Exercises from '../../services/Exercises';
 import Scores from '../../services/Scores';
 import Question from '../Question/Question.jsx';
-import Loader from '../Loader/Loader.jsx';
-import config from '../../config';
-import styles from './App.css';
+import config from '../../../config';
+import styles from './Quiz.css';
 
-export default class App extends React.PureComponent {
+export default class Quiz extends React.PureComponent {
   constructor() {
     super();
 

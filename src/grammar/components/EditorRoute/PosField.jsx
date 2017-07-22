@@ -1,11 +1,9 @@
 import React from 'react';
 import styles from './PosField.css';
-import tagsetEnglish from 'xerox-nlp-client/data/tagset-english.json';
-import tagsetGerman from 'xerox-nlp-client/data/tagset-german.json';
 
 const tagsets = {
-  English: tagsetEnglish,
-  German: tagsetGerman
+  English: require('xerox-nlp-client/data/tagset-english.json'),
+  German: require('xerox-nlp-client/data/tagset-german.json')
 };
 
 export default class Editor extends React.PureComponent {

@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import patterns from '../../services/patterns';
-import Header from '../Header/Header.jsx';
-import styles from './Home.css';
+import Header from '../../../shared/components/Header/Header.jsx';
+import styles from './HomeRoute.css';
 
 export default ({ match }) => {
   const languages = match.params.language ?
@@ -36,7 +36,7 @@ export default ({ match }) => {
       <div className={ styles.languageBlock } key={ language } id={ language }>
         <div>
           <h2>
-            <Link to={ `/quiz/${ language }` }>{ language }</Link>
+            <Link to={ `/quiz/${ language }` }><h2>{ language }</h2></Link>
           </h2>
 
           <ul>{ links }</ul>

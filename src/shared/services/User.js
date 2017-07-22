@@ -1,8 +1,10 @@
 import { ReplaySubject } from 'rx-lite';
-import config from '../config';
+import config from '../../config';
 
-const apiUrl = config.apiUrl;
+const localStorage = window.localStorage;
+const { apiUrl } = config;
 const subject = new ReplaySubject(1);
+
 let userData = null;
 
 export default class User {

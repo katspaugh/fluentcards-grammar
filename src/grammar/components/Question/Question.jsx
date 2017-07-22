@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { shuffle } from '../../services/utils';
+import { shuffle } from '../../../shared/services/utils';
 import styles from './Question.css';
 
 

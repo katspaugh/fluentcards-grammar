@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import patterns from '../../services/patterns';
-import Header from '../Header/Header.jsx';
-import App from '../App/App.jsx';
+import Header from '../../../shared/components/Header/Header.jsx';
+import App from '../Quiz/Quiz.jsx';
 import PosField from './PosField.jsx';
-import styles from './Editor.css';
+import styles from './EditorRoute.css';
 
 
 export default class Editor extends React.Component {

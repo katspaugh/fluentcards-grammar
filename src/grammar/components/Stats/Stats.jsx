@@ -1,9 +1,9 @@
 import React from 'react';
 import Scores from '../../services/Scores';
-import config from '../../config';
-import styles from './Info.css';
+import config from '../../../config';
+import styles from './Stats.css';
 
-export default class Info extends React.Component {
+export default class Stats extends React.Component {
   constructor() {
     super();
 

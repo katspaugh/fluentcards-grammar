@@ -1,13 +1,11 @@
 #!/bin/bash
 
 template='bin/component-template.jsx'
-defaultRoot='src/components'
+path=$1
+name=$(echo "${path}" | rev | cut -d '/' -f1 | rev)
 
-name=$1
-dir="${root}/${name}"
+mkdir "$path"
+touch "${path}/${name}.css"
+cat "${templateDir}/component-template.jsx" | sed "s/ComponentName/${name}/g" > "${path}/${name}.jsx"
 
-mkdir "$dir"
-touch "${dir}/${name}.css"
-cat "${templateDir}/component-template.jsx" | sed "s/ComponentName/${name}/g" > "${dir}/${name}.jsx"
-
-echo "Created ${dir}/${name}.jsx"
+echo "Created ${path}/${name}.jsx"

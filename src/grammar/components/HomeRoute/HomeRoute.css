@@ -5,6 +5,7 @@
 
 .home {
   margin-bottom: 2em;
+  background-size: cover;
 }
 
 .container {
@@ -56,6 +57,7 @@
 }
 
 .languageBlock > div {
+  background: #fff;
   height: 100%;
   padding: 1em;
   padding-left: 3em;

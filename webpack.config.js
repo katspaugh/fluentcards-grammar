@@ -1,10 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
   cache: true,
-  debug: true,
 
   entry: path.resolve(__dirname, 'src/index.js'),
 
@@ -15,27 +15,22 @@ module.exports = {
   },
 
   devServer: {
-    hot: true,
     historyApiFallback: true
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /.jsx?$/,
-        loaders: [
-          'babel?cacheDirectory',
-        ],
+        loader: 'babel-loader?cacheDirectory',
         include: [
           path.resolve(__dirname, 'src')
         ]
       },
 
-      { test: /\.json$/, loader: 'json' },
-
       {
         test: /\.css$/,
-        loader: 'style!typings-for-css-modules-loader?modules&namedExport&camelCase&localIdentName=[name]__[local]'
+        loader: 'style-loader!typings-for-css-modules-loader?modules&namedExport&camelCase&localIdentName=[name]__[local]'
       }
     ]
   },

@@ -1,6 +1,6 @@
-import User from './User';
 import { ReplaySubject } from 'rx-lite';
-import config from '../config';
+import User from '../../shared/services/User';
+import config from '../../config';
 
 const subject = new ReplaySubject(1);
 const scores = [];

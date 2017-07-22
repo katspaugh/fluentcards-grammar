@@ -1,6 +1,6 @@
-const rnd = (n) => {
+function rnd(n) {
   return Math.floor(Math.random() * n);
-};
+}
 
 export function shuffle(arr) {
   const len = arr.length;
@@ -13,12 +13,6 @@ export function shuffle(arr) {
 
 export function randomItem(arr) {
   return arr[rnd(arr.length)];
-}
-
-export function decodePos(pos, language) {
-  const mapping = require(`xerox-nlp-client/data/tagset-${ language.toLowerCase() }.json`);
-  console.log(mapping);
-  return mapping.find(item => item.tag === '+' + pos).description;
 }
 
 export function escapeRegexp(text) {
