@@ -1,19 +1,7 @@
 import React, { PureComponent } from 'react';
+import { getArticle } from '../../services/formating';
+import Editable from '../Editable/Editable.jsx';
 import styles from './HeadWord.css';
-
-
-function getArticle(data, lang) {
-  const articles = {
-    de: {
-      pl: 'die',
-      m: 'der',
-      f: 'die',
-      n: 'das'
-    }
-  };
-
-  return articles[lang] ? articles[lang][data.num] || articles[lang][data.gen] : null;
-}
 
 
 /**
@@ -37,19 +25,23 @@ export default class HeadWord extends PureComponent {
     ) : '';
 
     const transcription = data.ts ? (
-      <span className={ styles.ts }>{ `${ data.ts }` }</span>
+      <span className={ styles.extra }>{ data.ts }</span>
     ) : '';
+
+    const word = (
+      <Editable text={ data.text } onChange={ this.props.onChange } />
+    );
 
     return (
       <div className={ styles.container }>
-        <div className={ styles.word }>
+        <div className={ styles.wordBlock }>
           { article ? (
-            <span>
-              { article }&nbsp;{ data.text }
+            <span className={ styles.word }>
+              { article }&nbsp;{ word }
             </span>
           ) : (
-            <span>
-              { data.text }
+            <span className={ styles.word }>
+              { word }
             </span>
           ) }
 
@@ -59,7 +51,7 @@ export default class HeadWord extends PureComponent {
         </div>
 
         { extra ? (
-          <div className={ styles.tsBlock }>{ transcription }</div>
+          <div>{ transcription }</div>
         ) : '' }
       </div>
     );

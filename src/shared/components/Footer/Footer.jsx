@@ -15,10 +15,6 @@ export default class Footer extends React.PureComponent {
             <p>
               Created by <a href="https://github.com/katspaugh">@katspaugh</a>
             </p>
-
-            <p>
-              Part of <a href="https://fluentcards.com">fluentcards.com</a>
-            </p>
           </div>
         </footer>
       </div>

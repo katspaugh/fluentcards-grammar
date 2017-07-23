@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import styles from './Definition.css';
-
+import Editable from '../Editable/Editable.jsx';
 
 /**
  * Definition component
@@ -17,9 +16,10 @@ export default class Definition extends PureComponent {
     def.forEach(item => item.tr.forEach(tr => defintions.push(tr.text)));
 
     return (
-      <div className={ styles.container }>
-        { defintions.slice(0, maxDefs).join('; ') }
-      </div>
+      <Editable
+        text={ defintions.slice(0, maxDefs).join('; ') }
+        onChange={ this.props.onChange }
+      />
     );
   }
 }

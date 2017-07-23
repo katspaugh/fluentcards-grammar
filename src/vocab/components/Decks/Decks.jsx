@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import ExtensionVocab from '../../services/ExtensionVocab';
+import ExtensionVocab from '../../services/extension-vocab';
 import styles from './Decks.css';
 
 /**

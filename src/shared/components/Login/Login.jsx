@@ -75,7 +75,6 @@ export default class Login extends React.PureComponent {
       <div className={ styles.container }>
         <button onClick={ this._onSubmit }>Login via email</button>
         { ' ' }
-        <small>to track your progress</small>
       </div>
     );
   }

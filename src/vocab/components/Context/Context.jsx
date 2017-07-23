@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { escapeRegexp } from '../../../shared/services/utils';
-import styles from './Context.css';
+import Editable from '../Editable/Editable.jsx';
 
 
 /**
@@ -13,21 +13,19 @@ export default class Context extends PureComponent {
   render() {
     const { context, selection } = this.props;
 
-    const text = context.replace(/^" /, '').trim();
-
-    let parts = text.split(new RegExp('\\b' + escapeRegexp(selection) + '\\b'));
+    let parts = context.split(new RegExp('\\b' + escapeRegexp(selection) + '\\b'));
     if (parts.length === 1) {
-      parts = text.split(selection);
+      parts = context.split(selection);
     }
 
     return (
-      <div className={ styles.container }>
+      <Editable text={ context } block onChange={ this.props.onChange }>
         { parts.length > 1 ? (
           <span>
             { parts[0] }<b>{ selection }</b>{ parts[1] }
           </span>
         ) : parts[0] }
-      </div>
+      </Editable>
     );
   }
 }

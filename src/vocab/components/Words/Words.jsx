@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react';
-import ExtensionVocab from '../../services/ExtensionVocab';
+import classnames from 'classnames';
+import ExtensionVocab from '../../services/extension-vocab';
+import { lookup } from '../../services/lookup';
+import exportCsv from '../../services/csv';
 import Loader from '../../../shared/components/Loader/Loader.jsx';
 import HeadWord from '../HeadWord/HeadWord.jsx';
 import Definition from '../Definition/Definition.jsx';
@@ -15,8 +18,39 @@ export default class Words extends PureComponent {
     super();
 
     this.state = {
-      deck: null
+      deck: null,
+      isReversed: false
     };
+
+    this._toggleReverse = () => this.setState({ isReversed: !this.state.isReversed });
+
+    this._exportCsv = () => {
+      exportCsv(this.state.deck.words);
+    };
+  }
+
+  changeWord(item, value) {
+    lookup(item.selection, this.props.lang)
+      .then(data => {
+        ExtensionVocab.updateItem(item, { def: data.def });
+      });
+  }
+
+  changeDef(item, value) {
+    ExtensionVocab.updateItem(item, { def: [
+      {
+        text: item.selection,
+        tr: value.split('; ').map(text => ({ text }))
+      }
+    ] });
+  }
+
+  changeContext(item, value) {
+    ExtensionVocab.updateItem(item, { context: value });
+  }
+
+  removeItem(item) {
+    ExtensionVocab.removeItem(item);
   }
 
   componentWillMount() {
@@ -45,19 +79,37 @@ export default class Words extends PureComponent {
       );
     }
 
-    const words = deck.words.map(item => {
+    const words = deck.words.map((item, index) => {
       return (
-        <div className={ styles.entry }>
-          <div className={ styles.word }>
-            <HeadWord lang={ this.props.lang } def={ item.def } />
+        <div className={ styles.entry } key={ index }>
+          <div className={ classnames(styles.col, styles.count) }>
+            { index + 1 }
           </div>
 
-          <div className={ styles.definition }>
-            <Definition def={ item.def } />
+          <div className={ classnames(styles.col, styles.word) }>
+            <HeadWord
+              lang={ this.props.lang }
+              def={ item.def }
+              onChange={ val => this.changeWord(item, val) } />
           </div>
 
-          <div className={ styles.context }>
-            <Context selection={ item.selection } context={ item.context } />
+          <div className={ classnames(styles.col, styles.definition) }>
+            <Definition
+              def={ item.def }
+              onChange={ val => this.changeDef(item, val) }
+            />
+          </div>
+
+          <div className={ classnames(styles.col, styles.context) }>
+            <Context
+              selection={ item.selection }
+              context={ item.context }
+              onChange={ val => this.changeContext(item, val) }
+            />
+          </div>
+
+          <div className={ classnames(styles.col, styles.remove) }>
+            <button className={ styles.button } onClick={ () => this.removeItem(item) }>×</button>
           </div>
         </div>
       );
@@ -65,10 +117,29 @@ export default class Words extends PureComponent {
 
     return (
       <div className={ styles.container }>
-        <h2>{ deck.language }</h2>
+        <div className={ styles.centered }>
+          <button className={ styles.exportButton } onClick={ this._exportCsv }>
+            Download as TSV
+          </button>
+        </div>
 
         <div className={ styles.words }>
-          { words }
+          <div className={ classnames(styles.entry, styles.header) }>
+            <div className={ classnames(styles.col, styles.count) }>
+              <button className={ styles.button } onClick={ this._toggleReverse }>⇅</button>
+            </div>
+            <div className={ styles.col }>Word</div>
+            <div className={ styles.col }>Definition</div>
+            <div className={ classnames(styles.col, styles.centered) }>Context</div>
+          </div>
+
+          { this.state.isReversed ? words.reverse() : words }
+        </div>
+
+        <div className={ styles.centered }>
+          <button className={ styles.exportButton } onClick={ this._exportCsv }>
+            Download as TSV
+          </button>
         </div>
       </div>
     );
