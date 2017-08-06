@@ -10,7 +10,8 @@
     "start": "webpack-dev-server --inline --hot --progress --colors",
     "test": "eslint ./src",
     "comp": "./bin/create-component.sh",
-    "prod": "npm test && NODE_ENV=production webpack -p"
+    "prod": "npm test && NODE_ENV=production webpack -p",
+    "deploy": "./bin/deploy.sh"
   },
   "repository": {
     "type": "git",
