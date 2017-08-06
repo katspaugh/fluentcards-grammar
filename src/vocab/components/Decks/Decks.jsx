@@ -33,7 +33,30 @@ export default class Decks extends PureComponent {
    * @return {JSX.Element}
    */
   render() {
-    if (!this.state.wordGroups) return null;
+    if (!this.state.wordGroups) return (
+      <div className={ styles.container }>
+        <h1 className={ styles.heading }>
+          <a target="_blank"
+             rel="nofollow"
+             href="https://chrome.google.com/webstore/detail/fluentcards-dictionary/fdppeilamokmgmobedkdmjiedkbblngd">
+            Install our Chrome extension
+          </a>
+        </h1>
+
+        <p className={ styles.paragraph }>
+          <a target="_blank"
+             rel="nofollow"
+             href="https://chrome.google.com/webstore/detail/fluentcards-dictionary/fdppeilamokmgmobedkdmjiedkbblngd">
+            <img src="/images/extension.png" />
+          </a>
+
+          <span>
+            Install our Chrome extension for instant dictionary look-up.
+            Start collecting flashcards to build up your vocabulary.
+          </span>
+        </p>
+      </div>
+    );
 
     const decks = this.state.wordGroups.map(group => {
       return (

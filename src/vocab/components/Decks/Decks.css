@@ -28,3 +28,26 @@
   padding: 1em;
   max-width: 200px;
 }
+
+.heading {
+  text-align: center;
+}
+
+.paragraph {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+
+.paragraph img {
+  max-width: 400px;
+  vertical-align: middle;
+  margin-right: 30px;
+}
+
+.paragraph span {
+  display: inline-block;
+  vertical-align: middle;
+}
