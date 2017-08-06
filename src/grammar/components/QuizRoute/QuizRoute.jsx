@@ -29,7 +29,7 @@ export default ({ match }) => {
   return (
     <div>
       <Header title={ pattern.title }>
-        <Link to={ `/quiz/${ match.params.language }` }>{ match.params.language }</Link>
+        <Link to={ `/grammar/quiz/${ match.params.language }` }>{ match.params.language }</Link>
         { ' › ' }
       </Header>
 

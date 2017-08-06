@@ -11,7 +11,7 @@ export default ({ match }) => {
 
   return (
     <div>
-      <Header title={ `${ config.languages[lang] } vocabulary from the Fluentcards extension` } />
+      <Header title={ `Fluentcards: ${ config.languages[lang] }` } />
 
       <Words lang={ lang } />
     </div>

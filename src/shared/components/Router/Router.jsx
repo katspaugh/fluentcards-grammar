@@ -5,6 +5,9 @@ import Nav from '../Nav/Nav.jsx';
 import Footer from '../Footer/Footer.jsx';
 import styles from './Router.css';
 
+// Front
+import FrontRoute from '../../../shared/components/FrontRoute/FrontRoute.jsx';
+
 // Grammar
 import HomeRoute from '../../../grammar/components/HomeRoute/HomeRoute.jsx';
 import QuizRoute from '../../../grammar/components/QuizRoute/QuizRoute.jsx';
@@ -21,13 +24,12 @@ const Routes = () => (
     <div>
       <Nav />
 
-      <Route exact path="/" component={ HomeRoute } />
+      <Route exact path="/" component={ FrontRoute } />
 
-      <Route exact path="/texts" component={ TextsRoute } />
-
-      <Route exact path="/quiz/:language" component={ HomeRoute } />
-
-      <Route path="/quiz/:language/:pattern" component={ QuizRoute } />
+      <Route exact path="/grammar" component={ HomeRoute } />
+      <Route exact path="/grammar/texts" component={ TextsRoute } />
+      <Route exact path="/grammar/quiz/:language" component={ HomeRoute } />
+      <Route path="/grammar/quiz/:language/:pattern" component={ QuizRoute } />
 
       <Route exact path="/vocab" component={ DecksRoute } />
       <Route path="/vocab/:lang" component={ WordsRoute } />

@@ -130,13 +130,13 @@ export default class Words extends PureComponent {
             </div>
             <div className={ styles.col }>Word</div>
             <div className={ styles.col }>Definition</div>
-            <div className={ classnames(styles.col, styles.centered) }>Context</div>
+            <div className={ classnames(styles.col, styles.centered, styles.contextHeader) }>Context</div>
           </div>
 
           { this.state.isReversed ? words.reverse() : words }
         </div>
 
-        <div className={ styles.centered }>
+        <div className={ styles.bottom }>
           <button className={ styles.exportButton } onClick={ this._exportCsv }>
             Download as TSV
           </button>

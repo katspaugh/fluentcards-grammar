@@ -31,12 +31,15 @@ class ExtensionVocab extends ReplaySubject {
     Observable
       .interval(50)
       .map(() => {
-        if (window.fluentcards) return window.fluentcards;
-        throw new Error();
+        if (!window.fluentcards) throw Error('No extension data');
+        return window.fluentcards;
       })
       .retry(100)
       .take(1)
-      .subscribe(words => this.addUniqueWords(words));
+      .subscribe(
+        words => this.addUniqueWords(words),
+        err => console.warn(err)
+      );
   }
 
   /**

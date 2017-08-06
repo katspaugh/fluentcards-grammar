@@ -8,7 +8,7 @@ import Decks from '../Decks/Decks.jsx';
 export default ({ match }) => {
   return (
     <div>
-      <Header title={ 'Vocabulary decks' }></Header>
+      <Header title="Fluentcards Vocabulary"></Header>
       <Decks />
     </div>
   );

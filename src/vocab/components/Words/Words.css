@@ -26,7 +26,7 @@
 }
 
 .entry:nth-child(even) {
-  background: #fafafa;
+  background: #FFFEF4;
 }
 
 .col {
@@ -75,6 +75,7 @@
 }
 
 @media only screen and (max-width: 550px) {
+  .contextHeader,
   .context {
     display: none;
   }
@@ -109,3 +110,6 @@
   border-color: #333;
 }
 
+.bottom {
+  margin: 3em 0 2em;
+}

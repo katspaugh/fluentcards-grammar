@@ -139,7 +139,7 @@ export default class Quiz extends React.PureComponent {
         <div>
           <i>or</i>
           <p>
-            <Link to={ `/quiz/${ this.props.language }` }>Choose another exercise</Link>
+            <Link to={ `/grammar/quiz/${ this.props.language }` }>Choose another exercise</Link>
           </p>
         </div>
       </div>

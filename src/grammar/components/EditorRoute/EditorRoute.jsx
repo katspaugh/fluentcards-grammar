@@ -138,7 +138,7 @@ export default class Editor extends React.Component {
       description: this.state.description,
       pattern: this.state.pattern
     }));
-    return `/quiz/${ this.state.language }/${ base64 }`;
+    return `/grammar/quiz/${ this.state.language }/${ base64 }`;
   }
 
   render() {

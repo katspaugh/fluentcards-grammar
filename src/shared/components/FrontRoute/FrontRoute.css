@@ -1,0 +1,89 @@
+.container {
+  margin: auto;
+  padding: 0 1em;
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    width: 900px;
+  }
+}
+
+.front section {
+  padding: 5em 0;
+}
+
+.front section:nth-child(odd) {
+  background: #FFF844;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.links a {
+  flex: 1;
+}
+
+.front section h1 {
+  margin-top: 0;
+}
+
+.front p {
+  overflow: hidden;
+}
+
+.front p .imageCenter {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto 30px;
+}
+
+.front p .imageLeft {
+  max-width: 50%;
+  float: left;
+  margin-right: 30px;
+}
+
+.front p .imageRight {
+  max-width: 50%;
+  float: right;
+  margin-left: 30px;
+}
+
+.cta {
+  display: block;
+  text-align: center;
+  font-size: 1.2em;
+  margin: 2em 0;
+}
+
+.hero {
+  font-size: 3em;
+  text-align: center;
+  position: relative;
+  min-height: 65vh;
+}
+
+.hero p {
+  margin-bottom: 0;
+}
+
+@keyframes point-down {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    transform: translateX(-50%) translateY(2%);
+  }
+}
+
+.hero:after {
+  content: '⌄';
+  position: absolute;
+  left: 50%;
+  bottom: -50px;
+  animation: point-down 300ms ease-in alternate infinite;
+}

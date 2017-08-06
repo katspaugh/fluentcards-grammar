@@ -6,7 +6,7 @@ import styles from './TextsRoute.css';
 export default () => (
   <div>
     <Header title="">
-      <Link to="/">Fluentcards Grammar</Link>
+      <Link to="/grammar">Fluentcards Grammar</Link>
     </Header>
 
     <div className={ styles.container }>
