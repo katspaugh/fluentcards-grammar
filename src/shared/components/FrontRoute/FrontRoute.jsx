@@ -11,22 +11,24 @@ import styles from './FrontRoute.css';
 export default ({ match }) => {
   return (
     <div className={ styles.front }>
-      <section>
-        <div className={ styles.hero }>
-          <Header title="Fluentcards" />
+      <section className={ styles.hero }>
+        <Header title="Fluentcards" />
 
-          <div className={ styles.container }>
-            <p>An easy way to language fluency through smart flashcards</p>
-          </div>
+        <div className={ styles.container }>
+          <p>An easy way to language fluency through smart flashcards</p>
         </div>
       </section>
 
       <section>
         <div className={ styles.container }>
           <p>
-            <img src="/images/extension.png" className={ styles.imageRight } />
-
             <h1>Collect words</h1>
+
+            <a target="_blank"
+               rel="nofollow"
+               href="https://chrome.google.com/webstore/detail/fluentcards-dictionary/fdppeilamokmgmobedkdmjiedkbblngd">
+              <img src="/images/extension.png" className={ styles.imageRight } />
+            </a>
 
             Install our Chrome extension for instant dictionary look-up. Start collecting your own flashcards and build up your vocabulary.
             When you save a word, we also save the context sentence.
@@ -43,10 +45,12 @@ export default ({ match }) => {
 
       <section>
         <div className={ styles.container }>
-          <h1>Organize and edit</h1>
-
           <p>
-            <img src="/images/vocab.png" className={ styles.imageCenter } />
+            <h1>Organize and edit</h1>
+
+            <Link to="/vocab">
+              <img src="/images/vocab.png" className={ styles.imageCenter } />
+            </Link>
 
             Fluentcards makes it easy to view and edit your saved words. Add cloze tests, pronunciation audio and images.
           </p>
@@ -56,9 +60,9 @@ export default ({ match }) => {
       <section>
         <div className={ styles.container }>
           <p>
-            <img src="/images/anki.jpg" className={ classnames(styles.imageLeft, styles.imageTall) } />
-
             <h1>Export and Review</h1>
+
+            <img src="/images/anki.jpg" className={ classnames(styles.imageLeft, styles.imageTall) } />
 
             You can export your entire flashcards collection
             into <a href="https://apps.ankiweb.net/" target="_blank" rel="nofollow">Anki</a> or <a href="https://www.memrise.com/" target="_blank" rel="nofollow">Memrise</a> for
@@ -79,11 +83,11 @@ export default ({ match }) => {
       <section>
         <div className={ styles.container }>
           <p>
+            <h1>Grammar Drills</h1>
+
             <Link to="/grammar">
               <img src="/images/grammar.png" className={ styles.imageRight } />
             </Link>
-
-            <h1><i>New! –</i> Grammar Drills</h1>
 
             Cement your grammar knowledge with infinite grammar drills.
 
