@@ -1,16 +1,10 @@
 .container {
   margin: auto;
-  padding: 0 1em;
-}
-
-@media only screen and (min-width: 1024px) {
-  .container {
-    width: 900px;
-  }
+  max-width: 900px;
 }
 
 .front section {
-  padding: 5em 0;
+  padding: 5vh 5vw;
 }
 
 .front section:nth-child(odd) {
@@ -33,6 +27,7 @@
 
 .front p {
   overflow: hidden;
+  margin-bottom: 0;
 }
 
 .front p .imageCenter {
@@ -53,6 +48,21 @@
   margin-left: 30px;
 }
 
+.front p .imageTall {
+  width: 200px;
+}
+
+@media only screen and (max-width: 767px) {
+  .front p img:not(.imageTall) {
+    max-width: none;
+    width: 100%;
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+}
+
 .cta {
   display: block;
   text-align: center;
@@ -61,10 +71,10 @@
 }
 
 .hero {
-  font-size: 3em;
+  font-size: 40px;
   text-align: center;
   position: relative;
-  min-height: 65vh;
+  min-height: 80vh;
 }
 
 .hero p {
@@ -76,7 +86,7 @@
     transform: translateX(-50%) translateY(0);
   }
   100% {
-    transform: translateX(-50%) translateY(2%);
+    transform: translateX(-50%) translateY(5%);
   }
 }
 
@@ -84,6 +94,6 @@
   content: '⌄';
   position: absolute;
   left: 50%;
-  bottom: -50px;
+  bottom: 0;
   animation: point-down 300ms ease-in alternate infinite;
 }

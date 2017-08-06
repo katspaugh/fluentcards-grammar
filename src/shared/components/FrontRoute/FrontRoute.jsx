@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 import Header from '../Header/Header.jsx';
 import styles from './FrontRoute.css';
 
@@ -15,7 +16,7 @@ export default ({ match }) => {
           <Header title="Fluentcards" />
 
           <div className={ styles.container }>
-            <p>An easy way to fluency in a foreign language through smart flashcards</p>
+            <p>An easy way to language fluency through smart flashcards</p>
           </div>
         </div>
       </section>
@@ -55,7 +56,7 @@ export default ({ match }) => {
       <section>
         <div className={ styles.container }>
           <p>
-            <img src="/images/anki.jpg" className={ styles.imageLeft } width="200" />
+            <img src="/images/anki.jpg" className={ classnames(styles.imageLeft, styles.imageTall) } />
 
             <h1>Export and Review</h1>
 
@@ -79,7 +80,7 @@ export default ({ match }) => {
         <div className={ styles.container }>
           <p>
             <Link to="/grammar">
-              <img src="/images/grammar.png" className={ styles.imageLeft } />
+              <img src="/images/grammar.png" className={ styles.imageRight } />
             </Link>
 
             <h1><i>New! –</i> Grammar Drills</h1>
