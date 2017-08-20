@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import ExtensionVocab from '../../services/extension-vocab';
+import KindleVocab from '../../services/kindle-vocab';
 import styles from './Decks.css';
 
 /**
@@ -14,15 +15,19 @@ export default class Decks extends PureComponent {
     super();
 
     this.state = {
-      wordGroups: null
+      decks: null,
+      books: null
     };
   }
 
   componentWillMount() {
     this.sub = ExtensionVocab
       .subscribe(() => {
-        this.setState({ wordGroups: ExtensionVocab.getDecks() });
+        this.setState({ decks: ExtensionVocab.getDecks() });
       });
+
+    const books = KindleVocab.getBooks();
+    if (books) this.setState({ books });
   }
 
   componentWillUnmount() {
@@ -33,7 +38,9 @@ export default class Decks extends PureComponent {
    * @return {JSX.Element}
    */
   render() {
-    if (!this.state.wordGroups) return (
+    const { decks, books } = this.state;
+
+    if (!decks && !books) return (
       <div className={ styles.container }>
         <h1 className={ styles.heading }>
           <a target="_blank"
@@ -58,7 +65,7 @@ export default class Decks extends PureComponent {
       </div>
     );
 
-    const decks = this.state.wordGroups.map(group => {
+    const deckItems = decks && decks.map(group => {
       return (
         <Link to={ `/vocab/${ group.lang }` } className={ styles.deck }>
           <h3>{ group.language }</h3>
@@ -68,13 +75,38 @@ export default class Decks extends PureComponent {
       );
     });
 
+    const bookItems = books && books.map(book => {
+      return (
+        <Link to={ `/vocab/${ book.id }` } className={ styles.book }>
+          <div style={ book.cover ? { backgroundImage: `url(${ book.cover })` } : null }>
+            { book.cover ? '' : <h5>{ book.title }</h5> }
+            <p>{ book.count } words</p>
+          </div>
+        </Link>
+      );
+    });
+
     return (
       <div className={ styles.container }>
-        <p>Here are the words that you collected with the Fluentcards Chrome extension:</p>
+        { deckItems ? (
+          <div>
+            <p>The words collected with the Fluentcards Chrome extension:</p>
 
-        <div className={ styles.decks }>
-          { decks }
-        </div>
+            <div className={ styles.decks }>
+              { deckItems }
+            </div>
+          </div>
+        ) : '' }
+
+        { bookItems ? (
+          <div>
+            <p>Your <Link to="/kindle">Kindle</Link> vocabulary:</p>
+
+            <div className={ styles.decks }>
+              { bookItems }
+            </div>
+          </div>
+        ) : '' }
       </div>
     );
   }

@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
-import ExtensionVocab from '../../services/extension-vocab';
+import VocabStore from '../../services/vocab-store';
 import { lookup } from '../../services/lookup';
+import Header from '../../../shared/components/Header/Header.jsx';
 import Loader from '../../../shared/components/Loader/Loader.jsx';
 import HeadWord from '../HeadWord/HeadWord.jsx';
 import Definition from '../Definition/Definition.jsx';
@@ -31,14 +33,14 @@ export default class Words extends PureComponent {
   }
 
   changeWord(item, value) {
-    lookup(item.selection, this.props.lang)
+    lookup(value, this.state.deck.lang)
       .then(data => {
-        ExtensionVocab.updateItem(item, { def: data.def });
+        VocabStore.updateItem(this.props.id, item, { selection: value, def: data.def });
       });
   }
 
   changeDef(item, value) {
-    ExtensionVocab.updateItem(item, { def: [
+    VocabStore.updateItem(this.props.id, item, { def: [
       {
         text: item.selection,
         tr: value.split('; ').map(text => ({ text }))
@@ -47,18 +49,17 @@ export default class Words extends PureComponent {
   }
 
   changeContext(item, value) {
-    ExtensionVocab.updateItem(item, { context: value });
+    VocabStore.updateItem(this.props.id, item, { context: value });
   }
 
   removeItem(item) {
-    ExtensionVocab.removeItem(item);
+    VocabStore.removeItem(this.props.id, item);
   }
 
   componentWillMount() {
-    this.sub = ExtensionVocab.subscribe(() => {
-      this.setState({
-        deck: ExtensionVocab.getDeck(this.props.lang)
-      });
+    this.sub = VocabStore.subscribe(() => {
+      const deck = VocabStore.getDeck(this.props.id);
+      this.setState({ deck });
     });
   }
 
@@ -99,7 +100,7 @@ export default class Words extends PureComponent {
 
           <div className={ classnames(styles.col, styles.word) }>
             <HeadWord
-              lang={ this.props.lang }
+              lang={ deck.lang }
               def={ item.def }
               onChange={ val => this.changeWord(item, val) } />
           </div>
@@ -147,24 +148,31 @@ export default class Words extends PureComponent {
     );
 
     return (
-      <div className={ styles.container }>
-        { controls }
+      <div>
+        <Header title={ deck.title || `${ deck.language }` }>
+          <Link to="/vocab">{ deck.title ? 'Books' : 'Decks' }</Link>
+          { ' › ' }
+        </Header>
 
-        <div className={ styles.words }>
-          <div className={ classnames(styles.entry, styles.header) }>
-            <div className={ classnames(styles.col, styles.count) }>
-              <button className={ styles.button } onClick={ this._toggleReverse }>⇅</button>
+        <div className={ styles.container }>
+          { controls }
+
+          <div className={ styles.words }>
+            <div className={ classnames(styles.entry, styles.header) }>
+              <div className={ classnames(styles.col, styles.count) }>
+                <button className={ styles.button } onClick={ this._toggleReverse }>⇅</button>
+              </div>
+              <div className={ styles.col }>Word</div>
+              <div className={ styles.col }>Definition</div>
+              <div className={ classnames(styles.col, styles.centered, styles.contextHeader) }>Context</div>
             </div>
-            <div className={ styles.col }>Word</div>
-            <div className={ styles.col }>Definition</div>
-            <div className={ classnames(styles.col, styles.centered, styles.contextHeader) }>Context</div>
+
+            { this.state.isReversed ? words.reverse() : words }
           </div>
 
-          { this.state.isReversed ? words.reverse() : words }
-        </div>
-
-        <div className={ styles.bottom }>
-          { controls }
+          <div className={ styles.bottom }>
+            { controls }
+          </div>
         </div>
       </div>
     );

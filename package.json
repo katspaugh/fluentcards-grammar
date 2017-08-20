@@ -31,6 +31,7 @@
     "babel-core": "*",
     "babel-eslint": "*",
     "babel-loader": "*",
+    "babel-plugin-dynamic-import-webpack": "^1.0.1",
     "babel-preset-es2015": "*",
     "babel-preset-react": "*",
     "css-loader": "*",
@@ -40,13 +41,14 @@
     "react-dom": "*",
     "style-loader": "*",
     "typings-for-css-modules-loader": "*",
-    "webpack": "*",
+    "webpack": "^3.5.5",
     "webpack-dev-server": "*"
   },
   "dependencies": {
     "classnames": "^2.2.5",
     "react-router-dom": "^4.1.1",
     "sbd": "^1.0.12",
+    "sql.js": "^0.4.0",
     "xerox-nlp-client": "github:katspaugh/xerox-nlp-client"
   }
 }

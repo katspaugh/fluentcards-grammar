@@ -10,6 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname),
     filename: 'dist/app.js',
+    chunkFilename: '[name].bundle.js',
     publicPath: '/'
   },
 
@@ -18,6 +19,8 @@ module.exports = {
     host: '0.0.0.0',
     disableHostCheck: true
   },
+
+  node: { fs: 'empty' },
 
   module: {
     rules: [

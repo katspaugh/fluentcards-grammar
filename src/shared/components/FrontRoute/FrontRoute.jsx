@@ -83,6 +83,24 @@ export default () => {
       <section>
         <div className={ styles.container }>
           <p>
+            <h1>Import the Kindle Vocabulary</h1>
+
+            <a href="/kindle">
+              <img src="/images/kindle.jpg" className={ styles.imageCenter } />
+            </a>
+
+            Every time you look up a word in the Kindle's dictionary, it saves the word along with the context into the device's memory. Fluentcards lets you extract all of the looked up words to review conviniently in Anki.
+
+            <a className={ styles.cta } href="/kindle">
+              Import from your Kindle
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div className={ styles.container }>
+          <p>
             <h1>Grammar Drills</h1>
 
             <Link to="/grammar">

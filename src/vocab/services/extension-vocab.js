@@ -128,15 +128,6 @@ class ExtensionVocab extends ReplaySubject {
 
     this.setWords(this.words);
   }
-
-  /**
-   * Remove a vocabulary item
-   *
-   * @param {VocabItem} item
-   */
-  removeItem(item) {
-    this.updateItem(item, { _removed: true });
-  }
 }
 
 export default new ExtensionVocab();

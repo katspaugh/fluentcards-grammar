@@ -13,7 +13,7 @@ export default class Definition extends PureComponent {
     const { def } = this.props;
 
     const defintions = [];
-    def.forEach(item => item.tr.forEach(tr => defintions.push(tr.text)));
+    def.forEach(item => item.tr ? item.tr.forEach(tr => defintions.push(tr.text)) : '');
 
     return (
       <Editable

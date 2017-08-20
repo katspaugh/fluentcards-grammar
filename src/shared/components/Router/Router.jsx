@@ -18,6 +18,7 @@ import TextsRoute from '../../../grammar/components/TextsRoute/TextsRoute.jsx';
 // Vocab
 import DecksRoute from '../../../vocab/components/DecksRoute/DecksRoute.jsx';
 import WordsRoute from '../../../vocab/components/WordsRoute/WordsRoute.jsx';
+import KindleUpload from '../../../vocab/components/KindleUpload/KindleUpload.jsx';
 
 const Routes = () => (
   <Router>
@@ -32,7 +33,8 @@ const Routes = () => (
       <Route path="/grammar/quiz/:language/:pattern" component={ QuizRoute } />
 
       <Route exact path="/vocab" component={ DecksRoute } />
-      <Route path="/vocab/:lang" component={ WordsRoute } />
+      <Route path="/vocab/:id" component={ WordsRoute } />
+      <Route path="/kindle" component={ KindleUpload } />
 
       <Footer />
     </div>
