@@ -70,6 +70,8 @@ export default ({ match }) => {
           <h1 className={ styles.hero }>
             Refresh any quiz page to load new exercises!
           </h1>
+
+          <p>All <Link to="/grammar/texts">texts</Link> used here are transformed and mixed for educational purposes under the Fair Use.</p>
         </div>
       </section>
     </div>

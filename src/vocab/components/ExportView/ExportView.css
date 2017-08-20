@@ -1,0 +1,26 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.col {
+  flex: 1;
+}
+
+.col:first-of-type {
+  margin-right: 2em;
+}
+
+.col img {
+  display: block;
+  width: 100%;
+  min-width: 300px;
+  max-width: 500px;
+}

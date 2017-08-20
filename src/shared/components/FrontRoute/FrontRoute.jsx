@@ -65,8 +65,8 @@ export default () => {
             <img src="/images/anki.jpg" className={ classnames(styles.imageLeft, styles.imageTall) } />
 
             You can export your entire flashcards collection
-            into <a href="https://apps.ankiweb.net/" target="_blank" rel="nofollow">Anki</a> or <a href="https://www.memrise.com/" target="_blank" rel="nofollow">Memrise</a> for
-            regular review. Create beautiful decks and review on your phone.
+            into <a href="https://apps.ankiweb.net/" target="_blank" rel="nofollow">Anki</a> or <a href="https://www.memrise.com/" target="_blank" rel="nofollow">Memrise</a> for the <b>Spaced Repetition</b> practice.
+            Create beautiful decks and review the flashcards on your phone or desktop computer.
 
             <br />
             <br />

@@ -105,15 +105,16 @@
 
 @keyframes point-down {
   0% {
-    transform: translateX(-50%) translateY(0);
+    transform: rotateX(45deg) translateX(-50%) translateY(0);
   }
   100% {
-    transform: translateX(-50%) translateY(5%);
+    transform: rotateX(45deg) translateX(-50%) translateY(5%);
   }
 }
 
 .hero:after {
   content: '⌄';
+  color: #555;
   font-size: 50px;
   position: absolute;
   left: 50%;

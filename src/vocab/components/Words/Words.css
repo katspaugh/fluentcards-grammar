@@ -94,7 +94,6 @@
 .exportButton {
   display: block;
   box-sizing: border-box;
-  margin: 0 auto 1em;
   padding: 0.7em 3em;
   font-family: Helvetica, Arial, sans-serif;
   color: #333;
@@ -110,6 +109,28 @@
   border-color: #333;
 }
 
+.controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+}
+
+.controls h4 {
+  font-weight: normal;
+  font-size: 0.9em;
+}
+
+.controls .exportButton,
+.controls h4 {
+  margin: 0 10px 10px;
+}
+
+.controls .spacer {
+  flex: 1;
+}
+
 .bottom {
-  margin: 3em 0 2em;
+  margin: 3em 0;
 }

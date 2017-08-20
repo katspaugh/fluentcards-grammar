@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import classnames from 'classnames';
 import ExtensionVocab from '../../services/extension-vocab';
 import { lookup } from '../../services/lookup';
-import exportCsv from '../../services/csv';
 import Loader from '../../../shared/components/Loader/Loader.jsx';
 import HeadWord from '../HeadWord/HeadWord.jsx';
 import Definition from '../Definition/Definition.jsx';
+import ExportView from '../ExportView/ExportView.jsx';
 import Context from '../Context/Context.jsx';
 import styles from './Words.css';
 
@@ -19,14 +19,15 @@ export default class Words extends PureComponent {
 
     this.state = {
       deck: null,
+      exportType: null,
       isReversed: false
     };
 
     this._toggleReverse = () => this.setState({ isReversed: !this.state.isReversed });
+  }
 
-    this._exportCsv = () => {
-      exportCsv(this.state.deck.words);
-    };
+  exportDeck(exportType) {
+    this.setState({ exportType });
   }
 
   changeWord(item, value) {
@@ -69,12 +70,22 @@ export default class Words extends PureComponent {
    * @return {JSX.Element}
    */
   render() {
-    const { deck } = this.state;
+    const { deck, exportType } = this.state;
 
     if (!deck) {
       return (
         <div className={ styles.container }>
           <Loader />
+        </div>
+      );
+    }
+
+    if (exportType) {
+      return (
+        <div className={ styles.container }>
+          <div className={ styles.exporting }>
+            <ExportView words={ this.state.deck.words } type={ this.state.exportType } />
+          </div>
         </div>
       );
     }
@@ -115,13 +126,29 @@ export default class Words extends PureComponent {
       );
     });
 
+    const controls = (
+      <div className={ styles.controls }>
+        <div className={ styles.spacer } />
+
+        <h4>Download the deck as:</h4>
+
+        <button className={ styles.exportButton } onClick={ () => this.exportDeck('basic') }>
+          Anki Basic
+        </button>
+
+        <button className={ styles.exportButton } onClick={ () => this.exportDeck('cloze') }>
+          Anki Cloze
+        </button>
+
+        <button className={ styles.exportButton } onClick={ () => this.exportDeck('plain') }>
+          Memrise
+        </button>
+      </div>
+    );
+
     return (
       <div className={ styles.container }>
-        <div className={ styles.centered }>
-          <button className={ styles.exportButton } onClick={ this._exportCsv }>
-            Download as TSV
-          </button>
-        </div>
+        { controls }
 
         <div className={ styles.words }>
           <div className={ classnames(styles.entry, styles.header) }>
@@ -137,9 +164,7 @@ export default class Words extends PureComponent {
         </div>
 
         <div className={ styles.bottom }>
-          <button className={ styles.exportButton } onClick={ this._exportCsv }>
-            Download as TSV
-          </button>
+          { controls }
         </div>
       </div>
     );

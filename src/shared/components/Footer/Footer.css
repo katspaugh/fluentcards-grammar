@@ -9,7 +9,8 @@
 }
 
 .container footer {
-  display: block;
+  display: flex;
+  flex-direction: row;
   margin: auto;
   padding: 2em;
   font-size: 0.8em;
@@ -19,4 +20,8 @@
   .container footer {
     width: 900px;
   }
+}
+
+.container footer > div {
+  flex: 1;
 }
