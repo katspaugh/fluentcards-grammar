@@ -70,6 +70,8 @@ export default class Decks extends PureComponent {
 
     return (
       <div className={ styles.container }>
+        <p>Here are the words that you collected with the Fluentcards Chrome extension:</p>
+
         <div className={ styles.decks }>
           { decks }
         </div>

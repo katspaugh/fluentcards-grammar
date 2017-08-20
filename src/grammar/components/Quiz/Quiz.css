@@ -93,6 +93,10 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .description {
+    display: none;
+  }
+
   .list {
     margin: 0 -1em;
   }

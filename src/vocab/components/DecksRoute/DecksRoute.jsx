@@ -9,6 +9,7 @@ export default ({ match }) => {
   return (
     <div>
       <Header title="Fluentcards Vocabulary"></Header>
+
       <Decks />
     </div>
   );

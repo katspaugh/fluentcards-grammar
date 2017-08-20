@@ -1,5 +1,5 @@
 {
-  "name": "fluentdrill",
+  "name": "fluentcards-grammar",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/katspaugh/fluentdrill.git"
+    "url": "git+https://github.com/katspaugh/fluentcards-grammar.git"
   },
   "devDependencies": {
     "@types/classnames": "*",

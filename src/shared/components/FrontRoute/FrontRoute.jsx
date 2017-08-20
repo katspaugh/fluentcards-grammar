@@ -8,7 +8,7 @@ import styles from './FrontRoute.css';
 /**
  * FrontRoute component
  */
-export default ({ match }) => {
+export default () => {
   return (
     <div className={ styles.front }>
       <section className={ styles.hero }>
