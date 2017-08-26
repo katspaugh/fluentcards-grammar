@@ -8,10 +8,12 @@ import Editable from '../Editable/Editable.jsx';
  */
 export default class Context extends PureComponent {
   /**
-   * @return {JSX.Element}
+   * @return {?JSX.Element}
    */
   render() {
     const { context, selection } = this.props;
+
+    if (!context) return null;
 
     let parts = context.split(new RegExp('\\b' + escapeRegexp(selection) + '\\b'));
     if (parts.length === 1) {

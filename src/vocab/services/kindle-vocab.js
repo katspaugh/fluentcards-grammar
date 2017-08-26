@@ -9,14 +9,20 @@ class KindleVocab {
     this.books = [];
 
     this.restoreSavedBooks();
+
+    // if (!this.books.length) {
+    //   fetch('/data/books.json')
+    //     .then(resp => resp.json())
+    //     .then(data => !this.setBooks(data));
+    // }
   }
 
   /**
    * Restore books from the storage
    */
   restoreSavedBooks() {
-    const savedWords = localStorage.getItem(storageKey);
-    savedWords && this.setBooks(JSON.parse(savedWords));
+    const savedBooks = localStorage.getItem(storageKey);
+    savedBooks && this.setBooks(JSON.parse(savedBooks));
   }
 
   /**

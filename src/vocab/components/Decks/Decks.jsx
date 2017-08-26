@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import VocabStore from '../../services/vocab-store';
 import styles from './Decks.css';
@@ -41,7 +42,11 @@ export default class Decks extends PureComponent {
   render() {
     const { decks, books } = this.state;
 
-    if (!decks && !books) return (
+    if (decks.length === 1) return (
+      <Redirect to={ `/vocab/${ decks[0].lang }` } />
+    );
+
+    if (!decks.length && !books.length) return (
       <div className={ styles.container }>
         <h1 className={ styles.heading }>
           <a target="_blank"
@@ -66,7 +71,7 @@ export default class Decks extends PureComponent {
       </div>
     );
 
-    const deckItems = decks && decks.map(group => {
+    const deckItems = decks.map(group => {
       return (
         <Link to={ `/vocab/${ group.lang }` } className={ styles.deck }>
           <h3>{ group.language }</h3>
@@ -76,7 +81,7 @@ export default class Decks extends PureComponent {
       );
     });
 
-    const bookItems = books && books.map(book => {
+    const bookItems = books.map(book => {
       return (
         <Link to={ `/vocab/${ book.id }` } className={ styles.book }>
           <div style={ book.cover ? { backgroundImage: `url(${ book.cover })` } : null }>
@@ -89,9 +94,9 @@ export default class Decks extends PureComponent {
 
     return (
       <div className={ styles.container }>
-        { deckItems ? (
+        { deckItems.length ? (
           <div>
-            <p>The words collected with the Fluentcards Chrome extension:</p>
+            <p>Your Fluentcards extension vocabulary:</p>
 
             <div className={ styles.decks }>
               { deckItems }
@@ -99,7 +104,7 @@ export default class Decks extends PureComponent {
           </div>
         ) : '' }
 
-        { bookItems ? (
+        { bookItems.length ? (
           <div>
             <p>Your <Link to="/kindle">Kindle</Link> vocabulary:</p>
 
