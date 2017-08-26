@@ -52,7 +52,6 @@ export default class Editable extends PureComponent {
    */
   render() {
     const classes = classnames(styles.editable, {
-      [styles.block]: this.props.block,
       [styles.empty]: !this.props.text
     });
 

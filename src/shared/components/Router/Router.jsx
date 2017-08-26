@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 
 import Nav from '../Nav/Nav.jsx';
 import Footer from '../Footer/Footer.jsx';
@@ -35,6 +35,7 @@ const Routes = () => (
       <Route exact path="/vocab" component={ DecksRoute } />
       <Route path="/vocab/:id" component={ WordsRoute } />
       <Route path="/kindle" component={ KindleUpload } />
+      <Route path="/books" component={ () => <Redirect to="/vocab" /> } />
 
       <Footer />
     </div>

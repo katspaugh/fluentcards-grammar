@@ -42,7 +42,7 @@ export default class Decks extends PureComponent {
   render() {
     const { decks, books } = this.state;
 
-    if (decks.length === 1) return (
+    if (decks.length === 1 && !books.length) return (
       <Redirect to={ `/vocab/${ decks[0].lang }` } />
     );
 

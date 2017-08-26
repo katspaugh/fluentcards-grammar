@@ -1,6 +1,7 @@
 .container {
   display: block;
   background: #FFF844;
+  min-height: 34px;
 }
 
 .container nav {

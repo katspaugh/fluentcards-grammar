@@ -15,14 +15,14 @@ export default () => {
         <Header title="Fluentcards" />
 
         <div className={ styles.container }>
-          <p>An easy way to language fluency through smart flashcards</p>
+          <p>Achieve fluency in a language through smart&nbsp;flashcards</p>
         </div>
       </section>
 
       <section>
         <div className={ styles.container }>
           <p>
-            <h1>Collect words</h1>
+            <h1>Collect Words</h1>
 
             <a target="_blank"
                rel="nofollow"
@@ -46,7 +46,7 @@ export default () => {
       <section>
         <div className={ styles.container }>
           <p>
-            <h1>Organize and edit</h1>
+            <h1>Organize and Edit</h1>
 
             <Link to="/vocab">
               <img src="/images/vocab.png" className={ styles.imageCenter } />
@@ -66,12 +66,12 @@ export default () => {
 
             You can export your entire flashcards collection
             into <a href="https://apps.ankiweb.net/" target="_blank" rel="nofollow">Anki</a> or <a href="https://www.memrise.com/" target="_blank" rel="nofollow">Memrise</a> for the <b>Spaced Repetition</b> practice.
-            Create beautiful decks and review the flashcards on your phone or desktop computer.
+            Create beautiful decks and review the flashcards on your phone or computer.
 
             <br />
             <br />
 
-            Anki saves your time by repeatedly showing you flashcards right at the time when you about to forget them. Take advantage of the scientifically proven SRS method to boost your vocabulary.
+            Anki saves your time by repeatedly showing you flashcards right at the time when you're about to forget them. Take advantage of the scientifically proven SRS method to boost your vocabulary.
 
             <a className={ styles.cta } href="https://apps.ankiweb.net/docs/manual.html#importing-text-files" target="_blank" rel="nofollow">
               Learn how to import into Anki
@@ -85,15 +85,15 @@ export default () => {
           <p>
             <h1>Import the Kindle Vocabulary</h1>
 
-            <a href="/kindle">
+            <Link to="/kindle">
               <img src="/images/kindle.jpg" className={ styles.imageCenter } />
-            </a>
+            </Link>
 
-            Every time you look up a word in the Kindle's dictionary, it saves the word along with the context into the device's memory. Fluentcards lets you extract all of the looked up words to review conviniently in Anki.
+            Every time you look up a word in the Kindle's dictionary, it saves the word along with the context into the device's memory. Fluentcards lets you extract all the looked-up words to review conviniently in Anki.
 
-            <a className={ styles.cta } href="/kindle">
+            <Link to="/kindle" className={ styles.cta } href="/kindle">
               Import from your Kindle
-            </a>
+            </Link>
           </p>
         </div>
       </section>
