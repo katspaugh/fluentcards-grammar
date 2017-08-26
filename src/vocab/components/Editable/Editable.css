@@ -3,13 +3,17 @@
   100% { opacity: 1; }
 }
 
+.editable {
+  display: inline-block;
+  padding: 0.25em;
+  margin: -0.25em;
+}
+
 .editable:hover,
 .editable:focus {
   position: relative;
   outline: none;
   background: #eee;
-  padding: 0.25em;
-  margin: -0.25em;
 }
 
 .editable:hover:after,
@@ -24,12 +28,6 @@
   color: #333;
   font-size: 1.2em;
   animation: fade-in 100ms ease-in;
-}
-
-.editable.block {
-  display: inline-block;
-  padding: 0.25em;
-  margin: -0.25em;
 }
 
 .editable.empty {

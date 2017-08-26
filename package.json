@@ -7,6 +7,7 @@
   "author": "katspaugh@gmail.com",
   "license": "MIT",
   "scripts": {
+    "postinstall": "cp node_modules/sql.js/js/sql-memory-growth.js vendor/",
     "start": "webpack-dev-server --inline --hot --progress --colors",
     "test": "eslint ./src",
     "comp": "./bin/create-component.sh",

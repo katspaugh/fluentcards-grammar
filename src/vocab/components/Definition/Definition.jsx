@@ -18,7 +18,6 @@ export default class Definition extends PureComponent {
     return (
       <Editable
         text={ defintions.slice(0, maxDefs).join('; ') }
-        block
         onChange={ this.props.onChange }
       />
     );

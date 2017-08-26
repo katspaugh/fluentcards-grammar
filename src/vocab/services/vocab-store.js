@@ -25,6 +25,18 @@ class VocabStore extends ReplaySubject {
   }
 
   /**
+   * Get decks
+   *
+   * @returns {any}
+   */
+  getDecks() {
+    return {
+      extensionDecks: ExtensionVocab.getDecks(),
+      kindleBooks: KindleVocab.getBooks()
+    };
+  }
+
+  /**
    * Get a deck by id
    *
    * @param {string} id

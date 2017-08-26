@@ -19,7 +19,7 @@ export default class Context extends PureComponent {
     }
 
     return (
-      <Editable text={ context } block onChange={ this.props.onChange }>
+      <Editable text={ context } onChange={ this.props.onChange }>
         { parts.length > 1 ? (
           <span>
             { parts[0] }<b>{ selection }</b>{ parts[1] }

@@ -57,7 +57,6 @@ class ExtensionVocab extends ReplaySubject {
    */
   setWords(words) {
     this.words = words;
-    this.onNext(this.words);
     localStorage.setItem(storageKey, JSON.stringify(this.words));
   }
 
@@ -74,6 +73,7 @@ class ExtensionVocab extends ReplaySubject {
 
     if (newWords.length) {
       this.setWords(this.words.concat(newWords));
+      this.onNext({});
     }
   }
 

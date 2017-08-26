@@ -1,16 +1,21 @@
 export default class KindleService {
   constructor() {
-    this.sql = null;
+    this.SQL = null;
     this.db = null;
   }
 
   init() {
-    return import(/* webpackChunkName: "sql" */ 'sql.js/js/sql-memory-growth.js')
-      .then(sql => this.sql = sql);
+    const sqlJsUrl = 'vendor/sql-memory-growth.js';
+
+    return fetch(sqlJsUrl)
+      .then(resp => resp.text())
+      .then(script => {
+        this.SQL = (new Function(script + '; return SQL'))();
+      });
   }
 
   loadDb(uints) {
-    this.db = new this.sql.Database(uints);
+    this.db = new this.SQL.Database(uints);
   }
 
   queryBooks() {

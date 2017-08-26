@@ -48,7 +48,7 @@ class KindleVocab {
         .map(item => ({
           selection: item.selection,
           context: item.context,
-          def: [
+          def: item.def || [
             { text: item.baseForm }
           ]
         }))
@@ -71,8 +71,10 @@ class KindleVocab {
    * @param {any} newFields
    */
   updateItem(id, item, newFields) {
-    const book = this.books.find(item => item.id === id);
-    const vocab = book.vocabs.find(vocab => vocab.selection === item.selection);
+    const book = this.books.find(book => book.id === id);
+    const vocab = book.vocabs.find(vocab => {
+      return (vocab.selection === item.selection) && (vocab.context === item.context);
+    });
 
     Object.assign(vocab, newFields);
 

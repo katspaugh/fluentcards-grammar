@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import ExtensionVocab from '../../services/extension-vocab';
-import KindleVocab from '../../services/kindle-vocab';
+import VocabStore from '../../services/vocab-store';
 import styles from './Decks.css';
 
 /**
@@ -21,13 +20,15 @@ export default class Decks extends PureComponent {
   }
 
   componentWillMount() {
-    this.sub = ExtensionVocab
+    this.sub = VocabStore
       .subscribe(() => {
-        this.setState({ decks: ExtensionVocab.getDecks() });
-      });
+        const data = VocabStore.getDecks()
 
-    const books = KindleVocab.getBooks();
-    if (books) this.setState({ books });
+        this.setState({
+          decks: data.extensionDecks,
+          books: data.kindleBooks
+        });
+      });
   }
 
   componentWillUnmount() {
