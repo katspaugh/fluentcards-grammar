@@ -44,7 +44,7 @@ class KindleVocab {
 
     return {
       lang: book.language,
-      language: config.languages[book.language],
+      language: config.languages[book.language] || book.language,
       title: book.title,
       authors: book.title,
       cover: book.cover,

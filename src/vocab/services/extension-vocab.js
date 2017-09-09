@@ -86,7 +86,7 @@ class ExtensionVocab extends ReplaySubject {
   getDeck(lang) {
     return {
       lang,
-      language: config.languages[lang],
+      language: config.languages[lang] || lang,
       words: this.words.filter(item => !item._removed && item.language === lang)
     };
   }
@@ -110,7 +110,7 @@ class ExtensionVocab extends ReplaySubject {
       .sort((a, b) => groups[a].length - groups[b].length)
       .map(lang => ({
         lang,
-        language: config.languages[lang],
+        language: config.languages[lang] || lang,
         words: groups[lang]
       }));
   }
