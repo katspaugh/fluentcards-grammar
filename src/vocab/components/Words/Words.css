@@ -18,7 +18,7 @@
 .words {
   margin: 0 -1em 2em;
   display: table;
-  table-layout: fixed;
+  width: 100%;
 }
 
 .entry {
