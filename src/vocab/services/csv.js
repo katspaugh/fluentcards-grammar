@@ -51,6 +51,11 @@ function cloze(item) {
   return [ cloze, def, word ];
 }
 
+/**
+ * @param {any[]} items
+ * @param {string} type
+ * @returns {string}
+ */
 export default function exportCsv(items, type) {
   let mappingFn = plain;
 
@@ -61,9 +66,6 @@ export default function exportCsv(items, type) {
   }
 
   const lines = items.map(mappingFn);
-  const tsv = lines.map(line => line.join('\t')).join('\n');
-  const url = 'data:text/tab-separated-values;charset=utf-8,' + encodeURIComponent(tsv);
 
-  window.open(url);
-
+  return lines.map(line => line.join('\t')).join('\n');
 }

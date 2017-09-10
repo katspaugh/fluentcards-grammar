@@ -116,7 +116,7 @@ export default class Words extends PureComponent {
       return (
         <div className={ styles.container }>
           <div className={ styles.exporting }>
-            <ExportView words={ this.state.deck.words } type={ this.state.exportType } />
+            <ExportView name={ deck.title || deck.language } words={ deck.words } type={ exportType } />
           </div>
         </div>
       );
