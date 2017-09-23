@@ -7,7 +7,6 @@
   "author": "katspaugh@gmail.com",
   "license": "MIT",
   "scripts": {
-    "postinstall": "cp node_modules/sql.js/js/sql-memory-growth.js vendor/",
     "start": "webpack-dev-server --inline --hot --progress --colors",
     "test": "eslint ./src",
     "comp": "./bin/create-component.sh",
@@ -49,7 +48,6 @@
     "classnames": "^2.2.5",
     "react-router-dom": "^4.1.1",
     "sbd": "^1.0.12",
-    "sql.js": "^0.4.0",
     "xerox-nlp-client": "github:katspaugh/xerox-nlp-client"
   }
 }
