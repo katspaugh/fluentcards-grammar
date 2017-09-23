@@ -25,11 +25,6 @@
   padding-top: 0.25em;
 }
 
-.foreword {
-  margin-top: 0;
-  margin-bottom: 2em;
-}
-
 .content {
   display: flex;
   flex-direction: row;

@@ -15,11 +15,6 @@ import TextsRoute from '../../../grammar/components/TextsRoute/TextsRoute.jsx';
 //import EditorRoute from '../../../grammar/components/EditorRoute/EditorRoute.jsx';
 //<Route exact path="/editor" component={ EditorRoute } />
 
-// Vocab
-import DecksRoute from '../../../vocab/components/DecksRoute/DecksRoute.jsx';
-import WordsRoute from '../../../vocab/components/WordsRoute/WordsRoute.jsx';
-import KindleUpload from '../../../vocab/components/KindleUpload/KindleUpload.jsx';
-
 const Routes = () => (
   <Router>
     <div>
@@ -31,11 +26,6 @@ const Routes = () => (
       <Route exact path="/grammar/texts" component={ TextsRoute } />
       <Route exact path="/grammar/quiz/:language" component={ HomeRoute } />
       <Route path="/grammar/quiz/:language/:pattern" component={ QuizRoute } />
-
-      <Route exact path="/vocab" component={ DecksRoute } />
-      <Route path="/vocab/:id" component={ WordsRoute } />
-      <Route path="/kindle" component={ KindleUpload } />
-      <Route path="/books" component={ () => <Redirect to="/vocab" /> } />
 
       <Footer />
     </div>

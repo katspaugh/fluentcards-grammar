@@ -51,10 +51,6 @@ export default ({ match }) => {
     <div className={ homeClasses }>
       <section>
         <Header title={ title }>{ language }</Header>
-
-        <p className={ classnames(styles.container, styles.foreword) }>
-          To become fluent in a foreign language, one must deeply internalize its grammatical patterns. Here you can practice with infinite grammar exercises that are dynamically generated from real-world texts.
-        </p>
       </section>
 
       <section>
