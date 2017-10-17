@@ -31,23 +31,23 @@
     "babel-core": "*",
     "babel-eslint": "*",
     "babel-loader": "*",
-    "babel-plugin-dynamic-import-webpack": "^1.0.1",
+    "babel-plugin-dynamic-import-webpack": "*",
     "babel-preset-es2015": "*",
     "babel-preset-react": "*",
     "css-loader": "*",
     "eslint": "*",
     "eslint-plugin-react": "*",
-    "react": "*",
-    "react-dom": "*",
     "style-loader": "*",
     "typings-for-css-modules-loader": "*",
-    "webpack": "^3.5.5",
+    "webpack": "*",
     "webpack-dev-server": "*"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "react-router-dom": "^4.1.1",
-    "sbd": "^1.0.12",
+    "classnames": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-router-dom": "*",
+    "sbd": "*",
     "xerox-nlp-client": "github:katspaugh/xerox-nlp-client"
   }
 }
