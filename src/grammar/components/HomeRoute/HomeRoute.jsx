@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
-import patterns from '../../services/patterns';
+import patterns from '../../patterns';
 import Header from '../../../shared/components/Header/Header.jsx';
 import styles from './HomeRoute.css';
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default {
   English: {
     'a-vs-the': {
@@ -163,7 +164,7 @@ export default {
 
       pattern: [
         {
-          partOfSpeech: [ 'ART', 'PREPART' ],
+          partOfSpeech: 'ART',
           baseForm: /^((?!ein).)/
         },
 
@@ -237,6 +238,24 @@ export default {
         }
       ]
     },
+
+    'preposition-case': {
+      title: 'Prepositional cases',
+
+      description: 'Choose the right form of an article after a preposition',
+
+      pattern: [
+        {
+          partOfSpeech: 'PREP'
+        },
+        {
+          partOfSpeech: 'ART',
+          occlusion: /[^d]+$/,
+          choices: [ 'er', 'ie', 'as', 'es', 'en', 'em' ]
+        }
+      ]
+    },
+
 
     'verbs-with-prepositions': {
       title: 'Verbs: prepositional government',
@@ -343,13 +362,13 @@ export default {
 
           choices: (lexeme) => {
             switch (lexeme.baseForm) {
-              case 'ich': return [ 'ich', 'mich', 'mir' ];
-              case 'du': return [ 'du', 'dich', 'dir' ];
-              case 'es': return [ 'es', 'ihm' ];
-              case 'er': return [ 'er', 'ihn', 'ihm' ];
-              case 'sie': return [ 'sie', 'ihr', 'ihnen' ];
-              case 'wir': return [ 'wir', 'uns' ];
-              case 'ihr': return [ 'ihr', 'euch' ];
+                case 'ich': return [ 'ich', 'mich', 'mir' ];
+                case 'du': return [ 'du', 'dich', 'dir' ];
+                case 'es': return [ 'es', 'ihm' ];
+                case 'er': return [ 'er', 'ihn', 'ihm' ];
+                case 'sie': return [ 'sie', 'ihr', 'ihnen' ];
+                case 'wir': return [ 'wir', 'uns' ];
+                case 'ihr': return [ 'ihr', 'euch' ];
             }
           }
         }

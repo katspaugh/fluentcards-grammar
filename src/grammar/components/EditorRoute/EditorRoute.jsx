@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import patterns from '../../services/patterns';
+import patterns from '../../patterns';
 import Header from '../../../shared/components/Header/Header.jsx';
 import App from '../Quiz/Quiz.jsx';
 import PosField from './PosField.jsx';
