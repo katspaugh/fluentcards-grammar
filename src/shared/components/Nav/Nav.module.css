@@ -37,8 +37,3 @@
 .info {
   flex: 1;
 }
-
-.login {
-  max-width: 40%;
-  overflow: hidden;
-}

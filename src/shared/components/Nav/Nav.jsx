@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Login from '../Login/Login.jsx';
 import Stats from '../../../grammar/components/Stats/Stats.jsx';
-import styles from './Nav.css';
+import styles from './Nav.module.css';
 
 export default class Nav extends React.PureComponent {
   render() {
@@ -23,10 +22,6 @@ export default class Nav extends React.PureComponent {
 
           <div className={ styles.info }>
             <Stats />
-          </div>
-
-          <div className={ styles.login }>
-            <Login />
           </div>
         </nav>
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
-import { shuffle } from '../../../shared/services/utils';
-import styles from './Question.css';
+import { shuffle } from '../../../shared/services/Utils';
+import styles from './Question.module.css';
 
 
 export default class Question extends React.PureComponent {

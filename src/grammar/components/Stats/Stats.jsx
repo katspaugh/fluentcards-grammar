@@ -1,7 +1,7 @@
 import React from 'react';
 import Scores from '../../services/Scores';
 import config from '../../../config';
-import styles from './Stats.css';
+import styles from './Stats.module.css';
 
 export default class Stats extends React.Component {
   constructor() {

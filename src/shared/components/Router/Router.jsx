@@ -1,9 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Nav from '../Nav/Nav.jsx';
 import Footer from '../Footer/Footer.jsx';
-import styles from './Router.css';
 
 // Front
 import FrontRoute from '../../../shared/components/FrontRoute/FrontRoute.jsx';

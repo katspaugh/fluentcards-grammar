@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import patterns from '../../patterns';
 import Header from '../../../shared/components/Header/Header.jsx';
-import styles from './HomeRoute.css';
+import styles from './HomeRoute.module.css';
 
 export default ({ match }) => {
   const languages = match.params.language ?

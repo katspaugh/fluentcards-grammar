@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import styles from './ComponentName.css';
+import styles from './ComponentName.module.css';
 
 
 /**

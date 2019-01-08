@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './Footer.css';
+import styles from './Footer.module.css';
 
 export default class Footer extends React.PureComponent {
   render() {

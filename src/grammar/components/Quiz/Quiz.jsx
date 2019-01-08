@@ -6,7 +6,7 @@ import Exercises from '../../services/Exercises';
 import Scores from '../../services/Scores';
 import Question from '../Question/Question.jsx';
 import config from '../../../config';
-import styles from './Quiz.css';
+import styles from './Quiz.module.css';
 
 export default class Quiz extends React.PureComponent {
   constructor() {
@@ -44,7 +44,7 @@ export default class Quiz extends React.PureComponent {
     );
 
     // Switch the active exercise
-    const { activeExercise, currentExercises } = this.state;
+    const { activeExercise } = this.state;
     if (correct) {
       setTimeout(() => {
         this.setState({ activeExercise: activeExercise + 1 });

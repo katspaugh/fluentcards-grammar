@@ -4,7 +4,7 @@ import patterns from '../../patterns';
 import Header from '../../../shared/components/Header/Header.jsx';
 import App from '../Quiz/Quiz.jsx';
 import PosField from './PosField.jsx';
-import styles from './EditorRoute.css';
+import styles from './EditorRoute.module.css';
 
 
 export default class Editor extends React.Component {

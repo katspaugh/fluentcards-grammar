@@ -1,4 +1,4 @@
-import { randomItem, escapeRegexp } from '../../shared/services/utils';
+import { randomItem, escapeRegexp } from '../../shared/services/Utils';
 
 export default class Exercises {
   constructor(language = 'English') {

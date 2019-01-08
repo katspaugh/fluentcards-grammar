@@ -1,5 +1,5 @@
 node_modules
 dist
 npm-debug.log
-*.css.d.ts
+*.module.css.d.ts
 package-lock.json

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './PosField.css';
+import styles from './PosField.module.css';
 
 const tagsets = {
   English: require('xerox-nlp-client/data/tagset-english.json'),

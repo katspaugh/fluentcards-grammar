@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import classnames from 'classnames';
 import Header from '../Header/Header.jsx';
-import styles from './FrontRoute.css';
+import styles from './FrontRoute.module.css';
 
 
 /**
@@ -30,7 +29,7 @@ export default () => {
         <div className={ styles.container }>
           <p>
             <Link to="/grammar">
-              <img src="/images/grammar.png" className={ styles.imageRight } />
+              <img alt="" src="/images/grammar.png" className={ styles.imageRight } />
             </Link>
 
             To become fluent in a foreign language, one must deeply internalize its grammatical patterns.

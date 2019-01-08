@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../../shared/components/Header/Header.jsx';
-import styles from './TextsRoute.css';
+import styles from './TextsRoute.module.css';
 
 export default () => (
   <div>

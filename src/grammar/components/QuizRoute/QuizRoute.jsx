@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../../../shared/components/Header/Header.jsx';
 import patterns from '../../patterns';
 import Quiz from '../Quiz/Quiz.jsx';
-import styles from './QuizRoute.css';
+import styles from './QuizRoute.module.css';
 
 export default ({ match }) => {
   let pattern = patterns[match.params.language][match.params.pattern];
