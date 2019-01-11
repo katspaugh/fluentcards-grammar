@@ -14,6 +14,8 @@ import TextsRoute from '../../../grammar/components/TextsRoute/TextsRoute.jsx';
 //import EditorRoute from '../../../grammar/components/EditorRoute/EditorRoute.jsx';
 //<Route exact path="/editor" component={ EditorRoute } />
 
+import './Router.module.css';
+
 const Routes = () => (
   <Router>
     <div>
