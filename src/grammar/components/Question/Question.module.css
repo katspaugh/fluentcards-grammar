@@ -73,6 +73,22 @@
 
 .question form {
   display: inline;
+  position: relative;
+}
+
+.question form span {
+  color: #76BD75;
+  position: absolute;
+  top: -10px;
+  left: 0;
+  z-index: 1;
+  font-size: 16px;
+  color: #FF6717;
+}
+
+.question form span + input {
+  text-decoration: line-through;
+  color: #777;
 }
 
 .question input:focus,
@@ -160,7 +176,7 @@
   background: #76BD75 !important;
 }
 
-.hint {
+.hintChoice {
   background: #76BD75 !important;
 }
 
