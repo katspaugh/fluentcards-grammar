@@ -45,10 +45,10 @@ export default class Quiz extends React.PureComponent {
 
     // Switch the active exercise
     const { activeExercise } = this.state;
-    if (correct) {
+    if ( correct !== null ) {
       setTimeout(() => {
         this.setState({ activeExercise: activeExercise + 1 });
-      }, 600);
+      }, 1000);
     }
   }
 

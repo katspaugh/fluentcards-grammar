@@ -69,22 +69,25 @@ export default class Question extends React.PureComponent {
   }
 
   renderChoices() {
-    const { choices } = this.state;
+    const { choices, correct } = this.state;
 
     if (!choices || choices.length <= 1) return null;
 
-    return choices.map((choice, i) => {
-      const selected = this.state.selectedChoice === choice
+    const correctChoice = this.props.cloze.occluded;
 
-      const toggle = {};
-      toggle[styles.selectedChoice] = selected;
-      toggle[styles.correctChoice] = selected && this.state.correct;
-      toggle[styles.incorrectChoice] = selected && !this.state.correct;
+    return choices.map((choice, i) => {
+      const selected = this.state.selectedChoice === choice;
+
+      const extraClasses = {};
+      extraClasses[styles.selectedChoice] = selected;
+      extraClasses[styles.correctChoice] = selected && correct;
+      extraClasses[styles.incorrectChoice] = selected && !correct;
+      extraClasses[styles.hint] = correct === false && choice === correctChoice;
 
       return (
         <li key={ i }>
           <button
-            className={ classnames(styles.choiceButton, toggle) }
+            className={ classnames(styles.choiceButton, extraClasses) }
             disabled={ this.state.correct }
             onClick={ () => this.onAnswer(choice) }>
             { choice || '∅' }
