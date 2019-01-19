@@ -116,6 +116,7 @@
     display: block;
     margin-left: 3em;
     padding-bottom: 1em;
+    padding-right: 1em;
   }
 
   .languageBlock:target h2 a {

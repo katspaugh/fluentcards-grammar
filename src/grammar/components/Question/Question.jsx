@@ -11,8 +11,11 @@ export default class Question extends React.PureComponent {
     this.state = {
       choices: null,
       selectedChoice: null,
-      correct: null
+      correct: null,
+      showHint: false
     };
+
+    this.input = null;
 
     this.onInput = () => {
       if (this.state.correct === false) {
@@ -56,7 +59,12 @@ export default class Question extends React.PureComponent {
       }
     }
 
-    this.setState({ choices, correct: null, selectedChoice: null });
+    this.setState({
+      choices,
+      correct: null,
+      selectedChoice: null,
+      showHint: false
+    });
   }
 
   onAnswer(value) {
@@ -66,10 +74,14 @@ export default class Question extends React.PureComponent {
     this.setState({ correct, selectedChoice: value });
 
     this.props.onAnswer(correct, lexeme);
+
+    !correct && setTimeout(() => {
+      this.setState({ showHint: true });
+    }, 600)
   }
 
   renderChoices() {
-    const { choices, correct } = this.state;
+    const { choices, correct, showHint } = this.state;
 
     if (!choices || choices.length <= 1) return null;
 
@@ -82,7 +94,7 @@ export default class Question extends React.PureComponent {
       extraClasses[styles.selectedChoice] = selected;
       extraClasses[styles.correctChoice] = selected && correct;
       extraClasses[styles.incorrectChoice] = selected && !correct;
-      extraClasses[styles.hint] = correct === false && choice === correctChoice;
+      extraClasses[styles.hintChoice] = showHint && choice === correctChoice;
 
       return (
         <li key={ i }>
@@ -97,10 +109,17 @@ export default class Question extends React.PureComponent {
     });
   }
 
+  componentDidUpdate() {
+    if (this.input) {
+      this.input.focus();
+    }
+  }
+
   render() {
     const { cloze } = this.props;
-    const { correct } = this.state;
+    const { correct, showHint } = this.state;
 
+    const correctAnswer = this.props.cloze.occluded;
     const choices = this.renderChoices();
 
     const choicesBlock = choices ? (
@@ -110,17 +129,25 @@ export default class Question extends React.PureComponent {
     ) : '';
 
     const placeholder = choices ? '…' :
-      (cloze.baseForm.join ? cloze.baseForm.join('') : cloze.baseForm)
+      (cloze.baseForm.join ? cloze.baseForm.join('') : cloze.baseForm);
+
+    const hint = showHint && !choices ? (
+      <span className={ styles.hintAnswer }>{ correctAnswer }</span>
+    ) : null;
 
     const input = (
       <form action="#" onSubmit={ this.onSubmit }>
+        { hint }
         <input
+          ref={ el => this.input = el }
           name="answer"
+          autoFocus
+          disabled={ correct === false }
           placeholder={ placeholder }
           size={ this.props.size + 1 }
           readOnly={ correct }
           onInput={ this.onInput }
-          value={ correct ? this.props.cloze.occluded : undefined } />
+          defaultValue={ (correct || (showHint && choices)) ? correctAnswer : null } />
       </form>
     );
 
