@@ -100,7 +100,7 @@ export default class Question extends React.PureComponent {
         <li key={ i }>
           <button
             className={ classnames(styles.choiceButton, extraClasses) }
-            disabled={ this.state.selectedChoice !== null }
+            disabled={ this.state.selectedChoice != null }
             onClick={ () => this.onAnswer(choice) }>
             { choice || '∅' }
           </button>
