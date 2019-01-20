@@ -29,16 +29,6 @@ export default class Question extends React.PureComponent {
     };
   }
 
-  componentWillMount() {
-    this.updateChoices(this.props);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.text !== this.props.text) {
-      this.updateChoices(nextProps);
-    }
-  }
-
   updateChoices(props) {
     const maxChoices = 4;
     const rightChoice = props.cloze.occluded.toLowerCase();
@@ -109,17 +99,35 @@ export default class Question extends React.PureComponent {
     });
   }
 
-  componentDidUpdate() {
-    if (this.input) {
+  setFocus() {
+    if (this.props.isActive && this.input) {
       this.input.focus();
     }
   }
 
+  componentWillMount() {
+    this.updateChoices(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.text !== this.props.text) {
+      this.updateChoices(nextProps);
+    }
+  }
+
+  componentDidMount() {
+    this.setFocus();
+  }
+
+  componentDidUpdate() {
+    this.setFocus();
+  }
+
   render() {
-    const { cloze } = this.props;
+    const { cloze, text, size } = this.props;
     const { correct, showHint } = this.state;
 
-    const correctAnswer = this.props.cloze.occluded;
+    const correctAnswer = cloze.occluded;
     const choices = this.renderChoices();
 
     const choicesBlock = choices ? (
@@ -141,17 +149,16 @@ export default class Question extends React.PureComponent {
         <input
           ref={ el => this.input = el }
           name="answer"
-          autoFocus
           disabled={ correct === false }
           placeholder={ placeholder }
-          size={ this.props.size + 1 }
+          size={ size + 1 }
           readOnly={ correct }
           onInput={ this.onInput }
           defaultValue={ (correct || (showHint && choices)) ? correctAnswer : null } />
       </form>
     );
 
-    const textParts = this.props.text.split(this.props.clozeSymbol, 2);
+    const textParts = text.split(this.props.clozeSymbol, 2);
     textParts[0] = textParts[0].slice(0, 1).toUpperCase() + textParts[0].slice(1);
 
     const toggle = {};
