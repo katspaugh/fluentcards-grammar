@@ -106,8 +106,9 @@ export default class Quiz extends React.PureComponent {
     }, []);
 
     const questions = currentExercises.map((item, i) => {
+      const isActive = i === activeExercise;
       const classes = classnames(styles.question, {
-        [styles.activeQuestion]: i === activeExercise
+        [styles.activeQuestion]: isActive
       });
 
       return (
@@ -119,7 +120,8 @@ export default class Quiz extends React.PureComponent {
             choices={ choices }
             clozeSymbol={ this.generator.clozeSymbol }
             onAnswer={ this._onAnswer }
-            />
+            isActive={ isActive }
+          />
         </li>
       );
     });
